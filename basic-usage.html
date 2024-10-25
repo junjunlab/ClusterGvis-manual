@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Basic usage | ClusterGVis Reference Book</title>
+  <meta name="description" content="This is a detailed documentation of ClusterGVis package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Basic usage | ClusterGVis Reference Book" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of ClusterGVis package." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Basic usage | ClusterGVis Reference Book" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of ClusterGVis package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-10-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="enrichment-anaysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ClusterGVis manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#citation"><i class="fa fa-check"></i><b>1.1</b> Citation</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i><b>1.2</b> Installation</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#bugs"><i class="fa fa-check"></i><b>1.3</b> Bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basic-usage.html"><a href="basic-usage.html"><i class="fa fa-check"></i><b>2</b> Basic usage</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-usage.html"><a href="basic-usage.html#input-data"><i class="fa fa-check"></i><b>2.1</b> Input data</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-usage.html"><a href="basic-usage.html#clustering-for-expression-matrix"><i class="fa fa-check"></i><b>2.2</b> Clustering for expression matrix</a></li>
+<li class="chapter" data-level="2.3" data-path="basic-usage.html"><a href="basic-usage.html#line-plot"><i class="fa fa-check"></i><b>2.3</b> Line plot</a></li>
+<li class="chapter" data-level="2.4" data-path="basic-usage.html"><a href="basic-usage.html#heatmap-plot"><i class="fa fa-check"></i><b>2.4</b> Heatmap plot</a></li>
+<li class="chapter" data-level="2.5" data-path="basic-usage.html"><a href="basic-usage.html#sample-group-and-order"><i class="fa fa-check"></i><b>2.5</b> Sample group and order</a></li>
+<li class="chapter" data-level="2.6" data-path="basic-usage.html"><a href="basic-usage.html#multiple-sample-annotation"><i class="fa fa-check"></i><b>2.6</b> Multiple sample annotation</a></li>
+<li class="chapter" data-level="2.7" data-path="basic-usage.html"><a href="basic-usage.html#and-line-trend-anntation"><i class="fa fa-check"></i><b>2.7</b> And line trend anntation</a></li>
+<li class="chapter" data-level="2.8" data-path="basic-usage.html"><a href="basic-usage.html#multiple-group-line-plot"><i class="fa fa-check"></i><b>2.8</b> Multiple group line plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html"><i class="fa fa-check"></i><b>3</b> Enrichment anaysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html#enrichment-for-non-model-organisms"><i class="fa fa-check"></i><b>3.1</b> Enrichment for non-model organisms</a></li>
+<li class="chapter" data-level="3.2" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html#own-enrichment-data"><i class="fa fa-check"></i><b>3.2</b> Own enrichment data</a></li>
+<li class="chapter" data-level="3.3" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html#batch-enrichment-analysis"><i class="fa fa-check"></i><b>3.3</b> Batch enrichment analysis</a></li>
+<li class="chapter" data-level="3.4" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html#add-annotation-for-specific-groups"><i class="fa fa-check"></i><b>3.4</b> Add annotation for specific groups</a></li>
+<li class="chapter" data-level="3.5" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html#add-barplot-for-enrichment-annotation"><i class="fa fa-check"></i><b>3.5</b> Add barplot for enrichment annotation</a></li>
+<li class="chapter" data-level="3.6" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html#add-kegg-annotation"><i class="fa fa-check"></i><b>3.6</b> Add KEGG annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parse-wgcna-output.html"><a href="parse-wgcna-output.html"><i class="fa fa-check"></i><b>4</b> Parse WGCNA output</a></li>
+<li class="chapter" data-level="5" data-path="parse-single-cell-data.html"><a href="parse-single-cell-data.html"><i class="fa fa-check"></i><b>5</b> Parse single cell data</a></li>
+<li class="chapter" data-level="6" data-path="parse-preudotime-data.html"><a href="parse-preudotime-data.html"><i class="fa fa-check"></i><b>6</b> Parse preudotime data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="parse-preudotime-data.html"><a href="parse-preudotime-data.html#monocle2-implemention"><i class="fa fa-check"></i><b>6.1</b> Monocle2 implemention</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="parse-preudotime-data.html"><a href="parse-preudotime-data.html#plot_pseudotime_heatmap2"><i class="fa fa-check"></i><b>6.1.1</b> plot_pseudotime_heatmap2</a></li>
+<li class="chapter" data-level="6.1.2" data-path="parse-preudotime-data.html"><a href="parse-preudotime-data.html#plot_genes_branched_heatmap2"><i class="fa fa-check"></i><b>6.1.2</b> plot_genes_branched_heatmap2</a></li>
+<li class="chapter" data-level="6.1.3" data-path="parse-preudotime-data.html"><a href="parse-preudotime-data.html#plot_multiple_branches_heatmap2"><i class="fa fa-check"></i><b>6.1.3</b> plot_multiple_branches_heatmap2</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="parse-preudotime-data.html"><a href="parse-preudotime-data.html#monocle3-implemention"><i class="fa fa-check"></i><b>6.2</b> Monocle3 implemention</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="add-custom-annotation.html"><a href="add-custom-annotation.html"><i class="fa fa-check"></i><b>7</b> Add custom annotation</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ClusterGVis Reference Book</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-usage" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Basic usage<a href="basic-usage.html#basic-usage" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we show a detailed documentation usage about <strong>ClusterGVis</strong>.</p>
+<div id="input-data" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Input data<a href="basic-usage.html#input-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For bulk-RNA sequencing data, a normalized matrix or data frame(<strong>tpm/fpkm/rpkm/rpm/…</strong>) containing
+gene expressions can be accepted. Please make sure the rownames of expression matrix are gene names. Here we load an example
+data which is from <a href="https://www.cell.com/cell-reports/fulltext/S2211-1247(17)31795-3?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2211124717317953%3Fshowall%3Dtrue">Protein Expression Landscape of Mouse Embryos during Pre-implantation Development</a>.</p>
+<p>First we load the example data:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="basic-usage.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ClusterGVis)</span>
+<span id="cb2-2"><a href="basic-usage.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="basic-usage.html#cb2-3" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb2-4"><a href="basic-usage.html#cb2-4" tabindex="-1"></a><span class="fu">data</span>(exps)</span>
+<span id="cb2-5"><a href="basic-usage.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="basic-usage.html#cb2-6" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb2-7"><a href="basic-usage.html#cb2-7" tabindex="-1"></a><span class="fu">head</span>(exps,<span class="dv">3</span>)</span>
+<span id="cb2-8"><a href="basic-usage.html#cb2-8" tabindex="-1"></a><span class="co">#           zygote  t2.cell  t4.cell  t8.cell   tmorula blastocyst</span></span>
+<span id="cb2-9"><a href="basic-usage.html#cb2-9" tabindex="-1"></a><span class="co"># Oog4   1.3132282 1.237078 1.325978 1.262073 0.6549312  0.2067114</span></span>
+<span id="cb2-10"><a href="basic-usage.html#cb2-10" tabindex="-1"></a><span class="co"># Psmd9  1.0917337 1.315989 1.174417 1.064756 0.8685598  0.4845448</span></span>
+<span id="cb2-11"><a href="basic-usage.html#cb2-11" tabindex="-1"></a><span class="co"># Sephs2 0.9859232 1.201026 1.123076 1.084673 0.8878931  0.7174088</span></span></code></pre></div>
+</div>
+<div id="clustering-for-expression-matrix" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Clustering for expression matrix<a href="basic-usage.html#clustering-for-expression-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is a problem to define a suitable cluster numbers, here we supply the total within sum square value for
+different cluster numbers to help you to choose a suitable value. Besides you can re-define the cluster numbers
+after checking the expression distribution heatmap results:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="basic-usage.html#cb3-1" tabindex="-1"></a><span class="co"># check optimal cluster numbers</span></span>
+<span id="cb3-2"><a href="basic-usage.html#cb3-2" tabindex="-1"></a><span class="fu">getClusters</span>(<span class="at">exp =</span> exps)</span></code></pre></div>
+<p align="center">
+<img src="local_images/1.png" width="60%">
+</p>
+<p>The <strong>kmeans, mfuzz and TCseq</strong> methods can be choosen to cluster data. <strong>mfuzz</strong> and <strong>TCseq</strong> are suitable for
+time course sequencing data to detect genes with consensus trend which are both applied with <strong>fuzzy cmeans</strong>
+clustering methods. Users can choose which one you like.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="basic-usage.html#cb4-1" tabindex="-1"></a><span class="co"># using mfuzz for clustering</span></span>
+<span id="cb4-2"><a href="basic-usage.html#cb4-2" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb4-3"><a href="basic-usage.html#cb4-3" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;mfuzz&quot;</span>,</span>
+<span id="cb4-4"><a href="basic-usage.html#cb4-4" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">8</span>)</span>
+<span id="cb4-5"><a href="basic-usage.html#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="basic-usage.html#cb4-6" tabindex="-1"></a><span class="co"># using TCseq for clustering</span></span>
+<span id="cb4-7"><a href="basic-usage.html#cb4-7" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb4-8"><a href="basic-usage.html#cb4-8" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;TCseq&quot;</span>,</span>
+<span id="cb4-9"><a href="basic-usage.html#cb4-9" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">8</span>)</span>
+<span id="cb4-10"><a href="basic-usage.html#cb4-10" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="basic-usage.html#cb4-11" tabindex="-1"></a><span class="co"># using kemans for clustering</span></span>
+<span id="cb4-12"><a href="basic-usage.html#cb4-12" tabindex="-1"></a>ck <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb4-13"><a href="basic-usage.html#cb4-13" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;kmeans&quot;</span>,</span>
+<span id="cb4-14"><a href="basic-usage.html#cb4-14" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">8</span>)</span></code></pre></div>
+<p>The <strong>clusterData</strong> function returns a list of results containing detailed clustering information for each gene. The <strong>wide.res</strong> is a more easily interpretable data frame that includes scaled gene expression values and cluster assignments for each gene. Complementing this, the <strong>long.res</strong> is a long-format data frame derived from <strong>wide.res</strong>, offering an alternative view of the same information:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="basic-usage.html#cb5-1" tabindex="-1"></a><span class="fu">str</span>(cm)</span>
+<span id="cb5-2"><a href="basic-usage.html#cb5-2" tabindex="-1"></a><span class="co"># List of 5</span></span>
+<span id="cb5-3"><a href="basic-usage.html#cb5-3" tabindex="-1"></a><span class="co"># $ wide.res:&#39;data.frame&#39;:  3767 obs. of  9 variables:</span></span>
+<span id="cb5-4"><a href="basic-usage.html#cb5-4" tabindex="-1"></a><span class="co">#   ..$ gene      : chr [1:3767] &quot;0610037L13Rik&quot; &quot;1110020G09Rik&quot; &quot;1110065P20Rik&quot; &quot;2010106G01Rik&quot; ...</span></span>
+<span id="cb5-5"><a href="basic-usage.html#cb5-5" tabindex="-1"></a><span class="co"># ..$ zygote    : num [1:3767] 0.255 -1.193 0.477 0.537 -1.395 ...</span></span>
+<span id="cb5-6"><a href="basic-usage.html#cb5-6" tabindex="-1"></a><span class="co"># ..$ t2.cell   : num [1:3767] 0.608 0.347 0.121 0.15 0.387 ...</span></span>
+<span id="cb5-7"><a href="basic-usage.html#cb5-7" tabindex="-1"></a><span class="co"># ..$ t4.cell   : num [1:3767] 0.708 0.113 -0.114 0.588 0.516 ...</span></span>
+<span id="cb5-8"><a href="basic-usage.html#cb5-8" tabindex="-1"></a><span class="co"># ..$ t8.cell   : num [1:3767] 0.589 1.418 1.272 0.888 1.383 ...</span></span>
+<span id="cb5-9"><a href="basic-usage.html#cb5-9" tabindex="-1"></a><span class="co"># ..$ tmorula   : num [1:3767] -0.2467 0.4319 0.0123 -0.3015 -0.8505 ...</span></span>
+<span id="cb5-10"><a href="basic-usage.html#cb5-10" tabindex="-1"></a><span class="co"># ..$ blastocyst: num [1:3767] -1.9124 -1.1167 -1.7682 -1.8611 -0.0408 ...</span></span>
+<span id="cb5-11"><a href="basic-usage.html#cb5-11" tabindex="-1"></a><span class="co"># ..$ cluster   : num [1:3767] 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-12"><a href="basic-usage.html#cb5-12" tabindex="-1"></a><span class="co"># ..$ membership: num [1:3767] 0.765 0.437 0.581 0.66 0.206 ...</span></span>
+<span id="cb5-13"><a href="basic-usage.html#cb5-13" tabindex="-1"></a><span class="co"># $ long.res:&#39;data.frame&#39;:  22602 obs. of  6 variables:</span></span>
+<span id="cb5-14"><a href="basic-usage.html#cb5-14" tabindex="-1"></a><span class="co">#   ..$ cluster     : num [1:22602] 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-15"><a href="basic-usage.html#cb5-15" tabindex="-1"></a><span class="co"># ..$ gene        : chr [1:22602] &quot;0610037L13Rik&quot; &quot;1110020G09Rik&quot; &quot;1110065P20Rik&quot; &quot;2010106G01Rik&quot; ...</span></span>
+<span id="cb5-16"><a href="basic-usage.html#cb5-16" tabindex="-1"></a><span class="co"># ..$ membership  : num [1:22602] 0.765 0.437 0.581 0.66 0.206 ...</span></span>
+<span id="cb5-17"><a href="basic-usage.html#cb5-17" tabindex="-1"></a><span class="co"># ..$ cell_type   : Factor w/ 6 levels &quot;zygote&quot;,&quot;t2.cell&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-18"><a href="basic-usage.html#cb5-18" tabindex="-1"></a><span class="co"># ..$ norm_value  : num [1:22602] 0.255 -1.193 0.477 0.537 -1.395 ...</span></span>
+<span id="cb5-19"><a href="basic-usage.html#cb5-19" tabindex="-1"></a><span class="co"># ..$ cluster_name: Factor w/ 8 levels &quot;cluster 1 (381)&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-20"><a href="basic-usage.html#cb5-20" tabindex="-1"></a><span class="co"># $ type    : chr &quot;mfuzz&quot;</span></span>
+<span id="cb5-21"><a href="basic-usage.html#cb5-21" tabindex="-1"></a><span class="co"># $ geneMode: chr &quot;none&quot;</span></span>
+<span id="cb5-22"><a href="basic-usage.html#cb5-22" tabindex="-1"></a><span class="co"># $ geneType: chr &quot;none&quot;</span></span>
+<span id="cb5-23"><a href="basic-usage.html#cb5-23" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="basic-usage.html#cb5-24" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="basic-usage.html#cb5-25" tabindex="-1"></a><span class="fu">str</span>(ck)</span>
+<span id="cb5-26"><a href="basic-usage.html#cb5-26" tabindex="-1"></a><span class="co"># List of 5</span></span>
+<span id="cb5-27"><a href="basic-usage.html#cb5-27" tabindex="-1"></a><span class="co"># $ wide.res:&#39;data.frame&#39;:  3767 obs. of  8 variables:</span></span>
+<span id="cb5-28"><a href="basic-usage.html#cb5-28" tabindex="-1"></a><span class="co">#   ..$ zygote    : num [1:3767] -1.189 -0.993 -1.095 -0.772 -0.683 ...</span></span>
+<span id="cb5-29"><a href="basic-usage.html#cb5-29" tabindex="-1"></a><span class="co"># ..$ t2.cell   : num [1:3767] 1.177 0.936 1.027 1.075 1.11 ...</span></span>
+<span id="cb5-30"><a href="basic-usage.html#cb5-30" tabindex="-1"></a><span class="co"># ..$ t4.cell   : num [1:3767] 0.126 0.561 0.484 0.397 0.337 ...</span></span>
+<span id="cb5-31"><a href="basic-usage.html#cb5-31" tabindex="-1"></a><span class="co"># ..$ t8.cell   : num [1:3767] 0.1831 0.2203 0.0516 -0.1314 -0.0698 ...</span></span>
+<span id="cb5-32"><a href="basic-usage.html#cb5-32" tabindex="-1"></a><span class="co"># ..$ tmorula   : num [1:3767] -1.17 -1.48 -1.33 -1.49 -1.56 ...</span></span>
+<span id="cb5-33"><a href="basic-usage.html#cb5-33" tabindex="-1"></a><span class="co"># ..$ blastocyst: num [1:3767] 0.878 0.758 0.861 0.923 0.865 ...</span></span>
+<span id="cb5-34"><a href="basic-usage.html#cb5-34" tabindex="-1"></a><span class="co"># ..$ gene      : chr [1:3767] &quot;Pdlim1&quot; &quot;Zp3&quot; &quot;Crk&quot; &quot;Ndufaf4&quot; ...</span></span>
+<span id="cb5-35"><a href="basic-usage.html#cb5-35" tabindex="-1"></a><span class="co"># ..$ cluster   : num [1:3767] 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-36"><a href="basic-usage.html#cb5-36" tabindex="-1"></a><span class="co"># $ long.res:&#39;data.frame&#39;:  22602 obs. of  5 variables:</span></span>
+<span id="cb5-37"><a href="basic-usage.html#cb5-37" tabindex="-1"></a><span class="co">#   ..$ cluster     : num [1:22602] 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-38"><a href="basic-usage.html#cb5-38" tabindex="-1"></a><span class="co"># ..$ gene        : chr [1:22602] &quot;Pdlim1&quot; &quot;Zp3&quot; &quot;Crk&quot; &quot;Ndufaf4&quot; ...</span></span>
+<span id="cb5-39"><a href="basic-usage.html#cb5-39" tabindex="-1"></a><span class="co"># ..$ cell_type   : Factor w/ 6 levels &quot;zygote&quot;,&quot;t2.cell&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-40"><a href="basic-usage.html#cb5-40" tabindex="-1"></a><span class="co"># ..$ norm_value  : num [1:22602] -1.189 -0.993 -1.095 -0.772 -0.683 ...</span></span>
+<span id="cb5-41"><a href="basic-usage.html#cb5-41" tabindex="-1"></a><span class="co"># ..$ cluster_name: Factor w/ 8 levels &quot;cluster 1 (134)&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-42"><a href="basic-usage.html#cb5-42" tabindex="-1"></a><span class="co"># $ type    : chr &quot;kmeans&quot;</span></span>
+<span id="cb5-43"><a href="basic-usage.html#cb5-43" tabindex="-1"></a><span class="co"># $ geneMode: chr &quot;none&quot;</span></span>
+<span id="cb5-44"><a href="basic-usage.html#cb5-44" tabindex="-1"></a><span class="co"># $ geneType: chr &quot;none&quot;</span></span></code></pre></div>
+</div>
+<div id="line-plot" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Line plot<a href="basic-usage.html#line-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>visCluster</strong> accepts results from <strong>clusterData</strong> and do visualization with line plot:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="basic-usage.html#cb6-1" tabindex="-1"></a><span class="co"># plot line only</span></span>
+<span id="cb6-2"><a href="basic-usage.html#cb6-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb6-3"><a href="basic-usage.html#cb6-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<p align="center">
+<img src="local_images/2.png" width="60%">
+</p>
+<p>Change linecolor:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="basic-usage.html#cb7-1" tabindex="-1"></a><span class="co"># change color</span></span>
+<span id="cb7-2"><a href="basic-usage.html#cb7-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb7-3"><a href="basic-usage.html#cb7-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>,</span>
+<span id="cb7-4"><a href="basic-usage.html#cb7-4" tabindex="-1"></a>           <span class="at">ms.col =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p align="center">
+<img src="local_images/3.png" width="60%">
+</p>
+<p>Remove the middle line:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="basic-usage.html#cb8-1" tabindex="-1"></a><span class="co"># remove meadian line</span></span>
+<span id="cb8-2"><a href="basic-usage.html#cb8-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb8-3"><a href="basic-usage.html#cb8-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>,</span>
+<span id="cb8-4"><a href="basic-usage.html#cb8-4" tabindex="-1"></a>           <span class="at">ms.col =</span> <span class="fu">c</span>(<span class="st">&quot;green&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;red&quot;</span>),</span>
+<span id="cb8-5"><a href="basic-usage.html#cb8-5" tabindex="-1"></a>           <span class="at">add.mline =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p align="center">
+<img src="local_images/4.png" width="60%">
+</p>
+<p>There is no <strong>membership</strong> information if you choose <strong>kmeans</strong> method:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basic-usage.html#cb9-1" tabindex="-1"></a><span class="co"># plot line only with kmeans method</span></span>
+<span id="cb9-2"><a href="basic-usage.html#cb9-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb9-3"><a href="basic-usage.html#cb9-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<p align="center">
+<img src="local_images/5.png" width="60%">
+</p>
+</div>
+<div id="heatmap-plot" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Heatmap plot<a href="basic-usage.html#heatmap-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>visCluster</strong> can create a comprehensive heatmap plot to show detailed cluster results.
+Here we make a heatmap plot:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basic-usage.html#cb10-1" tabindex="-1"></a><span class="co"># plot heatmap only</span></span>
+<span id="cb10-2"><a href="basic-usage.html#cb10-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb10-3"><a href="basic-usage.html#cb10-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>)</span></code></pre></div>
+<p align="center">
+<img src="local_images/6.png" width="60%">
+</p>
+<p>Other paramters can be passed with <strong>ComplexHeatmap</strong>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="basic-usage.html#cb11-1" tabindex="-1"></a><span class="co"># supply other aruguments passed by Heatmap function</span></span>
+<span id="cb11-2"><a href="basic-usage.html#cb11-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb11-3"><a href="basic-usage.html#cb11-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb11-4"><a href="basic-usage.html#cb11-4" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p align="center">
+<img src="local_images/7.png" width="60%">
+</p>
+<p>Change the annotaion bar colors on the right side:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basic-usage.html#cb12-1" tabindex="-1"></a><span class="co"># change anno bar color</span></span>
+<span id="cb12-2"><a href="basic-usage.html#cb12-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb12-3"><a href="basic-usage.html#cb12-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb12-4"><a href="basic-usage.html#cb12-4" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb12-5"><a href="basic-usage.html#cb12-5" tabindex="-1"></a>           <span class="at">ctAnno.col =</span> ggsci<span class="sc">::</span><span class="fu">pal_npg</span>()(<span class="dv">8</span>))</span></code></pre></div>
+<p align="center">
+<img src="local_images/8.png" width="60%">
+</p>
+<p>Mark your interested gene names in heatmap:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basic-usage.html#cb13-1" tabindex="-1"></a><span class="co"># add gene name</span></span>
+<span id="cb13-2"><a href="basic-usage.html#cb13-2" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">rownames</span>(exps)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(exps),<span class="dv">30</span>,<span class="at">replace =</span> F)]</span>
+<span id="cb13-3"><a href="basic-usage.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="basic-usage.html#cb13-4" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;addgene.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb13-5"><a href="basic-usage.html#cb13-5" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb13-6"><a href="basic-usage.html#cb13-6" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb13-7"><a href="basic-usage.html#cb13-7" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb13-8"><a href="basic-usage.html#cb13-8" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes)</span>
+<span id="cb13-9"><a href="basic-usage.html#cb13-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/8.1.png" width="60%">
+</p>
+</div>
+<div id="sample-group-and-order" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Sample group and order<a href="basic-usage.html#sample-group-and-order" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Add groups for samples:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basic-usage.html#cb14-1" tabindex="-1"></a><span class="co"># assign groups</span></span>
+<span id="cb14-2"><a href="basic-usage.html#cb14-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;htcolg.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb14-3"><a href="basic-usage.html#cb14-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb14-4"><a href="basic-usage.html#cb14-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb14-5"><a href="basic-usage.html#cb14-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb14-6"><a href="basic-usage.html#cb14-6" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb14-7"><a href="basic-usage.html#cb14-7" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb14-8"><a href="basic-usage.html#cb14-8" tabindex="-1"></a>           <span class="at">sample.group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;group1&quot;</span>,<span class="st">&quot;group2&quot;</span>,<span class="st">&quot;group3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
+<span id="cb14-9"><a href="basic-usage.html#cb14-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/8.2.png" width="60%">
+</p>
+<p>Change sample orders:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="basic-usage.html#cb15-1" tabindex="-1"></a><span class="co"># change sample order</span></span>
+<span id="cb15-2"><a href="basic-usage.html#cb15-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;htsr.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb15-3"><a href="basic-usage.html#cb15-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb15-4"><a href="basic-usage.html#cb15-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb15-5"><a href="basic-usage.html#cb15-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb15-6"><a href="basic-usage.html#cb15-6" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb15-7"><a href="basic-usage.html#cb15-7" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb15-8"><a href="basic-usage.html#cb15-8" tabindex="-1"></a>           <span class="at">sample.order =</span> <span class="fu">rev</span>(<span class="fu">colnames</span>(exps)))</span>
+<span id="cb15-9"><a href="basic-usage.html#cb15-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/8.3.png" width="60%">
+</p>
+</div>
+<div id="multiple-sample-annotation" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Multiple sample annotation<a href="basic-usage.html#multiple-sample-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Multiple group annotations for samples can be passed with <strong>ComplexHeatmap</strong> grammers. Here we
+show an example:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="basic-usage.html#cb16-1" tabindex="-1"></a><span class="co"># group info</span></span>
+<span id="cb16-2"><a href="basic-usage.html#cb16-2" tabindex="-1"></a>mg1 <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;D1&quot;</span>,<span class="st">&quot;D2&quot;</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb16-3"><a href="basic-usage.html#cb16-3" tabindex="-1"></a><span class="fu">names</span>(mg1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;zygote&quot;</span>,<span class="st">&quot;t2.cell&quot;</span>,<span class="st">&quot;t4.cell&quot;</span>,<span class="st">&quot;t8.cell&quot;</span>,<span class="st">&quot;tmorula&quot;</span>,<span class="st">&quot;blastocyst&quot;</span>)</span>
+<span id="cb16-4"><a href="basic-usage.html#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="basic-usage.html#cb16-5" tabindex="-1"></a>mg2 <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;E1&quot;</span>, <span class="st">&quot;E2&quot;</span>, <span class="st">&quot;E3&quot;</span>), <span class="at">each =</span> <span class="dv">2</span>)</span>
+<span id="cb16-6"><a href="basic-usage.html#cb16-6" tabindex="-1"></a><span class="fu">names</span>(mg2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;zygote&quot;</span>,<span class="st">&quot;t2.cell&quot;</span>,<span class="st">&quot;t4.cell&quot;</span>,<span class="st">&quot;t8.cell&quot;</span>,<span class="st">&quot;tmorula&quot;</span>,<span class="st">&quot;blastocyst&quot;</span>)</span>
+<span id="cb16-7"><a href="basic-usage.html#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="basic-usage.html#cb16-8" tabindex="-1"></a><span class="co"># TOP annotations</span></span>
+<span id="cb16-9"><a href="basic-usage.html#cb16-9" tabindex="-1"></a>HeatmapAnnotation <span class="ot">&lt;-</span> ComplexHeatmap<span class="sc">::</span><span class="fu">HeatmapAnnotation</span>(<span class="at">mg1 =</span> mg1,</span>
+<span id="cb16-10"><a href="basic-usage.html#cb16-10" tabindex="-1"></a>                                                       <span class="at">mg2 =</span> mg2,</span>
+<span id="cb16-11"><a href="basic-usage.html#cb16-11" tabindex="-1"></a>                                                       <span class="at">col =</span> <span class="fu">list</span>(<span class="at">mg1 =</span> <span class="fu">c</span>(<span class="st">&quot;D1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#C147E9&quot;</span>,<span class="st">&quot;D2&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FF7000&quot;</span>),</span>
+<span id="cb16-12"><a href="basic-usage.html#cb16-12" tabindex="-1"></a>                                                                  <span class="at">mg2 =</span> <span class="fu">c</span>(<span class="st">&quot;E1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#54B435&quot;</span>,<span class="st">&quot;E2&quot;</span> <span class="ot">=</span> <span class="st">&quot;#31C6D4&quot;</span>,<span class="st">&quot;E3&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D9CB50&quot;</span>)),</span>
+<span id="cb16-13"><a href="basic-usage.html#cb16-13" tabindex="-1"></a>                                                       <span class="at">gp =</span> grid<span class="sc">::</span><span class="fu">gpar</span>(<span class="at">col =</span> <span class="st">&quot;white&quot;</span>))</span>
+<span id="cb16-14"><a href="basic-usage.html#cb16-14" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="basic-usage.html#cb16-15" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="basic-usage.html#cb16-16" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;htcolmg.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb16-17"><a href="basic-usage.html#cb16-17" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb16-18"><a href="basic-usage.html#cb16-18" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb16-19"><a href="basic-usage.html#cb16-19" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb16-20"><a href="basic-usage.html#cb16-20" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb16-21"><a href="basic-usage.html#cb16-21" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb16-22"><a href="basic-usage.html#cb16-22" tabindex="-1"></a>           <span class="at">ht.col =</span> <span class="fu">list</span>(<span class="at">col_range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>),<span class="at">col_color =</span> <span class="fu">c</span>(<span class="st">&quot;#A555EC&quot;</span>,<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#FF597B&quot;</span>)),</span>
+<span id="cb16-23"><a href="basic-usage.html#cb16-23" tabindex="-1"></a>           <span class="at">HeatmapAnnotation =</span> HeatmapAnnotation)</span>
+<span id="cb16-24"><a href="basic-usage.html#cb16-24" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/8.4.png" width="60%">
+</p>
+<p>Split the columns:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="basic-usage.html#cb17-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;htcolmgs1.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb17-2"><a href="basic-usage.html#cb17-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb17-3"><a href="basic-usage.html#cb17-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb17-4"><a href="basic-usage.html#cb17-4" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb17-5"><a href="basic-usage.html#cb17-5" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb17-6"><a href="basic-usage.html#cb17-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb17-7"><a href="basic-usage.html#cb17-7" tabindex="-1"></a>           <span class="at">ht.col =</span> <span class="fu">list</span>(<span class="at">col_range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>),<span class="at">col_color =</span> <span class="fu">c</span>(<span class="st">&quot;#A555EC&quot;</span>,<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#FF597B&quot;</span>)),</span>
+<span id="cb17-8"><a href="basic-usage.html#cb17-8" tabindex="-1"></a>           <span class="at">HeatmapAnnotation =</span> HeatmapAnnotation,</span>
+<span id="cb17-9"><a href="basic-usage.html#cb17-9" tabindex="-1"></a>           <span class="at">column.split =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
+<span id="cb17-10"><a href="basic-usage.html#cb17-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/8.5.png" width="60%">
+</p>
+</div>
+<div id="and-line-trend-anntation" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> And line trend anntation<a href="basic-usage.html#and-line-trend-anntation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Add a line annotation for each sub-cluster to show expression tendency(<strong>Please note: use pdf function to save the plot and open it to view, otherwise the annotation panels will not match
+to the main heatmap if you use zoom option to view the plot in Rstudio</strong>):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basic-usage.html#cb18-1" tabindex="-1"></a><span class="co"># add line annotation</span></span>
+<span id="cb18-2"><a href="basic-usage.html#cb18-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testHT.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>)</span>
+<span id="cb18-3"><a href="basic-usage.html#cb18-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb18-4"><a href="basic-usage.html#cb18-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb18-5"><a href="basic-usage.html#cb18-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>)</span>
+<span id="cb18-6"><a href="basic-usage.html#cb18-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/9.png" width="60%">
+</p>
+<p>Add boxplot:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basic-usage.html#cb19-1" tabindex="-1"></a><span class="co"># add boxplot</span></span>
+<span id="cb19-2"><a href="basic-usage.html#cb19-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testbx.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>)</span>
+<span id="cb19-3"><a href="basic-usage.html#cb19-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb19-4"><a href="basic-usage.html#cb19-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb19-5"><a href="basic-usage.html#cb19-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb19-6"><a href="basic-usage.html#cb19-6" tabindex="-1"></a>           <span class="at">add.box =</span> T)</span>
+<span id="cb19-7"><a href="basic-usage.html#cb19-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/10.png" width="60%">
+</p>
+<p>Remove line plot and change boxplot color:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basic-usage.html#cb20-1" tabindex="-1"></a><span class="co"># remove line and change box fill color</span></span>
+<span id="cb20-2"><a href="basic-usage.html#cb20-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testbxcol.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>)</span>
+<span id="cb20-3"><a href="basic-usage.html#cb20-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb20-4"><a href="basic-usage.html#cb20-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb20-5"><a href="basic-usage.html#cb20-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb20-6"><a href="basic-usage.html#cb20-6" tabindex="-1"></a>           <span class="at">add.box =</span> T,</span>
+<span id="cb20-7"><a href="basic-usage.html#cb20-7" tabindex="-1"></a>           <span class="at">add.line =</span> F,</span>
+<span id="cb20-8"><a href="basic-usage.html#cb20-8" tabindex="-1"></a>           <span class="at">boxcol =</span> ggsci<span class="sc">::</span><span class="fu">pal_npg</span>()(<span class="dv">8</span>))</span>
+<span id="cb20-9"><a href="basic-usage.html#cb20-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/11.png" width="60%">
+</p>
+<p>Add points:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basic-usage.html#cb21-1" tabindex="-1"></a><span class="co"># add point</span></span>
+<span id="cb21-2"><a href="basic-usage.html#cb21-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testbxcolP.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>)</span>
+<span id="cb21-3"><a href="basic-usage.html#cb21-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb21-4"><a href="basic-usage.html#cb21-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb21-5"><a href="basic-usage.html#cb21-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb21-6"><a href="basic-usage.html#cb21-6" tabindex="-1"></a>           <span class="at">add.box =</span> T,</span>
+<span id="cb21-7"><a href="basic-usage.html#cb21-7" tabindex="-1"></a>           <span class="at">add.line =</span> F,</span>
+<span id="cb21-8"><a href="basic-usage.html#cb21-8" tabindex="-1"></a>           <span class="at">boxcol =</span> ggsci<span class="sc">::</span><span class="fu">pal_npg</span>()(<span class="dv">8</span>),</span>
+<span id="cb21-9"><a href="basic-usage.html#cb21-9" tabindex="-1"></a>           <span class="at">add.point =</span> T)</span>
+<span id="cb21-10"><a href="basic-usage.html#cb21-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p align="center">
+<img src="local_images/12.png" width="60%">
+</p>
+</div>
+<div id="multiple-group-line-plot" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Multiple group line plot<a href="basic-usage.html#multiple-group-line-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes maybe there is a need to show line annotation across different conditions. This is
+can be achieved by <strong>mulGroup</strong> parameter:</p>
+<p align="center">
+<img src="local_images/12.1.png" width="60%">
+</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="enrichment-anaysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-basic_usage.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
