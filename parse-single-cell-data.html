@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2024-10-25" />
+<meta name="date" content="2024-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,8 +154,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="basic-usage.html"><a href="basic-usage.html#heatmap-plot"><i class="fa fa-check"></i><b>2.4</b> Heatmap plot</a></li>
 <li class="chapter" data-level="2.5" data-path="basic-usage.html"><a href="basic-usage.html#sample-group-and-order"><i class="fa fa-check"></i><b>2.5</b> Sample group and order</a></li>
 <li class="chapter" data-level="2.6" data-path="basic-usage.html"><a href="basic-usage.html#multiple-sample-annotation"><i class="fa fa-check"></i><b>2.6</b> Multiple sample annotation</a></li>
-<li class="chapter" data-level="2.7" data-path="basic-usage.html"><a href="basic-usage.html#and-line-trend-anntation"><i class="fa fa-check"></i><b>2.7</b> And line trend anntation</a></li>
-<li class="chapter" data-level="2.8" data-path="basic-usage.html"><a href="basic-usage.html#multiple-group-line-plot"><i class="fa fa-check"></i><b>2.8</b> Multiple group line plot</a></li>
+<li class="chapter" data-level="2.7" data-path="basic-usage.html"><a href="basic-usage.html#add-row-annotation"><i class="fa fa-check"></i><b>2.7</b> Add row annotation</a></li>
+<li class="chapter" data-level="2.8" data-path="basic-usage.html"><a href="basic-usage.html#and-line-trend-anntation"><i class="fa fa-check"></i><b>2.8</b> And line trend anntation</a></li>
+<li class="chapter" data-level="2.9" data-path="basic-usage.html"><a href="basic-usage.html#multiple-group-line-plot"><i class="fa fa-check"></i><b>2.9</b> Multiple group line plot</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="enrichment-anaysis.html"><a href="enrichment-anaysis.html"><i class="fa fa-check"></i><b>3</b> Enrichment anaysis</a>
 <ul>
@@ -203,309 +204,309 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 5</span> Parse single cell data<a href="parse-single-cell-data.html#parse-single-cell-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><strong>Seurat</strong> is a popular R package used for single-cell RNA sequencing (scRNA-seq) data analysis. It provides tools for quality control, analysis, and exploration of single-cell RNA-seq data. <strong>ClusterGvis</strong> also can visualize clustered data(different celltype clusters) with <strong>Seurat</strong> object.</p>
 <p>We first find marker genes using <strong>Seurat::FindAllMarkers</strong>:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="parse-single-cell-data.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(SeuratData)</span>
-<span id="cb46-2"><a href="parse-single-cell-data.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
-<span id="cb46-3"><a href="parse-single-cell-data.html#cb46-3" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="parse-single-cell-data.html#cb46-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pbmc3k.final&quot;</span>)</span>
-<span id="cb46-5"><a href="parse-single-cell-data.html#cb46-5" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">UpdateSeuratObject</span>(<span class="at">object =</span> pbmc3k.final)</span>
-<span id="cb46-6"><a href="parse-single-cell-data.html#cb46-6" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="parse-single-cell-data.html#cb46-7" tabindex="-1"></a><span class="co"># find markers for every cluster compared to all remaining cells</span></span>
-<span id="cb46-8"><a href="parse-single-cell-data.html#cb46-8" tabindex="-1"></a><span class="co"># report only the positive ones</span></span>
-<span id="cb46-9"><a href="parse-single-cell-data.html#cb46-9" tabindex="-1"></a>pbmc.markers.all <span class="ot">&lt;-</span> Seurat<span class="sc">::</span><span class="fu">FindAllMarkers</span>(pbmc,</span>
-<span id="cb46-10"><a href="parse-single-cell-data.html#cb46-10" tabindex="-1"></a>                                           <span class="at">only.pos =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb46-11"><a href="parse-single-cell-data.html#cb46-11" tabindex="-1"></a>                                           <span class="at">min.pct =</span> <span class="fl">0.25</span>,</span>
-<span id="cb46-12"><a href="parse-single-cell-data.html#cb46-12" tabindex="-1"></a>                                           <span class="at">logfc.threshold =</span> <span class="fl">0.25</span>)</span>
-<span id="cb46-13"><a href="parse-single-cell-data.html#cb46-13" tabindex="-1"></a></span>
-<span id="cb46-14"><a href="parse-single-cell-data.html#cb46-14" tabindex="-1"></a><span class="co"># get top 10 genes</span></span>
-<span id="cb46-15"><a href="parse-single-cell-data.html#cb46-15" tabindex="-1"></a>pbmc.markers <span class="ot">&lt;-</span> pbmc.markers.all <span class="sc">%&gt;%</span></span>
-<span id="cb46-16"><a href="parse-single-cell-data.html#cb46-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
-<span id="cb46-17"><a href="parse-single-cell-data.html#cb46-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">wt =</span> avg_log2FC)</span>
-<span id="cb46-18"><a href="parse-single-cell-data.html#cb46-18" tabindex="-1"></a></span>
-<span id="cb46-19"><a href="parse-single-cell-data.html#cb46-19" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb46-20"><a href="parse-single-cell-data.html#cb46-20" tabindex="-1"></a><span class="fu">head</span>(pbmc.markers)</span>
-<span id="cb46-21"><a href="parse-single-cell-data.html#cb46-21" tabindex="-1"></a><span class="co"># # A tibble: 6 × 7</span></span>
-<span id="cb46-22"><a href="parse-single-cell-data.html#cb46-22" tabindex="-1"></a><span class="co"># # Groups:   cluster [1]</span></span>
-<span id="cb46-23"><a href="parse-single-cell-data.html#cb46-23" tabindex="-1"></a><span class="co">#       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster     gene</span></span>
-<span id="cb46-24"><a href="parse-single-cell-data.html#cb46-24" tabindex="-1"></a><span class="co">#       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       &lt;chr&gt;</span></span>
-<span id="cb46-25"><a href="parse-single-cell-data.html#cb46-25" tabindex="-1"></a><span class="co"># 1 1.96e-107       1.17 0.901 0.594 2.69e-103 Naive CD4 T LDHB</span></span>
-<span id="cb46-26"><a href="parse-single-cell-data.html#cb46-26" tabindex="-1"></a><span class="co"># 2 1.61e- 82       2.35 0.436 0.11  2.20e- 78 Naive CD4 T CCR7</span></span>
-<span id="cb46-27"><a href="parse-single-cell-data.html#cb46-27" tabindex="-1"></a><span class="co"># 3 4.20e- 77       1.08 0.838 0.406 5.76e- 73 Naive CD4 T CD3D</span></span>
-<span id="cb46-28"><a href="parse-single-cell-data.html#cb46-28" tabindex="-1"></a><span class="co"># 4 2.32e- 54       1.04 0.726 0.399 3.18e- 50 Naive CD4 T CD3E</span></span>
-<span id="cb46-29"><a href="parse-single-cell-data.html#cb46-29" tabindex="-1"></a><span class="co"># 5 3.19e- 50       1.27 0.628 0.358 4.38e- 46 Naive CD4 T NOSIP</span></span>
-<span id="cb46-30"><a href="parse-single-cell-data.html#cb46-30" tabindex="-1"></a><span class="co"># 6 3.32e- 49       2.09 0.336 0.104 4.56e- 45 Naive CD4 T LEF1</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="parse-single-cell-data.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(SeuratData)</span>
+<span id="cb53-2"><a href="parse-single-cell-data.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb53-3"><a href="parse-single-cell-data.html#cb53-3" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="parse-single-cell-data.html#cb53-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pbmc3k.final&quot;</span>)</span>
+<span id="cb53-5"><a href="parse-single-cell-data.html#cb53-5" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">UpdateSeuratObject</span>(<span class="at">object =</span> pbmc3k.final)</span>
+<span id="cb53-6"><a href="parse-single-cell-data.html#cb53-6" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="parse-single-cell-data.html#cb53-7" tabindex="-1"></a><span class="co"># find markers for every cluster compared to all remaining cells</span></span>
+<span id="cb53-8"><a href="parse-single-cell-data.html#cb53-8" tabindex="-1"></a><span class="co"># report only the positive ones</span></span>
+<span id="cb53-9"><a href="parse-single-cell-data.html#cb53-9" tabindex="-1"></a>pbmc.markers.all <span class="ot">&lt;-</span> Seurat<span class="sc">::</span><span class="fu">FindAllMarkers</span>(pbmc,</span>
+<span id="cb53-10"><a href="parse-single-cell-data.html#cb53-10" tabindex="-1"></a>                                           <span class="at">only.pos =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb53-11"><a href="parse-single-cell-data.html#cb53-11" tabindex="-1"></a>                                           <span class="at">min.pct =</span> <span class="fl">0.25</span>,</span>
+<span id="cb53-12"><a href="parse-single-cell-data.html#cb53-12" tabindex="-1"></a>                                           <span class="at">logfc.threshold =</span> <span class="fl">0.25</span>)</span>
+<span id="cb53-13"><a href="parse-single-cell-data.html#cb53-13" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="parse-single-cell-data.html#cb53-14" tabindex="-1"></a><span class="co"># get top 10 genes</span></span>
+<span id="cb53-15"><a href="parse-single-cell-data.html#cb53-15" tabindex="-1"></a>pbmc.markers <span class="ot">&lt;-</span> pbmc.markers.all <span class="sc">%&gt;%</span></span>
+<span id="cb53-16"><a href="parse-single-cell-data.html#cb53-16" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb53-17"><a href="parse-single-cell-data.html#cb53-17" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb53-18"><a href="parse-single-cell-data.html#cb53-18" tabindex="-1"></a></span>
+<span id="cb53-19"><a href="parse-single-cell-data.html#cb53-19" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb53-20"><a href="parse-single-cell-data.html#cb53-20" tabindex="-1"></a><span class="fu">head</span>(pbmc.markers)</span>
+<span id="cb53-21"><a href="parse-single-cell-data.html#cb53-21" tabindex="-1"></a><span class="co"># # A tibble: 6 × 7</span></span>
+<span id="cb53-22"><a href="parse-single-cell-data.html#cb53-22" tabindex="-1"></a><span class="co"># # Groups:   cluster [1]</span></span>
+<span id="cb53-23"><a href="parse-single-cell-data.html#cb53-23" tabindex="-1"></a><span class="co">#       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster     gene</span></span>
+<span id="cb53-24"><a href="parse-single-cell-data.html#cb53-24" tabindex="-1"></a><span class="co">#       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;       &lt;chr&gt;</span></span>
+<span id="cb53-25"><a href="parse-single-cell-data.html#cb53-25" tabindex="-1"></a><span class="co"># 1 1.96e-107       1.17 0.901 0.594 2.69e-103 Naive CD4 T LDHB</span></span>
+<span id="cb53-26"><a href="parse-single-cell-data.html#cb53-26" tabindex="-1"></a><span class="co"># 2 1.61e- 82       2.35 0.436 0.11  2.20e- 78 Naive CD4 T CCR7</span></span>
+<span id="cb53-27"><a href="parse-single-cell-data.html#cb53-27" tabindex="-1"></a><span class="co"># 3 4.20e- 77       1.08 0.838 0.406 5.76e- 73 Naive CD4 T CD3D</span></span>
+<span id="cb53-28"><a href="parse-single-cell-data.html#cb53-28" tabindex="-1"></a><span class="co"># 4 2.32e- 54       1.04 0.726 0.399 3.18e- 50 Naive CD4 T CD3E</span></span>
+<span id="cb53-29"><a href="parse-single-cell-data.html#cb53-29" tabindex="-1"></a><span class="co"># 5 3.19e- 50       1.27 0.628 0.358 4.38e- 46 Naive CD4 T NOSIP</span></span>
+<span id="cb53-30"><a href="parse-single-cell-data.html#cb53-30" tabindex="-1"></a><span class="co"># 6 3.32e- 49       2.09 0.336 0.104 4.56e- 45 Naive CD4 T LEF1</span></span></code></pre></div>
 <p><strong>prepareDataFromscRNA</strong> requires your Seurat object and differential expression results as input. If the <strong>showAverage</strong> parameter is set to TRUE, it means the function will calculate and plot the average expression for genes in cells of the same subgroup. If FALSE, it will plot data for all individual cells. By default, the function uses the <strong>data</strong> slot from the RNA assay in the Seurat object:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="parse-single-cell-data.html#cb47-1" tabindex="-1"></a><span class="co"># prepare data from seurat object</span></span>
-<span id="cb47-2"><a href="parse-single-cell-data.html#cb47-2" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
-<span id="cb47-3"><a href="parse-single-cell-data.html#cb47-3" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers,</span>
-<span id="cb47-4"><a href="parse-single-cell-data.html#cb47-4" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb47-5"><a href="parse-single-cell-data.html#cb47-5" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="parse-single-cell-data.html#cb47-6" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb47-7"><a href="parse-single-cell-data.html#cb47-7" tabindex="-1"></a><span class="fu">str</span>(st.data)</span>
-<span id="cb47-8"><a href="parse-single-cell-data.html#cb47-8" tabindex="-1"></a><span class="co"># List of 5</span></span>
-<span id="cb47-9"><a href="parse-single-cell-data.html#cb47-9" tabindex="-1"></a><span class="co"># $ wide.res:&#39;data.frame&#39;:  177 obs. of  11 variables:</span></span>
-<span id="cb47-10"><a href="parse-single-cell-data.html#cb47-10" tabindex="-1"></a><span class="co">#   ..$ gene        : chr [1:177] &quot;LDHB&quot; &quot;CCR7&quot; &quot;CD3D&quot; &quot;CD3E&quot; ...</span></span>
-<span id="cb47-11"><a href="parse-single-cell-data.html#cb47-11" tabindex="-1"></a><span class="co"># ..$ Naive CD4 T : num [1:177] 1.66 2.34 1.1 1.19 1.82 ...</span></span>
-<span id="cb47-12"><a href="parse-single-cell-data.html#cb47-12" tabindex="-1"></a><span class="co"># ..$ Memory CD4 T: num [1:177] 1.654 0.632 1.204 1.335 1.453 ...</span></span>
-<span id="cb47-13"><a href="parse-single-cell-data.html#cb47-13" tabindex="-1"></a><span class="co"># ..$ CD14+ Mono  : num [1:177] -0.639 -0.575 -0.649 -0.864 -0.526 ...</span></span>
-<span id="cb47-14"><a href="parse-single-cell-data.html#cb47-14" tabindex="-1"></a><span class="co"># ..$ B           : num [1:177] -0.574 0.414 -0.671 -0.822 -0.759 ...</span></span>
-<span id="cb47-15"><a href="parse-single-cell-data.html#cb47-15" tabindex="-1"></a><span class="co"># ..$ CD8 T       : num [1:177] 0.3047 -0.5134 1.6493 1.2945 0.0369 ...</span></span>
-<span id="cb47-16"><a href="parse-single-cell-data.html#cb47-16" tabindex="-1"></a><span class="co"># ..$ FCGR3A+ Mono: num [1:177] -0.886 -0.536 -0.681 -0.845 -0.144 ...</span></span>
-<span id="cb47-17"><a href="parse-single-cell-data.html#cb47-17" tabindex="-1"></a><span class="co"># ..$ NK          : num [1:177] -0.26 -0.5575 -0.538 0.0622 -0.1026 ...</span></span>
-<span id="cb47-18"><a href="parse-single-cell-data.html#cb47-18" tabindex="-1"></a><span class="co"># ..$ DC          : num [1:177] -0.521 -0.53 -0.685 -0.865 -0.63 ...</span></span>
-<span id="cb47-19"><a href="parse-single-cell-data.html#cb47-19" tabindex="-1"></a><span class="co"># ..$ Platelet    : num [1:177] -0.74 -0.679 -0.728 -0.488 -1.143 ...</span></span>
-<span id="cb47-20"><a href="parse-single-cell-data.html#cb47-20" tabindex="-1"></a><span class="co"># ..$ cluster     : chr [1:177] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
-<span id="cb47-21"><a href="parse-single-cell-data.html#cb47-21" tabindex="-1"></a><span class="co"># $ long.res:&#39;data.frame&#39;:  1593 obs. of  5 variables:</span></span>
-<span id="cb47-22"><a href="parse-single-cell-data.html#cb47-22" tabindex="-1"></a><span class="co">#   ..$ cluster     : chr [1:1593] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
-<span id="cb47-23"><a href="parse-single-cell-data.html#cb47-23" tabindex="-1"></a><span class="co"># ..$ gene        : chr [1:1593] &quot;LDHB&quot; &quot;CCR7&quot; &quot;CD3D&quot; &quot;CD3E&quot; ...</span></span>
-<span id="cb47-24"><a href="parse-single-cell-data.html#cb47-24" tabindex="-1"></a><span class="co"># ..$ cell_type   : Factor w/ 9 levels &quot;Naive CD4 T&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb47-25"><a href="parse-single-cell-data.html#cb47-25" tabindex="-1"></a><span class="co"># ..$ norm_value  : num [1:1593] 1.66 2.34 1.1 1.19 1.82 ...</span></span>
-<span id="cb47-26"><a href="parse-single-cell-data.html#cb47-26" tabindex="-1"></a><span class="co"># ..$ cluster_name: Factor w/ 9 levels &quot;cluster 1 (20)&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb47-27"><a href="parse-single-cell-data.html#cb47-27" tabindex="-1"></a><span class="co"># $ type    : chr &quot;scRNAdata&quot;</span></span>
-<span id="cb47-28"><a href="parse-single-cell-data.html#cb47-28" tabindex="-1"></a><span class="co"># $ geneMode: chr &quot;average&quot;</span></span>
-<span id="cb47-29"><a href="parse-single-cell-data.html#cb47-29" tabindex="-1"></a><span class="co"># $ geneType: chr &quot;unique|_&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="parse-single-cell-data.html#cb54-1" tabindex="-1"></a><span class="co"># prepare data from seurat object</span></span>
+<span id="cb54-2"><a href="parse-single-cell-data.html#cb54-2" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
+<span id="cb54-3"><a href="parse-single-cell-data.html#cb54-3" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers,</span>
+<span id="cb54-4"><a href="parse-single-cell-data.html#cb54-4" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb54-5"><a href="parse-single-cell-data.html#cb54-5" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="parse-single-cell-data.html#cb54-6" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb54-7"><a href="parse-single-cell-data.html#cb54-7" tabindex="-1"></a><span class="fu">str</span>(st.data)</span>
+<span id="cb54-8"><a href="parse-single-cell-data.html#cb54-8" tabindex="-1"></a><span class="co"># List of 5</span></span>
+<span id="cb54-9"><a href="parse-single-cell-data.html#cb54-9" tabindex="-1"></a><span class="co"># $ wide.res:&#39;data.frame&#39;:  177 obs. of  11 variables:</span></span>
+<span id="cb54-10"><a href="parse-single-cell-data.html#cb54-10" tabindex="-1"></a><span class="co">#   ..$ gene        : chr [1:177] &quot;LDHB&quot; &quot;CCR7&quot; &quot;CD3D&quot; &quot;CD3E&quot; ...</span></span>
+<span id="cb54-11"><a href="parse-single-cell-data.html#cb54-11" tabindex="-1"></a><span class="co"># ..$ Naive CD4 T : num [1:177] 1.66 2.34 1.1 1.19 1.82 ...</span></span>
+<span id="cb54-12"><a href="parse-single-cell-data.html#cb54-12" tabindex="-1"></a><span class="co"># ..$ Memory CD4 T: num [1:177] 1.654 0.632 1.204 1.335 1.453 ...</span></span>
+<span id="cb54-13"><a href="parse-single-cell-data.html#cb54-13" tabindex="-1"></a><span class="co"># ..$ CD14+ Mono  : num [1:177] -0.639 -0.575 -0.649 -0.864 -0.526 ...</span></span>
+<span id="cb54-14"><a href="parse-single-cell-data.html#cb54-14" tabindex="-1"></a><span class="co"># ..$ B           : num [1:177] -0.574 0.414 -0.671 -0.822 -0.759 ...</span></span>
+<span id="cb54-15"><a href="parse-single-cell-data.html#cb54-15" tabindex="-1"></a><span class="co"># ..$ CD8 T       : num [1:177] 0.3047 -0.5134 1.6493 1.2945 0.0369 ...</span></span>
+<span id="cb54-16"><a href="parse-single-cell-data.html#cb54-16" tabindex="-1"></a><span class="co"># ..$ FCGR3A+ Mono: num [1:177] -0.886 -0.536 -0.681 -0.845 -0.144 ...</span></span>
+<span id="cb54-17"><a href="parse-single-cell-data.html#cb54-17" tabindex="-1"></a><span class="co"># ..$ NK          : num [1:177] -0.26 -0.5575 -0.538 0.0622 -0.1026 ...</span></span>
+<span id="cb54-18"><a href="parse-single-cell-data.html#cb54-18" tabindex="-1"></a><span class="co"># ..$ DC          : num [1:177] -0.521 -0.53 -0.685 -0.865 -0.63 ...</span></span>
+<span id="cb54-19"><a href="parse-single-cell-data.html#cb54-19" tabindex="-1"></a><span class="co"># ..$ Platelet    : num [1:177] -0.74 -0.679 -0.728 -0.488 -1.143 ...</span></span>
+<span id="cb54-20"><a href="parse-single-cell-data.html#cb54-20" tabindex="-1"></a><span class="co"># ..$ cluster     : chr [1:177] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
+<span id="cb54-21"><a href="parse-single-cell-data.html#cb54-21" tabindex="-1"></a><span class="co"># $ long.res:&#39;data.frame&#39;:  1593 obs. of  5 variables:</span></span>
+<span id="cb54-22"><a href="parse-single-cell-data.html#cb54-22" tabindex="-1"></a><span class="co">#   ..$ cluster     : chr [1:1593] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
+<span id="cb54-23"><a href="parse-single-cell-data.html#cb54-23" tabindex="-1"></a><span class="co"># ..$ gene        : chr [1:1593] &quot;LDHB&quot; &quot;CCR7&quot; &quot;CD3D&quot; &quot;CD3E&quot; ...</span></span>
+<span id="cb54-24"><a href="parse-single-cell-data.html#cb54-24" tabindex="-1"></a><span class="co"># ..$ cell_type   : Factor w/ 9 levels &quot;Naive CD4 T&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb54-25"><a href="parse-single-cell-data.html#cb54-25" tabindex="-1"></a><span class="co"># ..$ norm_value  : num [1:1593] 1.66 2.34 1.1 1.19 1.82 ...</span></span>
+<span id="cb54-26"><a href="parse-single-cell-data.html#cb54-26" tabindex="-1"></a><span class="co"># ..$ cluster_name: Factor w/ 9 levels &quot;cluster 1 (20)&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb54-27"><a href="parse-single-cell-data.html#cb54-27" tabindex="-1"></a><span class="co"># $ type    : chr &quot;scRNAdata&quot;</span></span>
+<span id="cb54-28"><a href="parse-single-cell-data.html#cb54-28" tabindex="-1"></a><span class="co"># $ geneMode: chr &quot;average&quot;</span></span>
+<span id="cb54-29"><a href="parse-single-cell-data.html#cb54-29" tabindex="-1"></a><span class="co"># $ geneType: chr &quot;unique|_&quot;</span></span></code></pre></div>
 <p>Enrichment anaysis for each celltype:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="parse-single-cell-data.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
-<span id="cb48-2"><a href="parse-single-cell-data.html#cb48-2" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="parse-single-cell-data.html#cb48-3" tabindex="-1"></a><span class="co"># enrich for clusters</span></span>
-<span id="cb48-4"><a href="parse-single-cell-data.html#cb48-4" tabindex="-1"></a>enrich <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb48-5"><a href="parse-single-cell-data.html#cb48-5" tabindex="-1"></a>                        <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
-<span id="cb48-6"><a href="parse-single-cell-data.html#cb48-6" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
-<span id="cb48-7"><a href="parse-single-cell-data.html#cb48-7" tabindex="-1"></a>                        <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
-<span id="cb48-8"><a href="parse-single-cell-data.html#cb48-8" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb48-9"><a href="parse-single-cell-data.html#cb48-9" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb48-10"><a href="parse-single-cell-data.html#cb48-10" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb48-11"><a href="parse-single-cell-data.html#cb48-11" tabindex="-1"></a></span>
-<span id="cb48-12"><a href="parse-single-cell-data.html#cb48-12" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb48-13"><a href="parse-single-cell-data.html#cb48-13" tabindex="-1"></a><span class="fu">head</span>(enrich)</span>
-<span id="cb48-14"><a href="parse-single-cell-data.html#cb48-14" tabindex="-1"></a><span class="co">#             group                      Description       pvalue    ratio</span></span>
-<span id="cb48-15"><a href="parse-single-cell-data.html#cb48-15" tabindex="-1"></a><span class="co"># GO:0030098        C1       lymphocyte differentiation 4.255042e-09 42.10526</span></span>
-<span id="cb48-16"><a href="parse-single-cell-data.html#cb48-16" tabindex="-1"></a><span class="co"># GO:1903131...2    C1 mononuclear cell differentiation 1.034991e-08 42.10526</span></span>
-<span id="cb48-17"><a href="parse-single-cell-data.html#cb48-17" tabindex="-1"></a><span class="co"># GO:0030217        C1           T cell differentiation 1.275815e-08 36.84211</span></span>
-<span id="cb48-18"><a href="parse-single-cell-data.html#cb48-18" tabindex="-1"></a><span class="co"># GO:0050863...4    C1  regulation of T cell activation 5.354207e-08 36.84211</span></span>
-<span id="cb48-19"><a href="parse-single-cell-data.html#cb48-19" tabindex="-1"></a><span class="co"># GO:0022407        C1 regulation of cell-cell adhesion 3.163499e-07 36.84211</span></span>
-<span id="cb48-20"><a href="parse-single-cell-data.html#cb48-20" tabindex="-1"></a><span class="co"># GO:0002260        C2           lymphocyte homeostasis 4.246017e-07 25.00000</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="parse-single-cell-data.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb55-2"><a href="parse-single-cell-data.html#cb55-2" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="parse-single-cell-data.html#cb55-3" tabindex="-1"></a><span class="co"># enrich for clusters</span></span>
+<span id="cb55-4"><a href="parse-single-cell-data.html#cb55-4" tabindex="-1"></a>enrich <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb55-5"><a href="parse-single-cell-data.html#cb55-5" tabindex="-1"></a>                        <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
+<span id="cb55-6"><a href="parse-single-cell-data.html#cb55-6" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
+<span id="cb55-7"><a href="parse-single-cell-data.html#cb55-7" tabindex="-1"></a>                        <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
+<span id="cb55-8"><a href="parse-single-cell-data.html#cb55-8" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
+<span id="cb55-9"><a href="parse-single-cell-data.html#cb55-9" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
+<span id="cb55-10"><a href="parse-single-cell-data.html#cb55-10" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
+<span id="cb55-11"><a href="parse-single-cell-data.html#cb55-11" tabindex="-1"></a></span>
+<span id="cb55-12"><a href="parse-single-cell-data.html#cb55-12" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb55-13"><a href="parse-single-cell-data.html#cb55-13" tabindex="-1"></a><span class="fu">head</span>(enrich)</span>
+<span id="cb55-14"><a href="parse-single-cell-data.html#cb55-14" tabindex="-1"></a><span class="co">#             group                      Description       pvalue    ratio</span></span>
+<span id="cb55-15"><a href="parse-single-cell-data.html#cb55-15" tabindex="-1"></a><span class="co"># GO:0030098        C1       lymphocyte differentiation 4.255042e-09 42.10526</span></span>
+<span id="cb55-16"><a href="parse-single-cell-data.html#cb55-16" tabindex="-1"></a><span class="co"># GO:1903131...2    C1 mononuclear cell differentiation 1.034991e-08 42.10526</span></span>
+<span id="cb55-17"><a href="parse-single-cell-data.html#cb55-17" tabindex="-1"></a><span class="co"># GO:0030217        C1           T cell differentiation 1.275815e-08 36.84211</span></span>
+<span id="cb55-18"><a href="parse-single-cell-data.html#cb55-18" tabindex="-1"></a><span class="co"># GO:0050863...4    C1  regulation of T cell activation 5.354207e-08 36.84211</span></span>
+<span id="cb55-19"><a href="parse-single-cell-data.html#cb55-19" tabindex="-1"></a><span class="co"># GO:0022407        C1 regulation of cell-cell adhesion 3.163499e-07 36.84211</span></span>
+<span id="cb55-20"><a href="parse-single-cell-data.html#cb55-20" tabindex="-1"></a><span class="co"># GO:0002260        C2           lymphocyte homeostasis 4.246017e-07 25.00000</span></span></code></pre></div>
 <p>Line plot:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="parse-single-cell-data.html#cb49-1" tabindex="-1"></a><span class="co"># add gene name</span></span>
-<span id="cb49-2"><a href="parse-single-cell-data.html#cb49-2" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">unique</span>(pbmc.markers<span class="sc">$</span>gene)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">unique</span>(pbmc.markers<span class="sc">$</span>gene)),<span class="dv">40</span>,</span>
-<span id="cb49-3"><a href="parse-single-cell-data.html#cb49-3" tabindex="-1"></a>                                             <span class="at">replace =</span> F)]</span>
-<span id="cb49-4"><a href="parse-single-cell-data.html#cb49-4" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="parse-single-cell-data.html#cb49-5" tabindex="-1"></a><span class="co"># line plot</span></span>
-<span id="cb49-6"><a href="parse-single-cell-data.html#cb49-6" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb49-7"><a href="parse-single-cell-data.html#cb49-7" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="parse-single-cell-data.html#cb56-1" tabindex="-1"></a><span class="co"># add gene name</span></span>
+<span id="cb56-2"><a href="parse-single-cell-data.html#cb56-2" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">unique</span>(pbmc.markers<span class="sc">$</span>gene)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">unique</span>(pbmc.markers<span class="sc">$</span>gene)),<span class="dv">40</span>,</span>
+<span id="cb56-3"><a href="parse-single-cell-data.html#cb56-3" tabindex="-1"></a>                                             <span class="at">replace =</span> F)]</span>
+<span id="cb56-4"><a href="parse-single-cell-data.html#cb56-4" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="parse-single-cell-data.html#cb56-5" tabindex="-1"></a><span class="co"># line plot</span></span>
+<span id="cb56-6"><a href="parse-single-cell-data.html#cb56-6" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb56-7"><a href="parse-single-cell-data.html#cb56-7" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p align="center">
 <img src="local_images/26.png" width="60%">
 </p>
 <p>Order the cluster:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="parse-single-cell-data.html#cb50-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
-<span id="cb50-2"><a href="parse-single-cell-data.html#cb50-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc1.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb50-3"><a href="parse-single-cell-data.html#cb50-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb50-4"><a href="parse-single-cell-data.html#cb50-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
-<span id="cb50-5"><a href="parse-single-cell-data.html#cb50-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb50-6"><a href="parse-single-cell-data.html#cb50-6" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb50-7"><a href="parse-single-cell-data.html#cb50-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb50-8"><a href="parse-single-cell-data.html#cb50-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="parse-single-cell-data.html#cb57-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
+<span id="cb57-2"><a href="parse-single-cell-data.html#cb57-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc1.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb57-3"><a href="parse-single-cell-data.html#cb57-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb57-4"><a href="parse-single-cell-data.html#cb57-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb57-5"><a href="parse-single-cell-data.html#cb57-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb57-6"><a href="parse-single-cell-data.html#cb57-6" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb57-7"><a href="parse-single-cell-data.html#cb57-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb57-8"><a href="parse-single-cell-data.html#cb57-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/27.png" width="60%">
 </p>
 <p>Add enrichment annotation:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="parse-single-cell-data.html#cb51-1" tabindex="-1"></a><span class="co"># add bar plot</span></span>
-<span id="cb51-2"><a href="parse-single-cell-data.html#cb51-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc2.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">14</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb51-3"><a href="parse-single-cell-data.html#cb51-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb51-4"><a href="parse-single-cell-data.html#cb51-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb51-5"><a href="parse-single-cell-data.html#cb51-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb51-6"><a href="parse-single-cell-data.html#cb51-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
-<span id="cb51-7"><a href="parse-single-cell-data.html#cb51-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb51-8"><a href="parse-single-cell-data.html#cb51-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb51-9"><a href="parse-single-cell-data.html#cb51-9" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb51-10"><a href="parse-single-cell-data.html#cb51-10" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb51-11"><a href="parse-single-cell-data.html#cb51-11" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb51-12"><a href="parse-single-cell-data.html#cb51-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">9</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb51-13"><a href="parse-single-cell-data.html#cb51-13" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
-<span id="cb51-14"><a href="parse-single-cell-data.html#cb51-14" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="parse-single-cell-data.html#cb58-1" tabindex="-1"></a><span class="co"># add bar plot</span></span>
+<span id="cb58-2"><a href="parse-single-cell-data.html#cb58-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc2.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">14</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb58-3"><a href="parse-single-cell-data.html#cb58-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb58-4"><a href="parse-single-cell-data.html#cb58-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb58-5"><a href="parse-single-cell-data.html#cb58-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb58-6"><a href="parse-single-cell-data.html#cb58-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb58-7"><a href="parse-single-cell-data.html#cb58-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb58-8"><a href="parse-single-cell-data.html#cb58-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb58-9"><a href="parse-single-cell-data.html#cb58-9" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
+<span id="cb58-10"><a href="parse-single-cell-data.html#cb58-10" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb58-11"><a href="parse-single-cell-data.html#cb58-11" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb58-12"><a href="parse-single-cell-data.html#cb58-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">9</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb58-13"><a href="parse-single-cell-data.html#cb58-13" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
+<span id="cb58-14"><a href="parse-single-cell-data.html#cb58-14" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/28.png" width="60%">
 </p>
 <p>During differential expression analysis, there may be multiple identical genes that show differential expression across several subgroups simultaneously. By default, these duplicate genes will be deduplicated. This might result in fewer genes available for enrichment analysis. However, you can use the parameter <strong>keep.uniqGene=FALSE</strong> to retain duplicate genes:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="parse-single-cell-data.html#cb52-1" tabindex="-1"></a><span class="co"># retain duplicate diff gene in multiple clusters</span></span>
-<span id="cb52-2"><a href="parse-single-cell-data.html#cb52-2" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
-<span id="cb52-3"><a href="parse-single-cell-data.html#cb52-3" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers,</span>
-<span id="cb52-4"><a href="parse-single-cell-data.html#cb52-4" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb52-5"><a href="parse-single-cell-data.html#cb52-5" tabindex="-1"></a>                                <span class="at">keep.uniqGene =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb52-6"><a href="parse-single-cell-data.html#cb52-6" tabindex="-1"></a>                                <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
-<span id="cb52-7"><a href="parse-single-cell-data.html#cb52-7" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="parse-single-cell-data.html#cb52-8" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb52-9"><a href="parse-single-cell-data.html#cb52-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> st.data<span class="sc">$</span>wide.res</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="parse-single-cell-data.html#cb59-1" tabindex="-1"></a><span class="co"># retain duplicate diff gene in multiple clusters</span></span>
+<span id="cb59-2"><a href="parse-single-cell-data.html#cb59-2" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
+<span id="cb59-3"><a href="parse-single-cell-data.html#cb59-3" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers,</span>
+<span id="cb59-4"><a href="parse-single-cell-data.html#cb59-4" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb59-5"><a href="parse-single-cell-data.html#cb59-5" tabindex="-1"></a>                                <span class="at">keep.uniqGene =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb59-6"><a href="parse-single-cell-data.html#cb59-6" tabindex="-1"></a>                                <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb59-7"><a href="parse-single-cell-data.html#cb59-7" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="parse-single-cell-data.html#cb59-8" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb59-9"><a href="parse-single-cell-data.html#cb59-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> st.data<span class="sc">$</span>wide.res</span></code></pre></div>
 <p align="center">
 <img src="local_images/29.png" width="60%">
 </p>
 <p>Line plot without de-duplicate genes:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="parse-single-cell-data.html#cb53-1" tabindex="-1"></a><span class="co"># line plot</span></span>
-<span id="cb53-2"><a href="parse-single-cell-data.html#cb53-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb53-3"><a href="parse-single-cell-data.html#cb53-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="parse-single-cell-data.html#cb60-1" tabindex="-1"></a><span class="co"># line plot</span></span>
+<span id="cb60-2"><a href="parse-single-cell-data.html#cb60-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb60-3"><a href="parse-single-cell-data.html#cb60-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p align="center">
 <img src="local_images/30.png" width="60%">
 </p>
 <p>Let’s see the duplicate genes in heatmap:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="parse-single-cell-data.html#cb54-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
-<span id="cb54-2"><a href="parse-single-cell-data.html#cb54-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc3.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb54-3"><a href="parse-single-cell-data.html#cb54-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb54-4"><a href="parse-single-cell-data.html#cb54-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
-<span id="cb54-5"><a href="parse-single-cell-data.html#cb54-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb54-6"><a href="parse-single-cell-data.html#cb54-6" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">c</span>(<span class="st">&quot;CD27&quot;</span>,<span class="st">&quot;CD27_1&quot;</span>),</span>
-<span id="cb54-7"><a href="parse-single-cell-data.html#cb54-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb54-8"><a href="parse-single-cell-data.html#cb54-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="parse-single-cell-data.html#cb61-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
+<span id="cb61-2"><a href="parse-single-cell-data.html#cb61-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc3.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb61-3"><a href="parse-single-cell-data.html#cb61-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb61-4"><a href="parse-single-cell-data.html#cb61-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb61-5"><a href="parse-single-cell-data.html#cb61-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb61-6"><a href="parse-single-cell-data.html#cb61-6" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">c</span>(<span class="st">&quot;CD27&quot;</span>,<span class="st">&quot;CD27_1&quot;</span>),</span>
+<span id="cb61-7"><a href="parse-single-cell-data.html#cb61-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb61-8"><a href="parse-single-cell-data.html#cb61-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/31.png" width="60%">
 </p>
 <p>Now let’s show all cells expression:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="parse-single-cell-data.html#cb55-1" tabindex="-1"></a><span class="co"># no average cells</span></span>
-<span id="cb55-2"><a href="parse-single-cell-data.html#cb55-2" tabindex="-1"></a>pbmc.markers1 <span class="ot">&lt;-</span> pbmc.markers.all <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="parse-single-cell-data.html#cb55-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="parse-single-cell-data.html#cb55-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">wt =</span> avg_log2FC)</span>
-<span id="cb55-5"><a href="parse-single-cell-data.html#cb55-5" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="parse-single-cell-data.html#cb55-6" tabindex="-1"></a><span class="co"># retain duplicate diff gene in multiple clusters</span></span>
-<span id="cb55-7"><a href="parse-single-cell-data.html#cb55-7" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
-<span id="cb55-8"><a href="parse-single-cell-data.html#cb55-8" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers1,</span>
-<span id="cb55-9"><a href="parse-single-cell-data.html#cb55-9" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb55-10"><a href="parse-single-cell-data.html#cb55-10" tabindex="-1"></a></span>
-<span id="cb55-11"><a href="parse-single-cell-data.html#cb55-11" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb55-12"><a href="parse-single-cell-data.html#cb55-12" tabindex="-1"></a><span class="fu">str</span>(st.data)</span>
-<span id="cb55-13"><a href="parse-single-cell-data.html#cb55-13" tabindex="-1"></a><span class="co"># List of 5</span></span>
-<span id="cb55-14"><a href="parse-single-cell-data.html#cb55-14" tabindex="-1"></a><span class="co"># $ wide.res:&#39;data.frame&#39;:  54 obs. of  2640 variables:</span></span>
-<span id="cb55-15"><a href="parse-single-cell-data.html#cb55-15" tabindex="-1"></a><span class="co">#   ..$ gene                       : chr [1:54] &quot;MAL&quot; &quot;LEF1&quot; &quot;TCF7&quot; &quot;PRKCQ-AS1&quot; ...</span></span>
-<span id="cb55-16"><a href="parse-single-cell-data.html#cb55-16" tabindex="-1"></a><span class="co"># ..$ AAACGCTGTAGCCA|Naive CD4 T : num [1:54] -0.381 -0.434 2.272 -0.439 -0.479 ...</span></span>
-<span id="cb55-17"><a href="parse-single-cell-data.html#cb55-17" tabindex="-1"></a><span class="co"># ..$ AAACTTGATCCAGA|Naive CD4 T : num [1:54] -0.381 -0.434 1.585 -0.439 2.914 ...</span></span>
-<span id="cb55-18"><a href="parse-single-cell-data.html#cb55-18" tabindex="-1"></a><span class="co"># ..$ AAAGAGACGAGATA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.927 -0.479 ...</span></span>
-<span id="cb55-19"><a href="parse-single-cell-data.html#cb55-19" tabindex="-1"></a><span class="co"># ..$ AAAGAGACGGACTT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-20"><a href="parse-single-cell-data.html#cb55-20" tabindex="-1"></a><span class="co"># ..$ AAAGAGACGGCATT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 3.332 -0.479 ...</span></span>
-<span id="cb55-21"><a href="parse-single-cell-data.html#cb55-21" tabindex="-1"></a><span class="co"># ..$ AAAGTTTGTAGAGA|Naive CD4 T : num [1:54] -0.381 -0.434 2.44 -0.439 2.527 ...</span></span>
-<span id="cb55-22"><a href="parse-single-cell-data.html#cb55-22" tabindex="-1"></a><span class="co"># ..$ AAATCAACACCAGT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 3.486 -0.479 ...</span></span>
-<span id="cb55-23"><a href="parse-single-cell-data.html#cb55-23" tabindex="-1"></a><span class="co"># ..$ AAATCAACCAGGAG|Naive CD4 T : num [1:54] 2.01 1.78 1.42 1.76 2.25 ...</span></span>
-<span id="cb55-24"><a href="parse-single-cell-data.html#cb55-24" tabindex="-1"></a><span class="co"># ..$ AAATCAACGGAAGC|Naive CD4 T : num [1:54] -0.381 2.353 1.211 1.518 -0.479 ...</span></span>
-<span id="cb55-25"><a href="parse-single-cell-data.html#cb55-25" tabindex="-1"></a><span class="co"># ..$ AAATCCCTCCACAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-26"><a href="parse-single-cell-data.html#cb55-26" tabindex="-1"></a><span class="co"># ..$ AAATTCGAAGGTTC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 1.521 ...</span></span>
-<span id="cb55-27"><a href="parse-single-cell-data.html#cb55-27" tabindex="-1"></a><span class="co"># ..$ AAATTCGAGGAGTG|Naive CD4 T : num [1:54] -0.381 1.713 -0.534 -0.439 1.436 ...</span></span>
-<span id="cb55-28"><a href="parse-single-cell-data.html#cb55-28" tabindex="-1"></a><span class="co"># ..$ AACAAACTCATTTC|Naive CD4 T : num [1:54] 2.32 2.08 2.45 2.05 1.76 ...</span></span>
-<span id="cb55-29"><a href="parse-single-cell-data.html#cb55-29" tabindex="-1"></a><span class="co"># ..$ AACAAACTTTCGTT|Naive CD4 T : num [1:54] 2.058 1.829 -0.534 -0.439 1.54 ...</span></span>
-<span id="cb55-30"><a href="parse-single-cell-data.html#cb55-30" tabindex="-1"></a><span class="co"># ..$ AACAATACGACGAG|Naive CD4 T : num [1:54] -0.381 2.118 1.718 -0.439 2.581 ...</span></span>
-<span id="cb55-31"><a href="parse-single-cell-data.html#cb55-31" tabindex="-1"></a><span class="co"># ..$ AACACGTGGAAAGT|Naive CD4 T : num [1:54] -0.381 -0.434 2.237 -0.439 -0.479 ...</span></span>
-<span id="cb55-32"><a href="parse-single-cell-data.html#cb55-32" tabindex="-1"></a><span class="co"># ..$ AACACGTGGCTACA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.817 -0.479 ...</span></span>
-<span id="cb55-33"><a href="parse-single-cell-data.html#cb55-33" tabindex="-1"></a><span class="co"># ..$ AACCCAGATCGCTC|Naive CD4 T : num [1:54] 2.231 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-34"><a href="parse-single-cell-data.html#cb55-34" tabindex="-1"></a><span class="co"># ..$ AACCGATGCTCCCA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.985 1.705 ...</span></span>
-<span id="cb55-35"><a href="parse-single-cell-data.html#cb55-35" tabindex="-1"></a><span class="co"># ..$ AACCTACTGTGTTG|Naive CD4 T : num [1:54] 2.064 -0.434 1.469 1.807 2.302 ...</span></span>
-<span id="cb55-36"><a href="parse-single-cell-data.html#cb55-36" tabindex="-1"></a><span class="co"># ..$ AACCTTACGAGACG|Naive CD4 T : num [1:54] -0.381 2.638 1.433 1.767 1.509 ...</span></span>
-<span id="cb55-37"><a href="parse-single-cell-data.html#cb55-37" tabindex="-1"></a><span class="co"># ..$ AACCTTTGGACGGA|Naive CD4 T : num [1:54] -0.381 -0.434 1.733 -0.439 -0.479 ...</span></span>
-<span id="cb55-38"><a href="parse-single-cell-data.html#cb55-38" tabindex="-1"></a><span class="co"># ..$ AACGCATGACCCAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-39"><a href="parse-single-cell-data.html#cb55-39" tabindex="-1"></a><span class="co"># ..$ AACGCATGCCTTCG|Naive CD4 T : num [1:54] -0.381 1.756 -0.534 -0.439 1.475 ...</span></span>
-<span id="cb55-40"><a href="parse-single-cell-data.html#cb55-40" tabindex="-1"></a><span class="co"># ..$ AACGCATGTACTTC|Naive CD4 T : num [1:54] -0.381 -0.434 1.383 -0.439 -0.479 ...</span></span>
-<span id="cb55-41"><a href="parse-single-cell-data.html#cb55-41" tabindex="-1"></a><span class="co"># ..$ AACGTGTGTCCAAG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.371 -0.479 ...</span></span>
-<span id="cb55-42"><a href="parse-single-cell-data.html#cb55-42" tabindex="-1"></a><span class="co"># ..$ AACTACCTTAGAGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 3.038 ...</span></span>
-<span id="cb55-43"><a href="parse-single-cell-data.html#cb55-43" tabindex="-1"></a><span class="co"># ..$ AACTTGCTGGGACA|Naive CD4 T : num [1:54] -0.381 2.265 1.849 -0.439 -0.479 ...</span></span>
-<span id="cb55-44"><a href="parse-single-cell-data.html#cb55-44" tabindex="-1"></a><span class="co"># ..$ AAGAACGAGTGTTG|Naive CD4 T : num [1:54] 3.747 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-45"><a href="parse-single-cell-data.html#cb55-45" tabindex="-1"></a><span class="co"># ..$ AAGACAGAGGATCT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.974 -0.479 ...</span></span>
-<span id="cb55-46"><a href="parse-single-cell-data.html#cb55-46" tabindex="-1"></a><span class="co"># ..$ AAGATTACAACCTG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.08 -0.479 ...</span></span>
-<span id="cb55-47"><a href="parse-single-cell-data.html#cb55-47" tabindex="-1"></a><span class="co"># ..$ AAGCACTGCATACG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-48"><a href="parse-single-cell-data.html#cb55-48" tabindex="-1"></a><span class="co"># ..$ AAGCCAACGTGTTG|Naive CD4 T : num [1:54] -0.381 -0.434 1.436 -0.439 1.512 ...</span></span>
-<span id="cb55-49"><a href="parse-single-cell-data.html#cb55-49" tabindex="-1"></a><span class="co"># ..$ AAGCCATGCGTGAT|Naive CD4 T : num [1:54] -0.381 2.114 1.715 -0.439 3.064 ...</span></span>
-<span id="cb55-50"><a href="parse-single-cell-data.html#cb55-50" tabindex="-1"></a><span class="co"># ..$ AAGCCATGTCTCGC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-51"><a href="parse-single-cell-data.html#cb55-51" tabindex="-1"></a><span class="co"># ..$ AAGCGACTGTGTCA|Naive CD4 T : num [1:54] -0.381 2.482 2.04 1.631 2.123 ...</span></span>
-<span id="cb55-52"><a href="parse-single-cell-data.html#cb55-52" tabindex="-1"></a><span class="co"># ..$ AAGCGTACGTCTTT|Naive CD4 T : num [1:54] -0.381 2.151 1.748 -0.439 2.614 ...</span></span>
-<span id="cb55-53"><a href="parse-single-cell-data.html#cb55-53" tabindex="-1"></a><span class="co"># ..$ AAGGTCTGCAGATC|Naive CD4 T : num [1:54] -0.381 -0.434 2.592 -0.439 2.681 ...</span></span>
-<span id="cb55-54"><a href="parse-single-cell-data.html#cb55-54" tabindex="-1"></a><span class="co"># ..$ AAGTATACCGAACT|Naive CD4 T : num [1:54] -0.381 -0.434 1.999 -0.439 -0.479 ...</span></span>
-<span id="cb55-55"><a href="parse-single-cell-data.html#cb55-55" tabindex="-1"></a><span class="co"># ..$ AAGTCCGACTTGTT|Naive CD4 T : num [1:54] -0.381 2.517 -0.534 -0.439 2.154 ...</span></span>
-<span id="cb55-56"><a href="parse-single-cell-data.html#cb55-56" tabindex="-1"></a><span class="co"># ..$ AAGTCCGATAGAAG|Naive CD4 T : num [1:54] -0.381 1.576 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-57"><a href="parse-single-cell-data.html#cb55-57" tabindex="-1"></a><span class="co"># ..$ AAGTCTCTAGTCGT|Naive CD4 T : num [1:54] -0.381 1.605 2.448 -0.439 -0.479 ...</span></span>
-<span id="cb55-58"><a href="parse-single-cell-data.html#cb55-58" tabindex="-1"></a><span class="co"># ..$ AATAAGCTCGTTGA|Naive CD4 T : num [1:54] -0.381 3.358 2.013 -0.439 2.096 ...</span></span>
-<span id="cb55-59"><a href="parse-single-cell-data.html#cb55-59" tabindex="-1"></a><span class="co"># ..$ AATCCTACCGGTAT|Naive CD4 T : num [1:54] 2.179 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-60"><a href="parse-single-cell-data.html#cb55-60" tabindex="-1"></a><span class="co"># ..$ AATCGGTGTGCTTT|Naive CD4 T : num [1:54] -0.381 2.245 -0.534 -0.439 3.55 ...</span></span>
-<span id="cb55-61"><a href="parse-single-cell-data.html#cb55-61" tabindex="-1"></a><span class="co"># ..$ AATCTAGAATCGGT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-62"><a href="parse-single-cell-data.html#cb55-62" tabindex="-1"></a><span class="co"># ..$ AATCTCACTCTAGG|Naive CD4 T : num [1:54] -0.381 2.093 1.697 -0.439 -0.479 ...</span></span>
-<span id="cb55-63"><a href="parse-single-cell-data.html#cb55-63" tabindex="-1"></a><span class="co"># ..$ AATCTCTGAACAGA|Naive CD4 T : num [1:54] -0.381 2.073 2.451 2.908 1.758 ...</span></span>
-<span id="cb55-64"><a href="parse-single-cell-data.html#cb55-64" tabindex="-1"></a><span class="co"># ..$ AATGGCTGTGAAGA|Naive CD4 T : num [1:54] -0.381 -0.434 1.699 2.066 -0.479 ...</span></span>
-<span id="cb55-65"><a href="parse-single-cell-data.html#cb55-65" tabindex="-1"></a><span class="co"># ..$ AATGTAACGGTGGA|Naive CD4 T : num [1:54] 3.366 1.687 -0.534 -0.439 2.154 ...</span></span>
-<span id="cb55-66"><a href="parse-single-cell-data.html#cb55-66" tabindex="-1"></a><span class="co"># ..$ AATTACGACTTCTA|Naive CD4 T : num [1:54] -0.381 -0.434 1.51 3.228 -0.479 ...</span></span>
-<span id="cb55-67"><a href="parse-single-cell-data.html#cb55-67" tabindex="-1"></a><span class="co"># ..$ ACAAAGGAGGGTGA|Naive CD4 T : num [1:54] -0.381 2.169 1.763 -0.439 -0.479 ...</span></span>
-<span id="cb55-68"><a href="parse-single-cell-data.html#cb55-68" tabindex="-1"></a><span class="co"># ..$ ACAAGAGACTTATC|Naive CD4 T : num [1:54] -0.381 -0.434 2.617 -0.439 -0.479 ...</span></span>
-<span id="cb55-69"><a href="parse-single-cell-data.html#cb55-69" tabindex="-1"></a><span class="co"># ..$ ACAGGTACCCCACT|Naive CD4 T : num [1:54] 2.04 -0.434 1.449 -0.439 1.526 ...</span></span>
-<span id="cb55-70"><a href="parse-single-cell-data.html#cb55-70" tabindex="-1"></a><span class="co"># ..$ ACAGTCGACCCAAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-71"><a href="parse-single-cell-data.html#cb55-71" tabindex="-1"></a><span class="co"># ..$ ACAGTGTGGTCACA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-72"><a href="parse-single-cell-data.html#cb55-72" tabindex="-1"></a><span class="co"># ..$ ACATGGTGAAGCCT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-73"><a href="parse-single-cell-data.html#cb55-73" tabindex="-1"></a><span class="co"># ..$ ACATGGTGCGAGTT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.993 -0.479 ...</span></span>
-<span id="cb55-74"><a href="parse-single-cell-data.html#cb55-74" tabindex="-1"></a><span class="co"># ..$ ACATTCTGGCATAC|Naive CD4 T : num [1:54] -0.381 1.763 1.405 -0.439 -0.479 ...</span></span>
-<span id="cb55-75"><a href="parse-single-cell-data.html#cb55-75" tabindex="-1"></a><span class="co"># ..$ ACCAACGACATGCA|Naive CD4 T : num [1:54] -0.381 -0.434 1.713 -0.439 -0.479 ...</span></span>
-<span id="cb55-76"><a href="parse-single-cell-data.html#cb55-76" tabindex="-1"></a><span class="co"># ..$ ACCACAGAAAGTAG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-77"><a href="parse-single-cell-data.html#cb55-77" tabindex="-1"></a><span class="co"># ..$ ACCACAGAGTTGGT|Naive CD4 T : num [1:54] -0.381 -0.434 1.403 2.563 -0.479 ...</span></span>
-<span id="cb55-78"><a href="parse-single-cell-data.html#cb55-78" tabindex="-1"></a><span class="co"># ..$ ACCACCTGTGTGCA|Naive CD4 T : num [1:54] -0.381 2.85 -0.534 2.812 2.451 ...</span></span>
-<span id="cb55-79"><a href="parse-single-cell-data.html#cb55-79" tabindex="-1"></a><span class="co"># ..$ ACCACGCTACAGCT|Naive CD4 T : num [1:54] 2.134 1.899 1.526 -0.439 2.366 ...</span></span>
-<span id="cb55-80"><a href="parse-single-cell-data.html#cb55-80" tabindex="-1"></a><span class="co"># ..$ ACCACGCTGCGAGA|Naive CD4 T : num [1:54] -0.381 2.192 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-81"><a href="parse-single-cell-data.html#cb55-81" tabindex="-1"></a><span class="co"># ..$ ACCACGCTGCTGTA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-82"><a href="parse-single-cell-data.html#cb55-82" tabindex="-1"></a><span class="co"># ..$ ACCAGTGAGGGATG|Naive CD4 T : num [1:54] 2.177 2.8 -0.534 1.911 -0.479 ...</span></span>
-<span id="cb55-83"><a href="parse-single-cell-data.html#cb55-83" tabindex="-1"></a><span class="co"># ..$ ACCATTACCTTCTA|Naive CD4 T : num [1:54] 1.77 1.56 1.23 1.54 1.3 ...</span></span>
-<span id="cb55-84"><a href="parse-single-cell-data.html#cb55-84" tabindex="-1"></a><span class="co"># ..$ ACCATTTGTCATTC|Naive CD4 T : num [1:54] -0.381 2.419 -0.534 -0.439 2.066 ...</span></span>
-<span id="cb55-85"><a href="parse-single-cell-data.html#cb55-85" tabindex="-1"></a><span class="co"># ..$ ACCCACTGGACAGG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 2.817 ...</span></span>
-<span id="cb55-86"><a href="parse-single-cell-data.html#cb55-86" tabindex="-1"></a><span class="co"># ..$ ACCCAGCTTGCTTT|Naive CD4 T : num [1:54] 2.151 -0.434 2.297 1.887 -0.479 ...</span></span>
-<span id="cb55-87"><a href="parse-single-cell-data.html#cb55-87" tabindex="-1"></a><span class="co"># ..$ ACCCGTTGCTGCAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.057 1.771 ...</span></span>
-<span id="cb55-88"><a href="parse-single-cell-data.html#cb55-88" tabindex="-1"></a><span class="co"># ..$ ACCTCCGATATGCG|Naive CD4 T : num [1:54] 2.583 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-89"><a href="parse-single-cell-data.html#cb55-89" tabindex="-1"></a><span class="co"># ..$ ACCTCCGATGCTGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-90"><a href="parse-single-cell-data.html#cb55-90" tabindex="-1"></a><span class="co"># ..$ ACGAAGCTCTCCAC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 3.327 -0.479 ...</span></span>
-<span id="cb55-91"><a href="parse-single-cell-data.html#cb55-91" tabindex="-1"></a><span class="co"># ..$ ACGACCCTGATGAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.141 -0.479 ...</span></span>
-<span id="cb55-92"><a href="parse-single-cell-data.html#cb55-92" tabindex="-1"></a><span class="co"># ..$ ACGACCCTTGACCA|Naive CD4 T : num [1:54] -0.381 -0.434 1.618 -0.439 -0.479 ...</span></span>
-<span id="cb55-93"><a href="parse-single-cell-data.html#cb55-93" tabindex="-1"></a><span class="co"># ..$ ACGAGGGACGAACT|Naive CD4 T : num [1:54] 3.927 1.8 -0.534 1.772 -0.479 ...</span></span>
-<span id="cb55-94"><a href="parse-single-cell-data.html#cb55-94" tabindex="-1"></a><span class="co"># ..$ ACGATTCTACGGGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.416 -0.479 ...</span></span>
-<span id="cb55-95"><a href="parse-single-cell-data.html#cb55-95" tabindex="-1"></a><span class="co"># ..$ ACGCCGGAAAGCCT|Naive CD4 T : num [1:54] -0.381 2.096 -0.534 -0.439 1.778 ...</span></span>
-<span id="cb55-96"><a href="parse-single-cell-data.html#cb55-96" tabindex="-1"></a><span class="co"># ..$ ACGCTCACAGTACC|Naive CD4 T : num [1:54] 2.218 -0.434 1.594 -0.439 1.672 ...</span></span>
-<span id="cb55-97"><a href="parse-single-cell-data.html#cb55-97" tabindex="-1"></a><span class="co"># ..$ ACGCTCACCCTTGC|Naive CD4 T : num [1:54] 3.277 -0.434 1.69 2.055 1.769 ...</span></span>
-<span id="cb55-98"><a href="parse-single-cell-data.html#cb55-98" tabindex="-1"></a><span class="co"># ..$ ACGGCTCTTGCACA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.868 -0.479 ...</span></span>
-<span id="cb55-99"><a href="parse-single-cell-data.html#cb55-99" tabindex="-1"></a><span class="co"># ..$ ACGGTAACGGTGGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 2.893 ...</span></span>
-<span id="cb55-100"><a href="parse-single-cell-data.html#cb55-100" tabindex="-1"></a><span class="co"># ..$ ACGGTCCTCGGGAA|Naive CD4 T : num [1:54] -0.381 2.035 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-101"><a href="parse-single-cell-data.html#cb55-101" tabindex="-1"></a><span class="co"># ..$ ACGTCAGAGGGATG|Naive CD4 T : num [1:54] -0.381 2.502 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-102"><a href="parse-single-cell-data.html#cb55-102" tabindex="-1"></a><span class="co"># ..$ ACGTGATGGGTCTA|Naive CD4 T : num [1:54] 2.084 -0.434 1.485 2.667 -0.479 ...</span></span>
-<span id="cb55-103"><a href="parse-single-cell-data.html#cb55-103" tabindex="-1"></a><span class="co"># ..$ ACGTTACTTTCCAT|Naive CD4 T : num [1:54] -0.381 -0.434 2.572 -0.439 1.871 ...</span></span>
-<span id="cb55-104"><a href="parse-single-cell-data.html#cb55-104" tabindex="-1"></a><span class="co"># ..$ ACGTTGGAAAAGCA|Naive CD4 T : num [1:54] 3.261 -0.434 2.449 -0.439 1.756 ...</span></span>
-<span id="cb55-105"><a href="parse-single-cell-data.html#cb55-105" tabindex="-1"></a><span class="co"># ..$ ACGTTTACATCAGC|Naive CD4 T : num [1:54] -0.381 2.841 2.357 1.948 -0.479 ...</span></span>
-<span id="cb55-106"><a href="parse-single-cell-data.html#cb55-106" tabindex="-1"></a><span class="co"># ..$ ACTAAAACCCACAA|Naive CD4 T : num [1:54] -0.381 -0.434 2.279 -0.439 -0.479 ...</span></span>
-<span id="cb55-107"><a href="parse-single-cell-data.html#cb55-107" tabindex="-1"></a><span class="co"># ..$ ACTACGGACCTATT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 1.965 ...</span></span>
-<span id="cb55-108"><a href="parse-single-cell-data.html#cb55-108" tabindex="-1"></a><span class="co"># ..$ ACTACGGATCGCTC|Naive CD4 T : num [1:54] -0.381 -0.434 2.782 1.898 1.627 ...</span></span>
-<span id="cb55-109"><a href="parse-single-cell-data.html#cb55-109" tabindex="-1"></a><span class="co"># ..$ ACTACTACTAAGGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-110"><a href="parse-single-cell-data.html#cb55-110" tabindex="-1"></a><span class="co"># ..$ ACTATCACTGCCAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 2.517 ...</span></span>
-<span id="cb55-111"><a href="parse-single-cell-data.html#cb55-111" tabindex="-1"></a><span class="co"># ..$ ACTCAGGACTGAAC|Naive CD4 T : num [1:54] 3.279 2.962 1.691 -0.439 3.036 ...</span></span>
-<span id="cb55-112"><a href="parse-single-cell-data.html#cb55-112" tabindex="-1"></a><span class="co"># ..$ ACTCTCCTGACACT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 3.222 ...</span></span>
-<span id="cb55-113"><a href="parse-single-cell-data.html#cb55-113" tabindex="-1"></a><span class="co"># ..$ ACTCTCCTGCATAC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
-<span id="cb55-114"><a href="parse-single-cell-data.html#cb55-114" tabindex="-1"></a><span class="co"># .. [list output truncated]</span></span>
-<span id="cb55-115"><a href="parse-single-cell-data.html#cb55-115" tabindex="-1"></a><span class="co"># $ long.res:&#39;data.frame&#39;:  142452 obs. of  5 variables:</span></span>
-<span id="cb55-116"><a href="parse-single-cell-data.html#cb55-116" tabindex="-1"></a><span class="co">#   ..$ cluster     : chr [1:142452] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
-<span id="cb55-117"><a href="parse-single-cell-data.html#cb55-117" tabindex="-1"></a><span class="co"># ..$ gene        : chr [1:142452] &quot;MAL&quot; &quot;LEF1&quot; &quot;TCF7&quot; &quot;PRKCQ-AS1&quot; ...</span></span>
-<span id="cb55-118"><a href="parse-single-cell-data.html#cb55-118" tabindex="-1"></a><span class="co"># ..$ cell_type   : chr [1:142452] &quot;Naive CD4 T&quot; &quot;Naive CD4 T&quot; &quot;Naive CD4 T&quot; &quot;Naive CD4 T&quot; ...</span></span>
-<span id="cb55-119"><a href="parse-single-cell-data.html#cb55-119" tabindex="-1"></a><span class="co"># ..$ norm_value  : num [1:142452] -0.381 -0.434 2.272 -0.439 -0.479 ...</span></span>
-<span id="cb55-120"><a href="parse-single-cell-data.html#cb55-120" tabindex="-1"></a><span class="co"># ..$ cluster_name: Factor w/ 9 levels &quot;cluster 1 (6)&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb55-121"><a href="parse-single-cell-data.html#cb55-121" tabindex="-1"></a><span class="co"># $ type    : chr &quot;scRNAdata&quot;</span></span>
-<span id="cb55-122"><a href="parse-single-cell-data.html#cb55-122" tabindex="-1"></a><span class="co"># $ geneMode: chr &quot;all&quot;</span></span>
-<span id="cb55-123"><a href="parse-single-cell-data.html#cb55-123" tabindex="-1"></a><span class="co"># $ geneType: chr &quot;unique|_&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="parse-single-cell-data.html#cb62-1" tabindex="-1"></a><span class="co"># no average cells</span></span>
+<span id="cb62-2"><a href="parse-single-cell-data.html#cb62-2" tabindex="-1"></a>pbmc.markers1 <span class="ot">&lt;-</span> pbmc.markers.all <span class="sc">%&gt;%</span></span>
+<span id="cb62-3"><a href="parse-single-cell-data.html#cb62-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb62-4"><a href="parse-single-cell-data.html#cb62-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb62-5"><a href="parse-single-cell-data.html#cb62-5" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="parse-single-cell-data.html#cb62-6" tabindex="-1"></a><span class="co"># retain duplicate diff gene in multiple clusters</span></span>
+<span id="cb62-7"><a href="parse-single-cell-data.html#cb62-7" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
+<span id="cb62-8"><a href="parse-single-cell-data.html#cb62-8" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers1,</span>
+<span id="cb62-9"><a href="parse-single-cell-data.html#cb62-9" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb62-10"><a href="parse-single-cell-data.html#cb62-10" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="parse-single-cell-data.html#cb62-11" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb62-12"><a href="parse-single-cell-data.html#cb62-12" tabindex="-1"></a><span class="fu">str</span>(st.data)</span>
+<span id="cb62-13"><a href="parse-single-cell-data.html#cb62-13" tabindex="-1"></a><span class="co"># List of 5</span></span>
+<span id="cb62-14"><a href="parse-single-cell-data.html#cb62-14" tabindex="-1"></a><span class="co"># $ wide.res:&#39;data.frame&#39;:  54 obs. of  2640 variables:</span></span>
+<span id="cb62-15"><a href="parse-single-cell-data.html#cb62-15" tabindex="-1"></a><span class="co">#   ..$ gene                       : chr [1:54] &quot;MAL&quot; &quot;LEF1&quot; &quot;TCF7&quot; &quot;PRKCQ-AS1&quot; ...</span></span>
+<span id="cb62-16"><a href="parse-single-cell-data.html#cb62-16" tabindex="-1"></a><span class="co"># ..$ AAACGCTGTAGCCA|Naive CD4 T : num [1:54] -0.381 -0.434 2.272 -0.439 -0.479 ...</span></span>
+<span id="cb62-17"><a href="parse-single-cell-data.html#cb62-17" tabindex="-1"></a><span class="co"># ..$ AAACTTGATCCAGA|Naive CD4 T : num [1:54] -0.381 -0.434 1.585 -0.439 2.914 ...</span></span>
+<span id="cb62-18"><a href="parse-single-cell-data.html#cb62-18" tabindex="-1"></a><span class="co"># ..$ AAAGAGACGAGATA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.927 -0.479 ...</span></span>
+<span id="cb62-19"><a href="parse-single-cell-data.html#cb62-19" tabindex="-1"></a><span class="co"># ..$ AAAGAGACGGACTT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-20"><a href="parse-single-cell-data.html#cb62-20" tabindex="-1"></a><span class="co"># ..$ AAAGAGACGGCATT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 3.332 -0.479 ...</span></span>
+<span id="cb62-21"><a href="parse-single-cell-data.html#cb62-21" tabindex="-1"></a><span class="co"># ..$ AAAGTTTGTAGAGA|Naive CD4 T : num [1:54] -0.381 -0.434 2.44 -0.439 2.527 ...</span></span>
+<span id="cb62-22"><a href="parse-single-cell-data.html#cb62-22" tabindex="-1"></a><span class="co"># ..$ AAATCAACACCAGT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 3.486 -0.479 ...</span></span>
+<span id="cb62-23"><a href="parse-single-cell-data.html#cb62-23" tabindex="-1"></a><span class="co"># ..$ AAATCAACCAGGAG|Naive CD4 T : num [1:54] 2.01 1.78 1.42 1.76 2.25 ...</span></span>
+<span id="cb62-24"><a href="parse-single-cell-data.html#cb62-24" tabindex="-1"></a><span class="co"># ..$ AAATCAACGGAAGC|Naive CD4 T : num [1:54] -0.381 2.353 1.211 1.518 -0.479 ...</span></span>
+<span id="cb62-25"><a href="parse-single-cell-data.html#cb62-25" tabindex="-1"></a><span class="co"># ..$ AAATCCCTCCACAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-26"><a href="parse-single-cell-data.html#cb62-26" tabindex="-1"></a><span class="co"># ..$ AAATTCGAAGGTTC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 1.521 ...</span></span>
+<span id="cb62-27"><a href="parse-single-cell-data.html#cb62-27" tabindex="-1"></a><span class="co"># ..$ AAATTCGAGGAGTG|Naive CD4 T : num [1:54] -0.381 1.713 -0.534 -0.439 1.436 ...</span></span>
+<span id="cb62-28"><a href="parse-single-cell-data.html#cb62-28" tabindex="-1"></a><span class="co"># ..$ AACAAACTCATTTC|Naive CD4 T : num [1:54] 2.32 2.08 2.45 2.05 1.76 ...</span></span>
+<span id="cb62-29"><a href="parse-single-cell-data.html#cb62-29" tabindex="-1"></a><span class="co"># ..$ AACAAACTTTCGTT|Naive CD4 T : num [1:54] 2.058 1.829 -0.534 -0.439 1.54 ...</span></span>
+<span id="cb62-30"><a href="parse-single-cell-data.html#cb62-30" tabindex="-1"></a><span class="co"># ..$ AACAATACGACGAG|Naive CD4 T : num [1:54] -0.381 2.118 1.718 -0.439 2.581 ...</span></span>
+<span id="cb62-31"><a href="parse-single-cell-data.html#cb62-31" tabindex="-1"></a><span class="co"># ..$ AACACGTGGAAAGT|Naive CD4 T : num [1:54] -0.381 -0.434 2.237 -0.439 -0.479 ...</span></span>
+<span id="cb62-32"><a href="parse-single-cell-data.html#cb62-32" tabindex="-1"></a><span class="co"># ..$ AACACGTGGCTACA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.817 -0.479 ...</span></span>
+<span id="cb62-33"><a href="parse-single-cell-data.html#cb62-33" tabindex="-1"></a><span class="co"># ..$ AACCCAGATCGCTC|Naive CD4 T : num [1:54] 2.231 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-34"><a href="parse-single-cell-data.html#cb62-34" tabindex="-1"></a><span class="co"># ..$ AACCGATGCTCCCA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.985 1.705 ...</span></span>
+<span id="cb62-35"><a href="parse-single-cell-data.html#cb62-35" tabindex="-1"></a><span class="co"># ..$ AACCTACTGTGTTG|Naive CD4 T : num [1:54] 2.064 -0.434 1.469 1.807 2.302 ...</span></span>
+<span id="cb62-36"><a href="parse-single-cell-data.html#cb62-36" tabindex="-1"></a><span class="co"># ..$ AACCTTACGAGACG|Naive CD4 T : num [1:54] -0.381 2.638 1.433 1.767 1.509 ...</span></span>
+<span id="cb62-37"><a href="parse-single-cell-data.html#cb62-37" tabindex="-1"></a><span class="co"># ..$ AACCTTTGGACGGA|Naive CD4 T : num [1:54] -0.381 -0.434 1.733 -0.439 -0.479 ...</span></span>
+<span id="cb62-38"><a href="parse-single-cell-data.html#cb62-38" tabindex="-1"></a><span class="co"># ..$ AACGCATGACCCAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-39"><a href="parse-single-cell-data.html#cb62-39" tabindex="-1"></a><span class="co"># ..$ AACGCATGCCTTCG|Naive CD4 T : num [1:54] -0.381 1.756 -0.534 -0.439 1.475 ...</span></span>
+<span id="cb62-40"><a href="parse-single-cell-data.html#cb62-40" tabindex="-1"></a><span class="co"># ..$ AACGCATGTACTTC|Naive CD4 T : num [1:54] -0.381 -0.434 1.383 -0.439 -0.479 ...</span></span>
+<span id="cb62-41"><a href="parse-single-cell-data.html#cb62-41" tabindex="-1"></a><span class="co"># ..$ AACGTGTGTCCAAG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.371 -0.479 ...</span></span>
+<span id="cb62-42"><a href="parse-single-cell-data.html#cb62-42" tabindex="-1"></a><span class="co"># ..$ AACTACCTTAGAGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 3.038 ...</span></span>
+<span id="cb62-43"><a href="parse-single-cell-data.html#cb62-43" tabindex="-1"></a><span class="co"># ..$ AACTTGCTGGGACA|Naive CD4 T : num [1:54] -0.381 2.265 1.849 -0.439 -0.479 ...</span></span>
+<span id="cb62-44"><a href="parse-single-cell-data.html#cb62-44" tabindex="-1"></a><span class="co"># ..$ AAGAACGAGTGTTG|Naive CD4 T : num [1:54] 3.747 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-45"><a href="parse-single-cell-data.html#cb62-45" tabindex="-1"></a><span class="co"># ..$ AAGACAGAGGATCT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.974 -0.479 ...</span></span>
+<span id="cb62-46"><a href="parse-single-cell-data.html#cb62-46" tabindex="-1"></a><span class="co"># ..$ AAGATTACAACCTG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.08 -0.479 ...</span></span>
+<span id="cb62-47"><a href="parse-single-cell-data.html#cb62-47" tabindex="-1"></a><span class="co"># ..$ AAGCACTGCATACG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-48"><a href="parse-single-cell-data.html#cb62-48" tabindex="-1"></a><span class="co"># ..$ AAGCCAACGTGTTG|Naive CD4 T : num [1:54] -0.381 -0.434 1.436 -0.439 1.512 ...</span></span>
+<span id="cb62-49"><a href="parse-single-cell-data.html#cb62-49" tabindex="-1"></a><span class="co"># ..$ AAGCCATGCGTGAT|Naive CD4 T : num [1:54] -0.381 2.114 1.715 -0.439 3.064 ...</span></span>
+<span id="cb62-50"><a href="parse-single-cell-data.html#cb62-50" tabindex="-1"></a><span class="co"># ..$ AAGCCATGTCTCGC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-51"><a href="parse-single-cell-data.html#cb62-51" tabindex="-1"></a><span class="co"># ..$ AAGCGACTGTGTCA|Naive CD4 T : num [1:54] -0.381 2.482 2.04 1.631 2.123 ...</span></span>
+<span id="cb62-52"><a href="parse-single-cell-data.html#cb62-52" tabindex="-1"></a><span class="co"># ..$ AAGCGTACGTCTTT|Naive CD4 T : num [1:54] -0.381 2.151 1.748 -0.439 2.614 ...</span></span>
+<span id="cb62-53"><a href="parse-single-cell-data.html#cb62-53" tabindex="-1"></a><span class="co"># ..$ AAGGTCTGCAGATC|Naive CD4 T : num [1:54] -0.381 -0.434 2.592 -0.439 2.681 ...</span></span>
+<span id="cb62-54"><a href="parse-single-cell-data.html#cb62-54" tabindex="-1"></a><span class="co"># ..$ AAGTATACCGAACT|Naive CD4 T : num [1:54] -0.381 -0.434 1.999 -0.439 -0.479 ...</span></span>
+<span id="cb62-55"><a href="parse-single-cell-data.html#cb62-55" tabindex="-1"></a><span class="co"># ..$ AAGTCCGACTTGTT|Naive CD4 T : num [1:54] -0.381 2.517 -0.534 -0.439 2.154 ...</span></span>
+<span id="cb62-56"><a href="parse-single-cell-data.html#cb62-56" tabindex="-1"></a><span class="co"># ..$ AAGTCCGATAGAAG|Naive CD4 T : num [1:54] -0.381 1.576 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-57"><a href="parse-single-cell-data.html#cb62-57" tabindex="-1"></a><span class="co"># ..$ AAGTCTCTAGTCGT|Naive CD4 T : num [1:54] -0.381 1.605 2.448 -0.439 -0.479 ...</span></span>
+<span id="cb62-58"><a href="parse-single-cell-data.html#cb62-58" tabindex="-1"></a><span class="co"># ..$ AATAAGCTCGTTGA|Naive CD4 T : num [1:54] -0.381 3.358 2.013 -0.439 2.096 ...</span></span>
+<span id="cb62-59"><a href="parse-single-cell-data.html#cb62-59" tabindex="-1"></a><span class="co"># ..$ AATCCTACCGGTAT|Naive CD4 T : num [1:54] 2.179 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-60"><a href="parse-single-cell-data.html#cb62-60" tabindex="-1"></a><span class="co"># ..$ AATCGGTGTGCTTT|Naive CD4 T : num [1:54] -0.381 2.245 -0.534 -0.439 3.55 ...</span></span>
+<span id="cb62-61"><a href="parse-single-cell-data.html#cb62-61" tabindex="-1"></a><span class="co"># ..$ AATCTAGAATCGGT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-62"><a href="parse-single-cell-data.html#cb62-62" tabindex="-1"></a><span class="co"># ..$ AATCTCACTCTAGG|Naive CD4 T : num [1:54] -0.381 2.093 1.697 -0.439 -0.479 ...</span></span>
+<span id="cb62-63"><a href="parse-single-cell-data.html#cb62-63" tabindex="-1"></a><span class="co"># ..$ AATCTCTGAACAGA|Naive CD4 T : num [1:54] -0.381 2.073 2.451 2.908 1.758 ...</span></span>
+<span id="cb62-64"><a href="parse-single-cell-data.html#cb62-64" tabindex="-1"></a><span class="co"># ..$ AATGGCTGTGAAGA|Naive CD4 T : num [1:54] -0.381 -0.434 1.699 2.066 -0.479 ...</span></span>
+<span id="cb62-65"><a href="parse-single-cell-data.html#cb62-65" tabindex="-1"></a><span class="co"># ..$ AATGTAACGGTGGA|Naive CD4 T : num [1:54] 3.366 1.687 -0.534 -0.439 2.154 ...</span></span>
+<span id="cb62-66"><a href="parse-single-cell-data.html#cb62-66" tabindex="-1"></a><span class="co"># ..$ AATTACGACTTCTA|Naive CD4 T : num [1:54] -0.381 -0.434 1.51 3.228 -0.479 ...</span></span>
+<span id="cb62-67"><a href="parse-single-cell-data.html#cb62-67" tabindex="-1"></a><span class="co"># ..$ ACAAAGGAGGGTGA|Naive CD4 T : num [1:54] -0.381 2.169 1.763 -0.439 -0.479 ...</span></span>
+<span id="cb62-68"><a href="parse-single-cell-data.html#cb62-68" tabindex="-1"></a><span class="co"># ..$ ACAAGAGACTTATC|Naive CD4 T : num [1:54] -0.381 -0.434 2.617 -0.439 -0.479 ...</span></span>
+<span id="cb62-69"><a href="parse-single-cell-data.html#cb62-69" tabindex="-1"></a><span class="co"># ..$ ACAGGTACCCCACT|Naive CD4 T : num [1:54] 2.04 -0.434 1.449 -0.439 1.526 ...</span></span>
+<span id="cb62-70"><a href="parse-single-cell-data.html#cb62-70" tabindex="-1"></a><span class="co"># ..$ ACAGTCGACCCAAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-71"><a href="parse-single-cell-data.html#cb62-71" tabindex="-1"></a><span class="co"># ..$ ACAGTGTGGTCACA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-72"><a href="parse-single-cell-data.html#cb62-72" tabindex="-1"></a><span class="co"># ..$ ACATGGTGAAGCCT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-73"><a href="parse-single-cell-data.html#cb62-73" tabindex="-1"></a><span class="co"># ..$ ACATGGTGCGAGTT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.993 -0.479 ...</span></span>
+<span id="cb62-74"><a href="parse-single-cell-data.html#cb62-74" tabindex="-1"></a><span class="co"># ..$ ACATTCTGGCATAC|Naive CD4 T : num [1:54] -0.381 1.763 1.405 -0.439 -0.479 ...</span></span>
+<span id="cb62-75"><a href="parse-single-cell-data.html#cb62-75" tabindex="-1"></a><span class="co"># ..$ ACCAACGACATGCA|Naive CD4 T : num [1:54] -0.381 -0.434 1.713 -0.439 -0.479 ...</span></span>
+<span id="cb62-76"><a href="parse-single-cell-data.html#cb62-76" tabindex="-1"></a><span class="co"># ..$ ACCACAGAAAGTAG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-77"><a href="parse-single-cell-data.html#cb62-77" tabindex="-1"></a><span class="co"># ..$ ACCACAGAGTTGGT|Naive CD4 T : num [1:54] -0.381 -0.434 1.403 2.563 -0.479 ...</span></span>
+<span id="cb62-78"><a href="parse-single-cell-data.html#cb62-78" tabindex="-1"></a><span class="co"># ..$ ACCACCTGTGTGCA|Naive CD4 T : num [1:54] -0.381 2.85 -0.534 2.812 2.451 ...</span></span>
+<span id="cb62-79"><a href="parse-single-cell-data.html#cb62-79" tabindex="-1"></a><span class="co"># ..$ ACCACGCTACAGCT|Naive CD4 T : num [1:54] 2.134 1.899 1.526 -0.439 2.366 ...</span></span>
+<span id="cb62-80"><a href="parse-single-cell-data.html#cb62-80" tabindex="-1"></a><span class="co"># ..$ ACCACGCTGCGAGA|Naive CD4 T : num [1:54] -0.381 2.192 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-81"><a href="parse-single-cell-data.html#cb62-81" tabindex="-1"></a><span class="co"># ..$ ACCACGCTGCTGTA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-82"><a href="parse-single-cell-data.html#cb62-82" tabindex="-1"></a><span class="co"># ..$ ACCAGTGAGGGATG|Naive CD4 T : num [1:54] 2.177 2.8 -0.534 1.911 -0.479 ...</span></span>
+<span id="cb62-83"><a href="parse-single-cell-data.html#cb62-83" tabindex="-1"></a><span class="co"># ..$ ACCATTACCTTCTA|Naive CD4 T : num [1:54] 1.77 1.56 1.23 1.54 1.3 ...</span></span>
+<span id="cb62-84"><a href="parse-single-cell-data.html#cb62-84" tabindex="-1"></a><span class="co"># ..$ ACCATTTGTCATTC|Naive CD4 T : num [1:54] -0.381 2.419 -0.534 -0.439 2.066 ...</span></span>
+<span id="cb62-85"><a href="parse-single-cell-data.html#cb62-85" tabindex="-1"></a><span class="co"># ..$ ACCCACTGGACAGG|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 2.817 ...</span></span>
+<span id="cb62-86"><a href="parse-single-cell-data.html#cb62-86" tabindex="-1"></a><span class="co"># ..$ ACCCAGCTTGCTTT|Naive CD4 T : num [1:54] 2.151 -0.434 2.297 1.887 -0.479 ...</span></span>
+<span id="cb62-87"><a href="parse-single-cell-data.html#cb62-87" tabindex="-1"></a><span class="co"># ..$ ACCCGTTGCTGCAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.057 1.771 ...</span></span>
+<span id="cb62-88"><a href="parse-single-cell-data.html#cb62-88" tabindex="-1"></a><span class="co"># ..$ ACCTCCGATATGCG|Naive CD4 T : num [1:54] 2.583 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-89"><a href="parse-single-cell-data.html#cb62-89" tabindex="-1"></a><span class="co"># ..$ ACCTCCGATGCTGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-90"><a href="parse-single-cell-data.html#cb62-90" tabindex="-1"></a><span class="co"># ..$ ACGAAGCTCTCCAC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 3.327 -0.479 ...</span></span>
+<span id="cb62-91"><a href="parse-single-cell-data.html#cb62-91" tabindex="-1"></a><span class="co"># ..$ ACGACCCTGATGAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.141 -0.479 ...</span></span>
+<span id="cb62-92"><a href="parse-single-cell-data.html#cb62-92" tabindex="-1"></a><span class="co"># ..$ ACGACCCTTGACCA|Naive CD4 T : num [1:54] -0.381 -0.434 1.618 -0.439 -0.479 ...</span></span>
+<span id="cb62-93"><a href="parse-single-cell-data.html#cb62-93" tabindex="-1"></a><span class="co"># ..$ ACGAGGGACGAACT|Naive CD4 T : num [1:54] 3.927 1.8 -0.534 1.772 -0.479 ...</span></span>
+<span id="cb62-94"><a href="parse-single-cell-data.html#cb62-94" tabindex="-1"></a><span class="co"># ..$ ACGATTCTACGGGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 2.416 -0.479 ...</span></span>
+<span id="cb62-95"><a href="parse-single-cell-data.html#cb62-95" tabindex="-1"></a><span class="co"># ..$ ACGCCGGAAAGCCT|Naive CD4 T : num [1:54] -0.381 2.096 -0.534 -0.439 1.778 ...</span></span>
+<span id="cb62-96"><a href="parse-single-cell-data.html#cb62-96" tabindex="-1"></a><span class="co"># ..$ ACGCTCACAGTACC|Naive CD4 T : num [1:54] 2.218 -0.434 1.594 -0.439 1.672 ...</span></span>
+<span id="cb62-97"><a href="parse-single-cell-data.html#cb62-97" tabindex="-1"></a><span class="co"># ..$ ACGCTCACCCTTGC|Naive CD4 T : num [1:54] 3.277 -0.434 1.69 2.055 1.769 ...</span></span>
+<span id="cb62-98"><a href="parse-single-cell-data.html#cb62-98" tabindex="-1"></a><span class="co"># ..$ ACGGCTCTTGCACA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 1.868 -0.479 ...</span></span>
+<span id="cb62-99"><a href="parse-single-cell-data.html#cb62-99" tabindex="-1"></a><span class="co"># ..$ ACGGTAACGGTGGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 2.893 ...</span></span>
+<span id="cb62-100"><a href="parse-single-cell-data.html#cb62-100" tabindex="-1"></a><span class="co"># ..$ ACGGTCCTCGGGAA|Naive CD4 T : num [1:54] -0.381 2.035 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-101"><a href="parse-single-cell-data.html#cb62-101" tabindex="-1"></a><span class="co"># ..$ ACGTCAGAGGGATG|Naive CD4 T : num [1:54] -0.381 2.502 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-102"><a href="parse-single-cell-data.html#cb62-102" tabindex="-1"></a><span class="co"># ..$ ACGTGATGGGTCTA|Naive CD4 T : num [1:54] 2.084 -0.434 1.485 2.667 -0.479 ...</span></span>
+<span id="cb62-103"><a href="parse-single-cell-data.html#cb62-103" tabindex="-1"></a><span class="co"># ..$ ACGTTACTTTCCAT|Naive CD4 T : num [1:54] -0.381 -0.434 2.572 -0.439 1.871 ...</span></span>
+<span id="cb62-104"><a href="parse-single-cell-data.html#cb62-104" tabindex="-1"></a><span class="co"># ..$ ACGTTGGAAAAGCA|Naive CD4 T : num [1:54] 3.261 -0.434 2.449 -0.439 1.756 ...</span></span>
+<span id="cb62-105"><a href="parse-single-cell-data.html#cb62-105" tabindex="-1"></a><span class="co"># ..$ ACGTTTACATCAGC|Naive CD4 T : num [1:54] -0.381 2.841 2.357 1.948 -0.479 ...</span></span>
+<span id="cb62-106"><a href="parse-single-cell-data.html#cb62-106" tabindex="-1"></a><span class="co"># ..$ ACTAAAACCCACAA|Naive CD4 T : num [1:54] -0.381 -0.434 2.279 -0.439 -0.479 ...</span></span>
+<span id="cb62-107"><a href="parse-single-cell-data.html#cb62-107" tabindex="-1"></a><span class="co"># ..$ ACTACGGACCTATT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 1.965 ...</span></span>
+<span id="cb62-108"><a href="parse-single-cell-data.html#cb62-108" tabindex="-1"></a><span class="co"># ..$ ACTACGGATCGCTC|Naive CD4 T : num [1:54] -0.381 -0.434 2.782 1.898 1.627 ...</span></span>
+<span id="cb62-109"><a href="parse-single-cell-data.html#cb62-109" tabindex="-1"></a><span class="co"># ..$ ACTACTACTAAGGA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-110"><a href="parse-single-cell-data.html#cb62-110" tabindex="-1"></a><span class="co"># ..$ ACTATCACTGCCAA|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 2.517 ...</span></span>
+<span id="cb62-111"><a href="parse-single-cell-data.html#cb62-111" tabindex="-1"></a><span class="co"># ..$ ACTCAGGACTGAAC|Naive CD4 T : num [1:54] 3.279 2.962 1.691 -0.439 3.036 ...</span></span>
+<span id="cb62-112"><a href="parse-single-cell-data.html#cb62-112" tabindex="-1"></a><span class="co"># ..$ ACTCTCCTGACACT|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 3.222 ...</span></span>
+<span id="cb62-113"><a href="parse-single-cell-data.html#cb62-113" tabindex="-1"></a><span class="co"># ..$ ACTCTCCTGCATAC|Naive CD4 T : num [1:54] -0.381 -0.434 -0.534 -0.439 -0.479 ...</span></span>
+<span id="cb62-114"><a href="parse-single-cell-data.html#cb62-114" tabindex="-1"></a><span class="co"># .. [list output truncated]</span></span>
+<span id="cb62-115"><a href="parse-single-cell-data.html#cb62-115" tabindex="-1"></a><span class="co"># $ long.res:&#39;data.frame&#39;:  142452 obs. of  5 variables:</span></span>
+<span id="cb62-116"><a href="parse-single-cell-data.html#cb62-116" tabindex="-1"></a><span class="co">#   ..$ cluster     : chr [1:142452] &quot;1&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
+<span id="cb62-117"><a href="parse-single-cell-data.html#cb62-117" tabindex="-1"></a><span class="co"># ..$ gene        : chr [1:142452] &quot;MAL&quot; &quot;LEF1&quot; &quot;TCF7&quot; &quot;PRKCQ-AS1&quot; ...</span></span>
+<span id="cb62-118"><a href="parse-single-cell-data.html#cb62-118" tabindex="-1"></a><span class="co"># ..$ cell_type   : chr [1:142452] &quot;Naive CD4 T&quot; &quot;Naive CD4 T&quot; &quot;Naive CD4 T&quot; &quot;Naive CD4 T&quot; ...</span></span>
+<span id="cb62-119"><a href="parse-single-cell-data.html#cb62-119" tabindex="-1"></a><span class="co"># ..$ norm_value  : num [1:142452] -0.381 -0.434 2.272 -0.439 -0.479 ...</span></span>
+<span id="cb62-120"><a href="parse-single-cell-data.html#cb62-120" tabindex="-1"></a><span class="co"># ..$ cluster_name: Factor w/ 9 levels &quot;cluster 1 (6)&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb62-121"><a href="parse-single-cell-data.html#cb62-121" tabindex="-1"></a><span class="co"># $ type    : chr &quot;scRNAdata&quot;</span></span>
+<span id="cb62-122"><a href="parse-single-cell-data.html#cb62-122" tabindex="-1"></a><span class="co"># $ geneMode: chr &quot;all&quot;</span></span>
+<span id="cb62-123"><a href="parse-single-cell-data.html#cb62-123" tabindex="-1"></a><span class="co"># $ geneType: chr &quot;unique|_&quot;</span></span></code></pre></div>
 <p>Plot:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="parse-single-cell-data.html#cb56-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
-<span id="cb56-2"><a href="parse-single-cell-data.html#cb56-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc4.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">8</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb56-3"><a href="parse-single-cell-data.html#cb56-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb56-4"><a href="parse-single-cell-data.html#cb56-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
-<span id="cb56-5"><a href="parse-single-cell-data.html#cb56-5" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">unique</span>(pbmc.markers1<span class="sc">$</span>gene),</span>
-<span id="cb56-6"><a href="parse-single-cell-data.html#cb56-6" tabindex="-1"></a>           <span class="at">column_title_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb56-7"><a href="parse-single-cell-data.html#cb56-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
-<span id="cb56-8"><a href="parse-single-cell-data.html#cb56-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="parse-single-cell-data.html#cb63-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
+<span id="cb63-2"><a href="parse-single-cell-data.html#cb63-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc4.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">8</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb63-3"><a href="parse-single-cell-data.html#cb63-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb63-4"><a href="parse-single-cell-data.html#cb63-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb63-5"><a href="parse-single-cell-data.html#cb63-5" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">unique</span>(pbmc.markers1<span class="sc">$</span>gene),</span>
+<span id="cb63-6"><a href="parse-single-cell-data.html#cb63-6" tabindex="-1"></a>           <span class="at">column_title_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb63-7"><a href="parse-single-cell-data.html#cb63-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb63-8"><a href="parse-single-cell-data.html#cb63-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/32.png" width="60%">
 </p>
 <p>Add enrichment annotation:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="parse-single-cell-data.html#cb57-1" tabindex="-1"></a><span class="co"># add GO annotation</span></span>
-<span id="cb57-2"><a href="parse-single-cell-data.html#cb57-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc6.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">12</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb57-3"><a href="parse-single-cell-data.html#cb57-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb57-4"><a href="parse-single-cell-data.html#cb57-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb57-5"><a href="parse-single-cell-data.html#cb57-5" tabindex="-1"></a>           <span class="at">column_title_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb57-6"><a href="parse-single-cell-data.html#cb57-6" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">unique</span>(pbmc.markers1<span class="sc">$</span>gene),</span>
-<span id="cb57-7"><a href="parse-single-cell-data.html#cb57-7" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb57-8"><a href="parse-single-cell-data.html#cb57-8" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb57-9"><a href="parse-single-cell-data.html#cb57-9" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb57-10"><a href="parse-single-cell-data.html#cb57-10" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb57-11"><a href="parse-single-cell-data.html#cb57-11" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
-<span id="cb57-12"><a href="parse-single-cell-data.html#cb57-12" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="parse-single-cell-data.html#cb64-1" tabindex="-1"></a><span class="co"># add GO annotation</span></span>
+<span id="cb64-2"><a href="parse-single-cell-data.html#cb64-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc6.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">12</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb64-3"><a href="parse-single-cell-data.html#cb64-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb64-4"><a href="parse-single-cell-data.html#cb64-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb64-5"><a href="parse-single-cell-data.html#cb64-5" tabindex="-1"></a>           <span class="at">column_title_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb64-6"><a href="parse-single-cell-data.html#cb64-6" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">unique</span>(pbmc.markers1<span class="sc">$</span>gene),</span>
+<span id="cb64-7"><a href="parse-single-cell-data.html#cb64-7" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb64-8"><a href="parse-single-cell-data.html#cb64-8" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
+<span id="cb64-9"><a href="parse-single-cell-data.html#cb64-9" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb64-10"><a href="parse-single-cell-data.html#cb64-10" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb64-11"><a href="parse-single-cell-data.html#cb64-11" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
+<span id="cb64-12"><a href="parse-single-cell-data.html#cb64-12" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/33.png" width="80%">
 </p>
