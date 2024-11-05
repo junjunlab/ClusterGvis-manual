@@ -10,7 +10,7 @@ heatmap-plot
 sample-group-and-order
 multiple-sample-annotation
 add-row-annotation
-and-line-trend-anntation
+add-line-trend-anntation
 multiple-group-line-plot
 enrichment-anaysis
 enrichment-for-non-model-organisms
