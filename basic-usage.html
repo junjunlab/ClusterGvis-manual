@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2025-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,7 +227,7 @@ data which is from <a href="https://www.cell.com/cell-reports/fulltext/S2211-124
 different cluster numbers to help you to choose a suitable value. Besides you can re-define the cluster numbers
 after checking the expression distribution heatmap results:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="basic-usage.html#cb3-1" tabindex="-1"></a><span class="co"># check optimal cluster numbers</span></span>
-<span id="cb3-2"><a href="basic-usage.html#cb3-2" tabindex="-1"></a><span class="fu">getClusters</span>(<span class="at">exp =</span> exps)</span></code></pre></div>
+<span id="cb3-2"><a href="basic-usage.html#cb3-2" tabindex="-1"></a><span class="fu">getClusters</span>(<span class="at">obj =</span> exps)</span></code></pre></div>
 <p align="center">
 <img src="local_images/1.png" width="60%">
 </p>
@@ -235,17 +235,17 @@ after checking the expression distribution heatmap results:</p>
 time course sequencing data to detect genes with consensus trend which are both applied with <strong>fuzzy cmeans</strong>
 clustering methods. Users can choose which one you like.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="basic-usage.html#cb4-1" tabindex="-1"></a><span class="co"># using mfuzz for clustering</span></span>
-<span id="cb4-2"><a href="basic-usage.html#cb4-2" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb4-2"><a href="basic-usage.html#cb4-2" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps,</span>
 <span id="cb4-3"><a href="basic-usage.html#cb4-3" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;mfuzz&quot;</span>,</span>
 <span id="cb4-4"><a href="basic-usage.html#cb4-4" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">8</span>)</span>
 <span id="cb4-5"><a href="basic-usage.html#cb4-5" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="basic-usage.html#cb4-6" tabindex="-1"></a><span class="co"># using TCseq for clustering</span></span>
-<span id="cb4-7"><a href="basic-usage.html#cb4-7" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb4-7"><a href="basic-usage.html#cb4-7" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps,</span>
 <span id="cb4-8"><a href="basic-usage.html#cb4-8" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;TCseq&quot;</span>,</span>
 <span id="cb4-9"><a href="basic-usage.html#cb4-9" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">8</span>)</span>
 <span id="cb4-10"><a href="basic-usage.html#cb4-10" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="basic-usage.html#cb4-11" tabindex="-1"></a><span class="co"># using kemans for clustering</span></span>
-<span id="cb4-12"><a href="basic-usage.html#cb4-12" tabindex="-1"></a>ck <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb4-12"><a href="basic-usage.html#cb4-12" tabindex="-1"></a>ck <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps,</span>
 <span id="cb4-13"><a href="basic-usage.html#cb4-13" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;kmeans&quot;</span>,</span>
 <span id="cb4-14"><a href="basic-usage.html#cb4-14" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">8</span>)</span></code></pre></div>
 <p>The <strong>clusterData</strong> function returns a list of results containing detailed clustering information for each gene. The <strong>wide.res</strong> is a more easily interpretable data frame that includes scaled gene expression values and cluster assignments for each gene. Complementing this, the <strong>long.res</strong> is a long-format data frame derived from <strong>wide.res</strong>, offering an alternative view of the same information:</p>
@@ -456,7 +456,7 @@ show an example:</p>
 <span id="cb18-5"><a href="basic-usage.html#cb18-5" tabindex="-1"></a><span class="fu">data</span>(exps)</span>
 <span id="cb18-6"><a href="basic-usage.html#cb18-6" tabindex="-1"></a></span>
 <span id="cb18-7"><a href="basic-usage.html#cb18-7" tabindex="-1"></a><span class="co"># using TCseq for clustering</span></span>
-<span id="cb18-8"><a href="basic-usage.html#cb18-8" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,],</span>
+<span id="cb18-8"><a href="basic-usage.html#cb18-8" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,],</span>
 <span id="cb18-9"><a href="basic-usage.html#cb18-9" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;TCseq&quot;</span>,</span>
 <span id="cb18-10"><a href="basic-usage.html#cb18-10" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">2</span>)</span>
 <span id="cb18-11"><a href="basic-usage.html#cb18-11" tabindex="-1"></a></span>

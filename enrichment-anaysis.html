@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2025-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -453,7 +453,7 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <p>Sometimes you may want to perform both GO and KEGG enrichment results, here is an example:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="enrichment-anaysis.html#cb42-1" tabindex="-1"></a><span class="co"># using mfuzz for clustering</span></span>
 <span id="cb42-2"><a href="enrichment-anaysis.html#cb42-2" tabindex="-1"></a><span class="co"># mfuzz</span></span>
-<span id="cb42-3"><a href="enrichment-anaysis.html#cb42-3" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">exp =</span> exps,</span>
+<span id="cb42-3"><a href="enrichment-anaysis.html#cb42-3" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps,</span>
 <span id="cb42-4"><a href="enrichment-anaysis.html#cb42-4" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;mfuzz&quot;</span>,</span>
 <span id="cb42-5"><a href="enrichment-anaysis.html#cb42-5" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">6</span>)</span>
 <span id="cb42-6"><a href="enrichment-anaysis.html#cb42-6" tabindex="-1"></a></span>
