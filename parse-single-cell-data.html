@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Parse single cell data | ClusterGVis Reference Book</title>
   <meta name="description" content="This is a detailed documentation of ClusterGVis package." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Parse single cell data | ClusterGVis Reference Book" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2025-05-15" />
+<meta name="date" content="2025-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -273,18 +274,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb55-6"><a href="parse-single-cell-data.html#cb55-6" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
 <span id="cb55-7"><a href="parse-single-cell-data.html#cb55-7" tabindex="-1"></a>                        <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
 <span id="cb55-8"><a href="parse-single-cell-data.html#cb55-8" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb55-9"><a href="parse-single-cell-data.html#cb55-9" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb55-10"><a href="parse-single-cell-data.html#cb55-10" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb55-11"><a href="parse-single-cell-data.html#cb55-11" tabindex="-1"></a></span>
-<span id="cb55-12"><a href="parse-single-cell-data.html#cb55-12" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb55-13"><a href="parse-single-cell-data.html#cb55-13" tabindex="-1"></a><span class="fu">head</span>(enrich)</span>
-<span id="cb55-14"><a href="parse-single-cell-data.html#cb55-14" tabindex="-1"></a><span class="co">#             group                      Description       pvalue    ratio</span></span>
-<span id="cb55-15"><a href="parse-single-cell-data.html#cb55-15" tabindex="-1"></a><span class="co"># GO:0030098        C1       lymphocyte differentiation 4.255042e-09 42.10526</span></span>
-<span id="cb55-16"><a href="parse-single-cell-data.html#cb55-16" tabindex="-1"></a><span class="co"># GO:1903131...2    C1 mononuclear cell differentiation 1.034991e-08 42.10526</span></span>
-<span id="cb55-17"><a href="parse-single-cell-data.html#cb55-17" tabindex="-1"></a><span class="co"># GO:0030217        C1           T cell differentiation 1.275815e-08 36.84211</span></span>
-<span id="cb55-18"><a href="parse-single-cell-data.html#cb55-18" tabindex="-1"></a><span class="co"># GO:0050863...4    C1  regulation of T cell activation 5.354207e-08 36.84211</span></span>
-<span id="cb55-19"><a href="parse-single-cell-data.html#cb55-19" tabindex="-1"></a><span class="co"># GO:0022407        C1 regulation of cell-cell adhesion 3.163499e-07 36.84211</span></span>
-<span id="cb55-20"><a href="parse-single-cell-data.html#cb55-20" tabindex="-1"></a><span class="co"># GO:0002260        C2           lymphocyte homeostasis 4.246017e-07 25.00000</span></span></code></pre></div>
+<span id="cb55-9"><a href="parse-single-cell-data.html#cb55-9" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb55-10"><a href="parse-single-cell-data.html#cb55-10" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="parse-single-cell-data.html#cb55-11" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb55-12"><a href="parse-single-cell-data.html#cb55-12" tabindex="-1"></a><span class="fu">head</span>(enrich)</span>
+<span id="cb55-13"><a href="parse-single-cell-data.html#cb55-13" tabindex="-1"></a><span class="co">#             group                      Description       pvalue    ratio</span></span>
+<span id="cb55-14"><a href="parse-single-cell-data.html#cb55-14" tabindex="-1"></a><span class="co"># GO:0030098        C1       lymphocyte differentiation 4.255042e-09 42.10526</span></span>
+<span id="cb55-15"><a href="parse-single-cell-data.html#cb55-15" tabindex="-1"></a><span class="co"># GO:1903131...2    C1 mononuclear cell differentiation 1.034991e-08 42.10526</span></span>
+<span id="cb55-16"><a href="parse-single-cell-data.html#cb55-16" tabindex="-1"></a><span class="co"># GO:0030217        C1           T cell differentiation 1.275815e-08 36.84211</span></span>
+<span id="cb55-17"><a href="parse-single-cell-data.html#cb55-17" tabindex="-1"></a><span class="co"># GO:0050863...4    C1  regulation of T cell activation 5.354207e-08 36.84211</span></span>
+<span id="cb55-18"><a href="parse-single-cell-data.html#cb55-18" tabindex="-1"></a><span class="co"># GO:0022407        C1 regulation of cell-cell adhesion 3.163499e-07 36.84211</span></span>
+<span id="cb55-19"><a href="parse-single-cell-data.html#cb55-19" tabindex="-1"></a><span class="co"># GO:0002260        C2           lymphocyte homeostasis 4.246017e-07 25.00000</span></span></code></pre></div>
 <p>Line plot:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="parse-single-cell-data.html#cb56-1" tabindex="-1"></a><span class="co"># add gene name</span></span>
 <span id="cb56-2"><a href="parse-single-cell-data.html#cb56-2" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">unique</span>(pbmc.markers<span class="sc">$</span>gene)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">unique</span>(pbmc.markers<span class="sc">$</span>gene)),<span class="dv">40</span>,</span>
@@ -300,10 +300,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="parse-single-cell-data.html#cb57-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
 <span id="cb57-2"><a href="parse-single-cell-data.html#cb57-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc1.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb57-3"><a href="parse-single-cell-data.html#cb57-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb57-4"><a href="parse-single-cell-data.html#cb57-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb57-4"><a href="parse-single-cell-data.html#cb57-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
 <span id="cb57-5"><a href="parse-single-cell-data.html#cb57-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb57-6"><a href="parse-single-cell-data.html#cb57-6" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb57-7"><a href="parse-single-cell-data.html#cb57-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb57-7"><a href="parse-single-cell-data.html#cb57-7" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
 <span id="cb57-8"><a href="parse-single-cell-data.html#cb57-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/27.png" width="60%">
@@ -312,16 +312,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="parse-single-cell-data.html#cb58-1" tabindex="-1"></a><span class="co"># add bar plot</span></span>
 <span id="cb58-2"><a href="parse-single-cell-data.html#cb58-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc2.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">14</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb58-3"><a href="parse-single-cell-data.html#cb58-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb58-4"><a href="parse-single-cell-data.html#cb58-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb58-4"><a href="parse-single-cell-data.html#cb58-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb58-5"><a href="parse-single-cell-data.html#cb58-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb58-6"><a href="parse-single-cell-data.html#cb58-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb58-7"><a href="parse-single-cell-data.html#cb58-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb58-8"><a href="parse-single-cell-data.html#cb58-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb58-9"><a href="parse-single-cell-data.html#cb58-9" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb58-10"><a href="parse-single-cell-data.html#cb58-10" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb58-11"><a href="parse-single-cell-data.html#cb58-11" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb58-12"><a href="parse-single-cell-data.html#cb58-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">9</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb58-13"><a href="parse-single-cell-data.html#cb58-13" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
+<span id="cb58-8"><a href="parse-single-cell-data.html#cb58-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb58-9"><a href="parse-single-cell-data.html#cb58-9" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb58-10"><a href="parse-single-cell-data.html#cb58-10" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb58-11"><a href="parse-single-cell-data.html#cb58-11" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb58-12"><a href="parse-single-cell-data.html#cb58-12" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">9</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb58-13"><a href="parse-single-cell-data.html#cb58-13" tabindex="-1"></a>           <span class="at">addBar =</span> T)</span>
 <span id="cb58-14"><a href="parse-single-cell-data.html#cb58-14" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/28.png" width="60%">
@@ -331,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb59-2"><a href="parse-single-cell-data.html#cb59-2" tabindex="-1"></a>st.data <span class="ot">&lt;-</span> <span class="fu">prepareDataFromscRNA</span>(<span class="at">object =</span> pbmc,</span>
 <span id="cb59-3"><a href="parse-single-cell-data.html#cb59-3" tabindex="-1"></a>                                <span class="at">diffData =</span> pbmc.markers,</span>
 <span id="cb59-4"><a href="parse-single-cell-data.html#cb59-4" tabindex="-1"></a>                                <span class="at">showAverage =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb59-5"><a href="parse-single-cell-data.html#cb59-5" tabindex="-1"></a>                                <span class="at">keep.uniqGene =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb59-5"><a href="parse-single-cell-data.html#cb59-5" tabindex="-1"></a>                                <span class="at">keepUniqGene =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb59-6"><a href="parse-single-cell-data.html#cb59-6" tabindex="-1"></a>                                <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
 <span id="cb59-7"><a href="parse-single-cell-data.html#cb59-7" tabindex="-1"></a></span>
 <span id="cb59-8"><a href="parse-single-cell-data.html#cb59-8" tabindex="-1"></a><span class="co"># check</span></span>
@@ -342,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Line plot without de-duplicate genes:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="parse-single-cell-data.html#cb60-1" tabindex="-1"></a><span class="co"># line plot</span></span>
 <span id="cb60-2"><a href="parse-single-cell-data.html#cb60-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb60-3"><a href="parse-single-cell-data.html#cb60-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<span id="cb60-3"><a href="parse-single-cell-data.html#cb60-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p align="center">
 <img src="local_images/30.png" width="60%">
 </p>
@@ -350,10 +350,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="parse-single-cell-data.html#cb61-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
 <span id="cb61-2"><a href="parse-single-cell-data.html#cb61-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc3.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb61-3"><a href="parse-single-cell-data.html#cb61-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb61-4"><a href="parse-single-cell-data.html#cb61-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb61-4"><a href="parse-single-cell-data.html#cb61-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
 <span id="cb61-5"><a href="parse-single-cell-data.html#cb61-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb61-6"><a href="parse-single-cell-data.html#cb61-6" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">c</span>(<span class="st">&quot;CD27&quot;</span>,<span class="st">&quot;CD27_1&quot;</span>),</span>
-<span id="cb61-7"><a href="parse-single-cell-data.html#cb61-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb61-7"><a href="parse-single-cell-data.html#cb61-7" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
 <span id="cb61-8"><a href="parse-single-cell-data.html#cb61-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/31.png" width="60%">
@@ -486,10 +486,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="parse-single-cell-data.html#cb63-1" tabindex="-1"></a><span class="co"># heatmap plot</span></span>
 <span id="cb63-2"><a href="parse-single-cell-data.html#cb63-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc4.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">8</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb63-3"><a href="parse-single-cell-data.html#cb63-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb63-4"><a href="parse-single-cell-data.html#cb63-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb63-4"><a href="parse-single-cell-data.html#cb63-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
 <span id="cb63-5"><a href="parse-single-cell-data.html#cb63-5" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">unique</span>(pbmc.markers1<span class="sc">$</span>gene),</span>
 <span id="cb63-6"><a href="parse-single-cell-data.html#cb63-6" tabindex="-1"></a>           <span class="at">column_title_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb63-7"><a href="parse-single-cell-data.html#cb63-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb63-7"><a href="parse-single-cell-data.html#cb63-7" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
 <span id="cb63-8"><a href="parse-single-cell-data.html#cb63-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/32.png" width="60%">
@@ -498,14 +498,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="parse-single-cell-data.html#cb64-1" tabindex="-1"></a><span class="co"># add GO annotation</span></span>
 <span id="cb64-2"><a href="parse-single-cell-data.html#cb64-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc6.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">12</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb64-3"><a href="parse-single-cell-data.html#cb64-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb64-4"><a href="parse-single-cell-data.html#cb64-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb64-4"><a href="parse-single-cell-data.html#cb64-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb64-5"><a href="parse-single-cell-data.html#cb64-5" tabindex="-1"></a>           <span class="at">column_title_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb64-6"><a href="parse-single-cell-data.html#cb64-6" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">unique</span>(pbmc.markers1<span class="sc">$</span>gene),</span>
-<span id="cb64-7"><a href="parse-single-cell-data.html#cb64-7" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb64-8"><a href="parse-single-cell-data.html#cb64-8" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb64-9"><a href="parse-single-cell-data.html#cb64-9" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb64-10"><a href="parse-single-cell-data.html#cb64-10" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb64-11"><a href="parse-single-cell-data.html#cb64-11" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
+<span id="cb64-7"><a href="parse-single-cell-data.html#cb64-7" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb64-8"><a href="parse-single-cell-data.html#cb64-8" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb64-9"><a href="parse-single-cell-data.html#cb64-9" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb64-10"><a href="parse-single-cell-data.html#cb64-10" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb64-11"><a href="parse-single-cell-data.html#cb64-11" tabindex="-1"></a>           <span class="at">addBar =</span> T)</span>
 <span id="cb64-12"><a href="parse-single-cell-data.html#cb64-12" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/33.png" width="80%">
@@ -532,42 +532,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-single_cell_parse.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-single_cell_parse.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

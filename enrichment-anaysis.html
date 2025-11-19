@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Enrichment anaysis | ClusterGVis Reference Book</title>
   <meta name="description" content="This is a detailed documentation of ClusterGVis package." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Enrichment anaysis | ClusterGVis Reference Book" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2025-05-15" />
+<meta name="date" content="2025-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -212,7 +213,7 @@ batch enrichment analysis for each cluster.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="enrichment-anaysis.html#cb29-1" tabindex="-1"></a>enrich <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
 <span id="cb29-2"><a href="enrichment-anaysis.html#cb29-2" tabindex="-1"></a>                       <span class="at">OrgDb =</span> org.myorg.eg.db,</span>
 <span id="cb29-3"><a href="enrichment-anaysis.html#cb29-3" tabindex="-1"></a>                       <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
-<span id="cb29-4"><a href="enrichment-anaysis.html#cb29-4" tabindex="-1"></a>                       <span class="at">id.trans =</span> F,</span>
+<span id="cb29-4"><a href="enrichment-anaysis.html#cb29-4" tabindex="-1"></a>                       <span class="at">idTrans =</span> F,</span>
 <span id="cb29-5"><a href="enrichment-anaysis.html#cb29-5" tabindex="-1"></a>                       <span class="at">toType =</span> <span class="st">&quot;GID&quot;</span>,</span>
 <span id="cb29-6"><a href="enrichment-anaysis.html#cb29-6" tabindex="-1"></a>                       <span class="at">readable =</span> F,</span>
 <span id="cb29-7"><a href="enrichment-anaysis.html#cb29-7" tabindex="-1"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
@@ -220,7 +221,7 @@ batch enrichment analysis for each cluster.</p>
 <p>You can set <strong>TERM2GENE</strong> and <strong>TERM2NAME</strong> if you have data frame with <strong>pathway-gene</strong> and <strong>pathway-pathwat name</strong> data:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="enrichment-anaysis.html#cb30-1" tabindex="-1"></a>enrich <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
 <span id="cb30-2"><a href="enrichment-anaysis.html#cb30-2" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;ownSet&quot;</span>,</span>
-<span id="cb30-3"><a href="enrichment-anaysis.html#cb30-3" tabindex="-1"></a>                        <span class="at">id.trans =</span> F,</span>
+<span id="cb30-3"><a href="enrichment-anaysis.html#cb30-3" tabindex="-1"></a>                        <span class="at">idTrans =</span> F,</span>
 <span id="cb30-4"><a href="enrichment-anaysis.html#cb30-4" tabindex="-1"></a>                        <span class="at">TERM2GENE =</span> ko2gene,</span>
 <span id="cb30-5"><a href="enrichment-anaysis.html#cb30-5" tabindex="-1"></a>                        <span class="at">TERM2NAME =</span> ko2name,</span>
 <span id="cb30-6"><a href="enrichment-anaysis.html#cb30-6" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
@@ -243,9 +244,9 @@ batch enrichment analysis for each cluster.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="enrichment-anaysis.html#cb32-1" tabindex="-1"></a><span class="co"># anno with GO terms</span></span>
 <span id="cb32-2"><a href="enrichment-anaysis.html#cb32-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testHTterm.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">10</span>)</span>
 <span id="cb32-3"><a href="enrichment-anaysis.html#cb32-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
-<span id="cb32-4"><a href="enrichment-anaysis.html#cb32-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb32-4"><a href="enrichment-anaysis.html#cb32-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb32-5"><a href="enrichment-anaysis.html#cb32-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb32-6"><a href="enrichment-anaysis.html#cb32-6" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> termanno)</span>
+<span id="cb32-6"><a href="enrichment-anaysis.html#cb32-6" tabindex="-1"></a>           <span class="at">annoTermData =</span> termanno)</span>
 <span id="cb32-7"><a href="enrichment-anaysis.html#cb32-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/13.png" width="80%">
@@ -254,10 +255,10 @@ batch enrichment analysis for each cluster.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="enrichment-anaysis.html#cb33-1" tabindex="-1"></a><span class="co"># change the line annotation side</span></span>
 <span id="cb33-2"><a href="enrichment-anaysis.html#cb33-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testHTtermCmls.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">10</span>)</span>
 <span id="cb33-3"><a href="enrichment-anaysis.html#cb33-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb33-4"><a href="enrichment-anaysis.html#cb33-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb33-4"><a href="enrichment-anaysis.html#cb33-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb33-5"><a href="enrichment-anaysis.html#cb33-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb33-6"><a href="enrichment-anaysis.html#cb33-6" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> termanno,</span>
-<span id="cb33-7"><a href="enrichment-anaysis.html#cb33-7" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb33-6"><a href="enrichment-anaysis.html#cb33-6" tabindex="-1"></a>           <span class="at">annoTermData =</span> termanno,</span>
+<span id="cb33-7"><a href="enrichment-anaysis.html#cb33-7" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb33-8"><a href="enrichment-anaysis.html#cb33-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/14.png" width="80%">
@@ -266,10 +267,10 @@ batch enrichment analysis for each cluster.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="enrichment-anaysis.html#cb34-1" tabindex="-1"></a><span class="co"># remove tree</span></span>
 <span id="cb34-2"><a href="enrichment-anaysis.html#cb34-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;testHTtermCmlsrt.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">10</span>)</span>
 <span id="cb34-3"><a href="enrichment-anaysis.html#cb34-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb34-4"><a href="enrichment-anaysis.html#cb34-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb34-4"><a href="enrichment-anaysis.html#cb34-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb34-5"><a href="enrichment-anaysis.html#cb34-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb34-6"><a href="enrichment-anaysis.html#cb34-6" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> termanno,</span>
-<span id="cb34-7"><a href="enrichment-anaysis.html#cb34-7" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb34-6"><a href="enrichment-anaysis.html#cb34-6" tabindex="-1"></a>           <span class="at">annoTermData =</span> termanno,</span>
+<span id="cb34-7"><a href="enrichment-anaysis.html#cb34-7" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
 <span id="cb34-8"><a href="enrichment-anaysis.html#cb34-8" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F)</span>
 <span id="cb34-9"><a href="enrichment-anaysis.html#cb34-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -291,15 +292,15 @@ reflects the relative pvalue:</p>
 <span id="cb35-11"><a href="enrichment-anaysis.html#cb35-11" tabindex="-1"></a><span class="co"># adjust term colors and text size</span></span>
 <span id="cb35-12"><a href="enrichment-anaysis.html#cb35-12" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;termlfts.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb35-13"><a href="enrichment-anaysis.html#cb35-13" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
-<span id="cb35-14"><a href="enrichment-anaysis.html#cb35-14" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb35-14"><a href="enrichment-anaysis.html#cb35-14" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb35-15"><a href="enrichment-anaysis.html#cb35-15" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb35-16"><a href="enrichment-anaysis.html#cb35-16" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb35-17"><a href="enrichment-anaysis.html#cb35-17" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb35-18"><a href="enrichment-anaysis.html#cb35-18" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb35-19"><a href="enrichment-anaysis.html#cb35-19" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> termanno2,</span>
-<span id="cb35-20"><a href="enrichment-anaysis.html#cb35-20" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb35-21"><a href="enrichment-anaysis.html#cb35-21" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb35-22"><a href="enrichment-anaysis.html#cb35-22" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>)</span>
+<span id="cb35-17"><a href="enrichment-anaysis.html#cb35-17" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb35-18"><a href="enrichment-anaysis.html#cb35-18" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb35-19"><a href="enrichment-anaysis.html#cb35-19" tabindex="-1"></a>           <span class="at">annoTermData =</span> termanno2,</span>
+<span id="cb35-20"><a href="enrichment-anaysis.html#cb35-20" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb35-21"><a href="enrichment-anaysis.html#cb35-21" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb35-22"><a href="enrichment-anaysis.html#cb35-22" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>)</span>
 <span id="cb35-23"><a href="enrichment-anaysis.html#cb35-23" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/16.png" width="80%">
@@ -316,30 +317,29 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb36-5"><a href="enrichment-anaysis.html#cb36-5" tabindex="-1"></a>                        <span class="at">OrgDb =</span> org.Mm.eg.db,</span>
 <span id="cb36-6"><a href="enrichment-anaysis.html#cb36-6" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
 <span id="cb36-7"><a href="enrichment-anaysis.html#cb36-7" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb36-8"><a href="enrichment-anaysis.html#cb36-8" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb36-9"><a href="enrichment-anaysis.html#cb36-9" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb36-10"><a href="enrichment-anaysis.html#cb36-10" tabindex="-1"></a></span>
-<span id="cb36-11"><a href="enrichment-anaysis.html#cb36-11" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb36-12"><a href="enrichment-anaysis.html#cb36-12" tabindex="-1"></a><span class="fu">head</span>(enrich,<span class="dv">3</span>)</span>
-<span id="cb36-13"><a href="enrichment-anaysis.html#cb36-13" tabindex="-1"></a><span class="co">#                group                             Description       pvalue ratio</span></span>
-<span id="cb36-14"><a href="enrichment-anaysis.html#cb36-14" tabindex="-1"></a><span class="co"># GO:0009150        C1 purine ribonucleotide metabolic process 4.287676e-08    12</span></span>
-<span id="cb36-15"><a href="enrichment-anaysis.html#cb36-15" tabindex="-1"></a><span class="co"># GO:0009259...2    C1        ribonucleotide metabolic process 6.782860e-08    12</span></span>
-<span id="cb36-16"><a href="enrichment-anaysis.html#cb36-16" tabindex="-1"></a><span class="co"># GO:0019693...3    C1      ribose phosphate metabolic process 9.382227e-08    12</span></span>
-<span id="cb36-17"><a href="enrichment-anaysis.html#cb36-17" tabindex="-1"></a></span>
-<span id="cb36-18"><a href="enrichment-anaysis.html#cb36-18" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb36-19"><a href="enrichment-anaysis.html#cb36-19" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;termenrich.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">11</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb36-20"><a href="enrichment-anaysis.html#cb36-20" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
-<span id="cb36-21"><a href="enrichment-anaysis.html#cb36-21" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb36-22"><a href="enrichment-anaysis.html#cb36-22" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb36-23"><a href="enrichment-anaysis.html#cb36-23" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
-<span id="cb36-24"><a href="enrichment-anaysis.html#cb36-24" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb36-25"><a href="enrichment-anaysis.html#cb36-25" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb36-26"><a href="enrichment-anaysis.html#cb36-26" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb36-27"><a href="enrichment-anaysis.html#cb36-27" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb36-28"><a href="enrichment-anaysis.html#cb36-28" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb36-29"><a href="enrichment-anaysis.html#cb36-29" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb36-30"><a href="enrichment-anaysis.html#cb36-30" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>)</span>
-<span id="cb36-31"><a href="enrichment-anaysis.html#cb36-31" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<span id="cb36-8"><a href="enrichment-anaysis.html#cb36-8" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb36-9"><a href="enrichment-anaysis.html#cb36-9" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="enrichment-anaysis.html#cb36-10" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb36-11"><a href="enrichment-anaysis.html#cb36-11" tabindex="-1"></a><span class="fu">head</span>(enrich,<span class="dv">3</span>)</span>
+<span id="cb36-12"><a href="enrichment-anaysis.html#cb36-12" tabindex="-1"></a><span class="co">#                group                             Description       pvalue ratio</span></span>
+<span id="cb36-13"><a href="enrichment-anaysis.html#cb36-13" tabindex="-1"></a><span class="co"># GO:0009150        C1 purine ribonucleotide metabolic process 4.287676e-08    12</span></span>
+<span id="cb36-14"><a href="enrichment-anaysis.html#cb36-14" tabindex="-1"></a><span class="co"># GO:0009259...2    C1        ribonucleotide metabolic process 6.782860e-08    12</span></span>
+<span id="cb36-15"><a href="enrichment-anaysis.html#cb36-15" tabindex="-1"></a><span class="co"># GO:0019693...3    C1      ribose phosphate metabolic process 9.382227e-08    12</span></span>
+<span id="cb36-16"><a href="enrichment-anaysis.html#cb36-16" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="enrichment-anaysis.html#cb36-17" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb36-18"><a href="enrichment-anaysis.html#cb36-18" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;termenrich.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">11</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb36-19"><a href="enrichment-anaysis.html#cb36-19" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
+<span id="cb36-20"><a href="enrichment-anaysis.html#cb36-20" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb36-21"><a href="enrichment-anaysis.html#cb36-21" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb36-22"><a href="enrichment-anaysis.html#cb36-22" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb36-23"><a href="enrichment-anaysis.html#cb36-23" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb36-24"><a href="enrichment-anaysis.html#cb36-24" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb36-25"><a href="enrichment-anaysis.html#cb36-25" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb36-26"><a href="enrichment-anaysis.html#cb36-26" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb36-27"><a href="enrichment-anaysis.html#cb36-27" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb36-28"><a href="enrichment-anaysis.html#cb36-28" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb36-29"><a href="enrichment-anaysis.html#cb36-29" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>)</span>
+<span id="cb36-30"><a href="enrichment-anaysis.html#cb36-30" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/17.png" width="80%">
 </p>
@@ -350,17 +350,17 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="enrichment-anaysis.html#cb37-1" tabindex="-1"></a><span class="co"># annotation for specific clusters</span></span>
 <span id="cb37-2"><a href="enrichment-anaysis.html#cb37-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;subc.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb37-3"><a href="enrichment-anaysis.html#cb37-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb37-4"><a href="enrichment-anaysis.html#cb37-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb37-4"><a href="enrichment-anaysis.html#cb37-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb37-5"><a href="enrichment-anaysis.html#cb37-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb37-6"><a href="enrichment-anaysis.html#cb37-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb37-7"><a href="enrichment-anaysis.html#cb37-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb37-8"><a href="enrichment-anaysis.html#cb37-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb37-9"><a href="enrichment-anaysis.html#cb37-9" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb37-10"><a href="enrichment-anaysis.html#cb37-10" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb37-11"><a href="enrichment-anaysis.html#cb37-11" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb37-12"><a href="enrichment-anaysis.html#cb37-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb37-13"><a href="enrichment-anaysis.html#cb37-13" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb37-14"><a href="enrichment-anaysis.html#cb37-14" tabindex="-1"></a>           <span class="at">subgroup.anno =</span> <span class="fu">c</span>(<span class="st">&quot;C4&quot;</span>,<span class="st">&quot;C6&quot;</span>,<span class="st">&quot;C8&quot;</span>))</span>
+<span id="cb37-8"><a href="enrichment-anaysis.html#cb37-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb37-9"><a href="enrichment-anaysis.html#cb37-9" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb37-10"><a href="enrichment-anaysis.html#cb37-10" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb37-11"><a href="enrichment-anaysis.html#cb37-11" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb37-12"><a href="enrichment-anaysis.html#cb37-12" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb37-13"><a href="enrichment-anaysis.html#cb37-13" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb37-14"><a href="enrichment-anaysis.html#cb37-14" tabindex="-1"></a>           <span class="at">subgroupAnno =</span> <span class="fu">c</span>(<span class="st">&quot;C4&quot;</span>,<span class="st">&quot;C6&quot;</span>,<span class="st">&quot;C8&quot;</span>))</span>
 <span id="cb37-15"><a href="enrichment-anaysis.html#cb37-15" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/18.png" width="80%">
@@ -371,17 +371,17 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <p>The barplot height will use the enrichment data frame last column to plot:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="enrichment-anaysis.html#cb38-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;bar.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb38-2"><a href="enrichment-anaysis.html#cb38-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb38-3"><a href="enrichment-anaysis.html#cb38-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb38-3"><a href="enrichment-anaysis.html#cb38-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb38-4"><a href="enrichment-anaysis.html#cb38-4" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb38-5"><a href="enrichment-anaysis.html#cb38-5" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb38-6"><a href="enrichment-anaysis.html#cb38-6" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb38-7"><a href="enrichment-anaysis.html#cb38-7" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb38-8"><a href="enrichment-anaysis.html#cb38-8" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb38-9"><a href="enrichment-anaysis.html#cb38-9" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb38-10"><a href="enrichment-anaysis.html#cb38-10" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb38-11"><a href="enrichment-anaysis.html#cb38-11" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb38-12"><a href="enrichment-anaysis.html#cb38-12" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb38-13"><a href="enrichment-anaysis.html#cb38-13" tabindex="-1"></a>           <span class="at">add.bar =</span> T)</span>
+<span id="cb38-7"><a href="enrichment-anaysis.html#cb38-7" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb38-8"><a href="enrichment-anaysis.html#cb38-8" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb38-9"><a href="enrichment-anaysis.html#cb38-9" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb38-10"><a href="enrichment-anaysis.html#cb38-10" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb38-11"><a href="enrichment-anaysis.html#cb38-11" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb38-12"><a href="enrichment-anaysis.html#cb38-12" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb38-13"><a href="enrichment-anaysis.html#cb38-13" tabindex="-1"></a>           <span class="at">addBar =</span> T)</span>
 <span id="cb38-14"><a href="enrichment-anaysis.html#cb38-14" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/19.png" width="80%">
@@ -390,18 +390,18 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="enrichment-anaysis.html#cb39-1" tabindex="-1"></a><span class="co"># change side</span></span>
 <span id="cb39-2"><a href="enrichment-anaysis.html#cb39-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;barc.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb39-3"><a href="enrichment-anaysis.html#cb39-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb39-4"><a href="enrichment-anaysis.html#cb39-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb39-4"><a href="enrichment-anaysis.html#cb39-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb39-5"><a href="enrichment-anaysis.html#cb39-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb39-6"><a href="enrichment-anaysis.html#cb39-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb39-7"><a href="enrichment-anaysis.html#cb39-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb39-8"><a href="enrichment-anaysis.html#cb39-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb39-9"><a href="enrichment-anaysis.html#cb39-9" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb39-10"><a href="enrichment-anaysis.html#cb39-10" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb39-11"><a href="enrichment-anaysis.html#cb39-11" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb39-12"><a href="enrichment-anaysis.html#cb39-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb39-13"><a href="enrichment-anaysis.html#cb39-13" tabindex="-1"></a>           <span class="at">add.bar =</span> T,</span>
-<span id="cb39-14"><a href="enrichment-anaysis.html#cb39-14" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb39-15"><a href="enrichment-anaysis.html#cb39-15" tabindex="-1"></a>           <span class="at">annoTerm.mside =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb39-8"><a href="enrichment-anaysis.html#cb39-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb39-9"><a href="enrichment-anaysis.html#cb39-9" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb39-10"><a href="enrichment-anaysis.html#cb39-10" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb39-11"><a href="enrichment-anaysis.html#cb39-11" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb39-12"><a href="enrichment-anaysis.html#cb39-12" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb39-13"><a href="enrichment-anaysis.html#cb39-13" tabindex="-1"></a>           <span class="at">addBar =</span> T,</span>
+<span id="cb39-14"><a href="enrichment-anaysis.html#cb39-14" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb39-15"><a href="enrichment-anaysis.html#cb39-15" tabindex="-1"></a>           <span class="at">annoTermMside =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb39-16"><a href="enrichment-anaysis.html#cb39-16" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/20.png" width="80%">
@@ -410,18 +410,18 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="enrichment-anaysis.html#cb40-1" tabindex="-1"></a><span class="co"># change barplot cluster label position</span></span>
 <span id="cb40-2"><a href="enrichment-anaysis.html#cb40-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;barp.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb40-3"><a href="enrichment-anaysis.html#cb40-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb40-4"><a href="enrichment-anaysis.html#cb40-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb40-4"><a href="enrichment-anaysis.html#cb40-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb40-5"><a href="enrichment-anaysis.html#cb40-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb40-6"><a href="enrichment-anaysis.html#cb40-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb40-7"><a href="enrichment-anaysis.html#cb40-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb40-8"><a href="enrichment-anaysis.html#cb40-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb40-9"><a href="enrichment-anaysis.html#cb40-9" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb40-10"><a href="enrichment-anaysis.html#cb40-10" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb40-11"><a href="enrichment-anaysis.html#cb40-11" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb40-12"><a href="enrichment-anaysis.html#cb40-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb40-13"><a href="enrichment-anaysis.html#cb40-13" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb40-14"><a href="enrichment-anaysis.html#cb40-14" tabindex="-1"></a>           <span class="at">add.bar =</span> T,</span>
-<span id="cb40-15"><a href="enrichment-anaysis.html#cb40-15" tabindex="-1"></a>           <span class="at">textbar.pos =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>))</span>
+<span id="cb40-8"><a href="enrichment-anaysis.html#cb40-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb40-9"><a href="enrichment-anaysis.html#cb40-9" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb40-10"><a href="enrichment-anaysis.html#cb40-10" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb40-11"><a href="enrichment-anaysis.html#cb40-11" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb40-12"><a href="enrichment-anaysis.html#cb40-12" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb40-13"><a href="enrichment-anaysis.html#cb40-13" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb40-14"><a href="enrichment-anaysis.html#cb40-14" tabindex="-1"></a>           <span class="at">addBar =</span> T,</span>
+<span id="cb40-15"><a href="enrichment-anaysis.html#cb40-15" tabindex="-1"></a>           <span class="at">textbarPos =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>))</span>
 <span id="cb40-16"><a href="enrichment-anaysis.html#cb40-16" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/21.png" width="80%">
@@ -430,19 +430,19 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="enrichment-anaysis.html#cb41-1" tabindex="-1"></a><span class="co"># sub-clusters with barplot</span></span>
 <span id="cb41-2"><a href="enrichment-anaysis.html#cb41-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;subcb.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb41-3"><a href="enrichment-anaysis.html#cb41-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb41-4"><a href="enrichment-anaysis.html#cb41-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb41-4"><a href="enrichment-anaysis.html#cb41-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb41-5"><a href="enrichment-anaysis.html#cb41-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb41-6"><a href="enrichment-anaysis.html#cb41-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb41-7"><a href="enrichment-anaysis.html#cb41-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb41-8"><a href="enrichment-anaysis.html#cb41-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb41-9"><a href="enrichment-anaysis.html#cb41-9" tabindex="-1"></a>           <span class="at">genes.gp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb41-10"><a href="enrichment-anaysis.html#cb41-10" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb41-11"><a href="enrichment-anaysis.html#cb41-11" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb41-12"><a href="enrichment-anaysis.html#cb41-12" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb41-13"><a href="enrichment-anaysis.html#cb41-13" tabindex="-1"></a>           <span class="at">go.size =</span> <span class="st">&quot;pval&quot;</span>,</span>
-<span id="cb41-14"><a href="enrichment-anaysis.html#cb41-14" tabindex="-1"></a>           <span class="at">add.bar =</span> T,</span>
-<span id="cb41-15"><a href="enrichment-anaysis.html#cb41-15" tabindex="-1"></a>           <span class="at">textbar.pos =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>),</span>
-<span id="cb41-16"><a href="enrichment-anaysis.html#cb41-16" tabindex="-1"></a>           <span class="at">subgroup.anno =</span> <span class="fu">c</span>(<span class="st">&quot;C4&quot;</span>,<span class="st">&quot;C6&quot;</span>,<span class="st">&quot;C8&quot;</span>))</span>
+<span id="cb41-8"><a href="enrichment-anaysis.html#cb41-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb41-9"><a href="enrichment-anaysis.html#cb41-9" tabindex="-1"></a>           <span class="at">genesGp =</span> <span class="fu">c</span>(<span class="st">&#39;italic&#39;</span>,<span class="at">fontsize =</span> <span class="dv">12</span>,<span class="at">col =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb41-10"><a href="enrichment-anaysis.html#cb41-10" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb41-11"><a href="enrichment-anaysis.html#cb41-11" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb41-12"><a href="enrichment-anaysis.html#cb41-12" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">8</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb41-13"><a href="enrichment-anaysis.html#cb41-13" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>,</span>
+<span id="cb41-14"><a href="enrichment-anaysis.html#cb41-14" tabindex="-1"></a>           <span class="at">addBar =</span> T,</span>
+<span id="cb41-15"><a href="enrichment-anaysis.html#cb41-15" tabindex="-1"></a>           <span class="at">textbarPos =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>),</span>
+<span id="cb41-16"><a href="enrichment-anaysis.html#cb41-16" tabindex="-1"></a>           <span class="at">subgroupAnno =</span> <span class="fu">c</span>(<span class="st">&quot;C4&quot;</span>,<span class="st">&quot;C6&quot;</span>,<span class="st">&quot;C8&quot;</span>))</span>
 <span id="cb41-17"><a href="enrichment-anaysis.html#cb41-17" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/22.png" width="80%">
@@ -454,60 +454,58 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="enrichment-anaysis.html#cb42-1" tabindex="-1"></a><span class="co"># using mfuzz for clustering</span></span>
 <span id="cb42-2"><a href="enrichment-anaysis.html#cb42-2" tabindex="-1"></a><span class="co"># mfuzz</span></span>
 <span id="cb42-3"><a href="enrichment-anaysis.html#cb42-3" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps,</span>
-<span id="cb42-4"><a href="enrichment-anaysis.html#cb42-4" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;mfuzz&quot;</span>,</span>
-<span id="cb42-5"><a href="enrichment-anaysis.html#cb42-5" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">6</span>)</span>
+<span id="cb42-4"><a href="enrichment-anaysis.html#cb42-4" tabindex="-1"></a>                  <span class="at">clusterMethod =</span> <span class="st">&quot;mfuzz&quot;</span>,</span>
+<span id="cb42-5"><a href="enrichment-anaysis.html#cb42-5" tabindex="-1"></a>                  <span class="at">clusterNum =</span> <span class="dv">6</span>)</span>
 <span id="cb42-6"><a href="enrichment-anaysis.html#cb42-6" tabindex="-1"></a></span>
 <span id="cb42-7"><a href="enrichment-anaysis.html#cb42-7" tabindex="-1"></a><span class="co"># GO enrich for clusters</span></span>
 <span id="cb42-8"><a href="enrichment-anaysis.html#cb42-8" tabindex="-1"></a>enrich.go <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
 <span id="cb42-9"><a href="enrichment-anaysis.html#cb42-9" tabindex="-1"></a>                           <span class="at">OrgDb =</span> org.Mm.eg.db,</span>
 <span id="cb42-10"><a href="enrichment-anaysis.html#cb42-10" tabindex="-1"></a>                           <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
 <span id="cb42-11"><a href="enrichment-anaysis.html#cb42-11" tabindex="-1"></a>                           <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb42-12"><a href="enrichment-anaysis.html#cb42-12" tabindex="-1"></a>                           <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb42-13"><a href="enrichment-anaysis.html#cb42-13" tabindex="-1"></a>                           <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb42-14"><a href="enrichment-anaysis.html#cb42-14" tabindex="-1"></a></span>
-<span id="cb42-15"><a href="enrichment-anaysis.html#cb42-15" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb42-16"><a href="enrichment-anaysis.html#cb42-16" tabindex="-1"></a><span class="fu">head</span>(enrich.go,<span class="dv">3</span>)</span>
-<span id="cb42-17"><a href="enrichment-anaysis.html#cb42-17" tabindex="-1"></a></span>
-<span id="cb42-18"><a href="enrichment-anaysis.html#cb42-18" tabindex="-1"></a><span class="co">#            group                       Description       pvalue     ratio</span></span>
-<span id="cb42-19"><a href="enrichment-anaysis.html#cb42-19" tabindex="-1"></a><span class="co"># GO:0044282    C1  small molecule catabolic process 3.376035e-32 10.683761</span></span>
-<span id="cb42-20"><a href="enrichment-anaysis.html#cb42-20" tabindex="-1"></a><span class="co"># GO:0046395    C1 carboxylic acid catabolic process 8.123713e-20  6.623932</span></span>
-<span id="cb42-21"><a href="enrichment-anaysis.html#cb42-21" tabindex="-1"></a><span class="co"># GO:0016054    C1    organic acid catabolic process 1.057149e-19  6.623932</span></span>
-<span id="cb42-22"><a href="enrichment-anaysis.html#cb42-22" tabindex="-1"></a></span>
-<span id="cb42-23"><a href="enrichment-anaysis.html#cb42-23" tabindex="-1"></a><span class="co"># KEGG enrich for clusters</span></span>
-<span id="cb42-24"><a href="enrichment-anaysis.html#cb42-24" tabindex="-1"></a>enrich.kegg <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb42-25"><a href="enrichment-anaysis.html#cb42-25" tabindex="-1"></a>                             <span class="at">OrgDb =</span> org.Mm.eg.db,</span>
-<span id="cb42-26"><a href="enrichment-anaysis.html#cb42-26" tabindex="-1"></a>                             <span class="at">type =</span> <span class="st">&quot;KEGG&quot;</span>,</span>
-<span id="cb42-27"><a href="enrichment-anaysis.html#cb42-27" tabindex="-1"></a>                             <span class="at">organism =</span> <span class="st">&quot;mmu&quot;</span>,</span>
-<span id="cb42-28"><a href="enrichment-anaysis.html#cb42-28" tabindex="-1"></a>                             <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb42-29"><a href="enrichment-anaysis.html#cb42-29" tabindex="-1"></a>                             <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb42-30"><a href="enrichment-anaysis.html#cb42-30" tabindex="-1"></a>                             <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb42-31"><a href="enrichment-anaysis.html#cb42-31" tabindex="-1"></a></span>
-<span id="cb42-32"><a href="enrichment-anaysis.html#cb42-32" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb42-33"><a href="enrichment-anaysis.html#cb42-33" tabindex="-1"></a><span class="fu">head</span>(enrich.kegg,<span class="dv">3</span>)</span>
-<span id="cb42-34"><a href="enrichment-anaysis.html#cb42-34" tabindex="-1"></a></span>
-<span id="cb42-35"><a href="enrichment-anaysis.html#cb42-35" tabindex="-1"></a><span class="co">#              group                                      Description       pvalue    ratio</span></span>
-<span id="cb42-36"><a href="enrichment-anaysis.html#cb42-36" tabindex="-1"></a><span class="co"># mmu04146        C1          Peroxisome - Mus musculus (house mouse) 1.087835e-16 8.880309</span></span>
-<span id="cb42-37"><a href="enrichment-anaysis.html#cb42-37" tabindex="-1"></a><span class="co"># mmu01200...2    C1   Carbon metabolism - Mus musculus (house mouse) 3.447857e-14 9.266409</span></span>
-<span id="cb42-38"><a href="enrichment-anaysis.html#cb42-38" tabindex="-1"></a><span class="co"># mmu00620        C1 Pyruvate metabolism - Mus musculus (house mouse) 1.466749e-10 5.019305</span></span>
-<span id="cb42-39"><a href="enrichment-anaysis.html#cb42-39" tabindex="-1"></a></span>
-<span id="cb42-40"><a href="enrichment-anaysis.html#cb42-40" tabindex="-1"></a><span class="co"># add gene name</span></span>
-<span id="cb42-41"><a href="enrichment-anaysis.html#cb42-41" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">rownames</span>(exps)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(exps),<span class="dv">30</span>,<span class="at">replace =</span> F)]</span>
-<span id="cb42-42"><a href="enrichment-anaysis.html#cb42-42" tabindex="-1"></a></span>
-<span id="cb42-43"><a href="enrichment-anaysis.html#cb42-43" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb42-44"><a href="enrichment-anaysis.html#cb42-44" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;gokegg.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb42-45"><a href="enrichment-anaysis.html#cb42-45" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb42-46"><a href="enrichment-anaysis.html#cb42-46" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb42-47"><a href="enrichment-anaysis.html#cb42-47" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb42-48"><a href="enrichment-anaysis.html#cb42-48" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
-<span id="cb42-49"><a href="enrichment-anaysis.html#cb42-49" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb42-50"><a href="enrichment-anaysis.html#cb42-50" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb42-51"><a href="enrichment-anaysis.html#cb42-51" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich.go,</span>
-<span id="cb42-52"><a href="enrichment-anaysis.html#cb42-52" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb42-53"><a href="enrichment-anaysis.html#cb42-53" tabindex="-1"></a>           <span class="at">annoKegg.data =</span> enrich.kegg,</span>
-<span id="cb42-54"><a href="enrichment-anaysis.html#cb42-54" tabindex="-1"></a>           <span class="at">kegg.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb42-55"><a href="enrichment-anaysis.html#cb42-55" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb42-56"><a href="enrichment-anaysis.html#cb42-56" tabindex="-1"></a>           <span class="at">sample.group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
-<span id="cb42-57"><a href="enrichment-anaysis.html#cb42-57" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<span id="cb42-12"><a href="enrichment-anaysis.html#cb42-12" tabindex="-1"></a>                           <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb42-13"><a href="enrichment-anaysis.html#cb42-13" tabindex="-1"></a></span>
+<span id="cb42-14"><a href="enrichment-anaysis.html#cb42-14" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb42-15"><a href="enrichment-anaysis.html#cb42-15" tabindex="-1"></a><span class="fu">head</span>(enrich.go,<span class="dv">3</span>)</span>
+<span id="cb42-16"><a href="enrichment-anaysis.html#cb42-16" tabindex="-1"></a></span>
+<span id="cb42-17"><a href="enrichment-anaysis.html#cb42-17" tabindex="-1"></a><span class="co">#            group                       Description       pvalue     ratio</span></span>
+<span id="cb42-18"><a href="enrichment-anaysis.html#cb42-18" tabindex="-1"></a><span class="co"># GO:0044282    C1  small molecule catabolic process 3.376035e-32 10.683761</span></span>
+<span id="cb42-19"><a href="enrichment-anaysis.html#cb42-19" tabindex="-1"></a><span class="co"># GO:0046395    C1 carboxylic acid catabolic process 8.123713e-20  6.623932</span></span>
+<span id="cb42-20"><a href="enrichment-anaysis.html#cb42-20" tabindex="-1"></a><span class="co"># GO:0016054    C1    organic acid catabolic process 1.057149e-19  6.623932</span></span>
+<span id="cb42-21"><a href="enrichment-anaysis.html#cb42-21" tabindex="-1"></a></span>
+<span id="cb42-22"><a href="enrichment-anaysis.html#cb42-22" tabindex="-1"></a><span class="co"># KEGG enrich for clusters</span></span>
+<span id="cb42-23"><a href="enrichment-anaysis.html#cb42-23" tabindex="-1"></a>enrich.kegg <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb42-24"><a href="enrichment-anaysis.html#cb42-24" tabindex="-1"></a>                             <span class="at">OrgDb =</span> org.Mm.eg.db,</span>
+<span id="cb42-25"><a href="enrichment-anaysis.html#cb42-25" tabindex="-1"></a>                             <span class="at">type =</span> <span class="st">&quot;KEGG&quot;</span>,</span>
+<span id="cb42-26"><a href="enrichment-anaysis.html#cb42-26" tabindex="-1"></a>                             <span class="at">organism =</span> <span class="st">&quot;mmu&quot;</span>,</span>
+<span id="cb42-27"><a href="enrichment-anaysis.html#cb42-27" tabindex="-1"></a>                             <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb42-28"><a href="enrichment-anaysis.html#cb42-28" tabindex="-1"></a>                             <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb42-29"><a href="enrichment-anaysis.html#cb42-29" tabindex="-1"></a></span>
+<span id="cb42-30"><a href="enrichment-anaysis.html#cb42-30" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb42-31"><a href="enrichment-anaysis.html#cb42-31" tabindex="-1"></a><span class="fu">head</span>(enrich.kegg,<span class="dv">3</span>)</span>
+<span id="cb42-32"><a href="enrichment-anaysis.html#cb42-32" tabindex="-1"></a></span>
+<span id="cb42-33"><a href="enrichment-anaysis.html#cb42-33" tabindex="-1"></a><span class="co">#              group                                      Description       pvalue    ratio</span></span>
+<span id="cb42-34"><a href="enrichment-anaysis.html#cb42-34" tabindex="-1"></a><span class="co"># mmu04146        C1          Peroxisome - Mus musculus (house mouse) 1.087835e-16 8.880309</span></span>
+<span id="cb42-35"><a href="enrichment-anaysis.html#cb42-35" tabindex="-1"></a><span class="co"># mmu01200...2    C1   Carbon metabolism - Mus musculus (house mouse) 3.447857e-14 9.266409</span></span>
+<span id="cb42-36"><a href="enrichment-anaysis.html#cb42-36" tabindex="-1"></a><span class="co"># mmu00620        C1 Pyruvate metabolism - Mus musculus (house mouse) 1.466749e-10 5.019305</span></span>
+<span id="cb42-37"><a href="enrichment-anaysis.html#cb42-37" tabindex="-1"></a></span>
+<span id="cb42-38"><a href="enrichment-anaysis.html#cb42-38" tabindex="-1"></a><span class="co"># add gene name</span></span>
+<span id="cb42-39"><a href="enrichment-anaysis.html#cb42-39" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">rownames</span>(exps)[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(exps),<span class="dv">30</span>,<span class="at">replace =</span> F)]</span>
+<span id="cb42-40"><a href="enrichment-anaysis.html#cb42-40" tabindex="-1"></a></span>
+<span id="cb42-41"><a href="enrichment-anaysis.html#cb42-41" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb42-42"><a href="enrichment-anaysis.html#cb42-42" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;gokegg.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb42-43"><a href="enrichment-anaysis.html#cb42-43" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
+<span id="cb42-44"><a href="enrichment-anaysis.html#cb42-44" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb42-45"><a href="enrichment-anaysis.html#cb42-45" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb42-46"><a href="enrichment-anaysis.html#cb42-46" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb42-47"><a href="enrichment-anaysis.html#cb42-47" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb42-48"><a href="enrichment-anaysis.html#cb42-48" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb42-49"><a href="enrichment-anaysis.html#cb42-49" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich.go,</span>
+<span id="cb42-50"><a href="enrichment-anaysis.html#cb42-50" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb42-51"><a href="enrichment-anaysis.html#cb42-51" tabindex="-1"></a>           <span class="at">annoKeggData =</span> enrich.kegg,</span>
+<span id="cb42-52"><a href="enrichment-anaysis.html#cb42-52" tabindex="-1"></a>           <span class="at">keggCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb42-53"><a href="enrichment-anaysis.html#cb42-53" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb42-54"><a href="enrichment-anaysis.html#cb42-54" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
+<span id="cb42-55"><a href="enrichment-anaysis.html#cb42-55" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/22.1.png" width="80%">
 </p>
@@ -515,20 +513,20 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="enrichment-anaysis.html#cb43-1" tabindex="-1"></a><span class="co"># change textbox style</span></span>
 <span id="cb43-2"><a href="enrichment-anaysis.html#cb43-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;gokeggsq.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">12</span>,<span class="at">width =</span> <span class="dv">18</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb43-3"><a href="enrichment-anaysis.html#cb43-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb43-4"><a href="enrichment-anaysis.html#cb43-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb43-4"><a href="enrichment-anaysis.html#cb43-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb43-5"><a href="enrichment-anaysis.html#cb43-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb43-6"><a href="enrichment-anaysis.html#cb43-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb43-7"><a href="enrichment-anaysis.html#cb43-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb43-8"><a href="enrichment-anaysis.html#cb43-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb43-9"><a href="enrichment-anaysis.html#cb43-9" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich.go,</span>
-<span id="cb43-10"><a href="enrichment-anaysis.html#cb43-10" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb43-11"><a href="enrichment-anaysis.html#cb43-11" tabindex="-1"></a>           <span class="at">by.go =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
-<span id="cb43-12"><a href="enrichment-anaysis.html#cb43-12" tabindex="-1"></a>           <span class="at">annoKegg.data =</span> enrich.kegg,</span>
-<span id="cb43-13"><a href="enrichment-anaysis.html#cb43-13" tabindex="-1"></a>           <span class="at">kegg.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb43-14"><a href="enrichment-anaysis.html#cb43-14" tabindex="-1"></a>           <span class="at">by.kegg =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
-<span id="cb43-15"><a href="enrichment-anaysis.html#cb43-15" tabindex="-1"></a>           <span class="at">word_wrap =</span> F,<span class="at">add_new_line =</span> F,</span>
-<span id="cb43-16"><a href="enrichment-anaysis.html#cb43-16" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb43-17"><a href="enrichment-anaysis.html#cb43-17" tabindex="-1"></a>           <span class="at">sample.group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
+<span id="cb43-8"><a href="enrichment-anaysis.html#cb43-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb43-9"><a href="enrichment-anaysis.html#cb43-9" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich.go,</span>
+<span id="cb43-10"><a href="enrichment-anaysis.html#cb43-10" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb43-11"><a href="enrichment-anaysis.html#cb43-11" tabindex="-1"></a>           <span class="at">byGo =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
+<span id="cb43-12"><a href="enrichment-anaysis.html#cb43-12" tabindex="-1"></a>           <span class="at">annoKeggData =</span> enrich.kegg,</span>
+<span id="cb43-13"><a href="enrichment-anaysis.html#cb43-13" tabindex="-1"></a>           <span class="at">keggCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb43-14"><a href="enrichment-anaysis.html#cb43-14" tabindex="-1"></a>           <span class="at">byKegg =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
+<span id="cb43-15"><a href="enrichment-anaysis.html#cb43-15" tabindex="-1"></a>           <span class="at">wordWrap =</span> F,<span class="at">addNewLine =</span> F,</span>
+<span id="cb43-16"><a href="enrichment-anaysis.html#cb43-16" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb43-17"><a href="enrichment-anaysis.html#cb43-17" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb43-18"><a href="enrichment-anaysis.html#cb43-18" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/22.2.png" width="80%">
@@ -537,22 +535,22 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="enrichment-anaysis.html#cb44-1" tabindex="-1"></a><span class="co"># change style</span></span>
 <span id="cb44-2"><a href="enrichment-anaysis.html#cb44-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;gokeggbarNew.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">20</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb44-3"><a href="enrichment-anaysis.html#cb44-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb44-4"><a href="enrichment-anaysis.html#cb44-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb44-4"><a href="enrichment-anaysis.html#cb44-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb44-5"><a href="enrichment-anaysis.html#cb44-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb44-6"><a href="enrichment-anaysis.html#cb44-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb44-7"><a href="enrichment-anaysis.html#cb44-7" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb44-8"><a href="enrichment-anaysis.html#cb44-8" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb44-9"><a href="enrichment-anaysis.html#cb44-9" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich.go,</span>
-<span id="cb44-10"><a href="enrichment-anaysis.html#cb44-10" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb44-11"><a href="enrichment-anaysis.html#cb44-11" tabindex="-1"></a>           <span class="at">add.bar =</span> T,</span>
-<span id="cb44-12"><a href="enrichment-anaysis.html#cb44-12" tabindex="-1"></a>           <span class="at">by.go =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
-<span id="cb44-13"><a href="enrichment-anaysis.html#cb44-13" tabindex="-1"></a>           <span class="at">annoKegg.data =</span> enrich.kegg,</span>
-<span id="cb44-14"><a href="enrichment-anaysis.html#cb44-14" tabindex="-1"></a>           <span class="at">kegg.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb44-15"><a href="enrichment-anaysis.html#cb44-15" tabindex="-1"></a>           <span class="at">add.kegg.bar =</span> T,</span>
-<span id="cb44-16"><a href="enrichment-anaysis.html#cb44-16" tabindex="-1"></a>           <span class="at">by.kegg =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
-<span id="cb44-17"><a href="enrichment-anaysis.html#cb44-17" tabindex="-1"></a>           <span class="at">word_wrap =</span> F,<span class="at">add_new_line =</span> F,</span>
-<span id="cb44-18"><a href="enrichment-anaysis.html#cb44-18" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb44-19"><a href="enrichment-anaysis.html#cb44-19" tabindex="-1"></a>           <span class="at">sample.group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
+<span id="cb44-8"><a href="enrichment-anaysis.html#cb44-8" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb44-9"><a href="enrichment-anaysis.html#cb44-9" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich.go,</span>
+<span id="cb44-10"><a href="enrichment-anaysis.html#cb44-10" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb44-11"><a href="enrichment-anaysis.html#cb44-11" tabindex="-1"></a>           <span class="at">addBar =</span> T,</span>
+<span id="cb44-12"><a href="enrichment-anaysis.html#cb44-12" tabindex="-1"></a>           <span class="at">byGo =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
+<span id="cb44-13"><a href="enrichment-anaysis.html#cb44-13" tabindex="-1"></a>           <span class="at">annoKeggData =</span> enrich.kegg,</span>
+<span id="cb44-14"><a href="enrichment-anaysis.html#cb44-14" tabindex="-1"></a>           <span class="at">keggCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;stallion&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb44-15"><a href="enrichment-anaysis.html#cb44-15" tabindex="-1"></a>           <span class="at">addKeggBar =</span> T,</span>
+<span id="cb44-16"><a href="enrichment-anaysis.html#cb44-16" tabindex="-1"></a>           <span class="at">byKegg =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
+<span id="cb44-17"><a href="enrichment-anaysis.html#cb44-17" tabindex="-1"></a>           <span class="at">wordWrap =</span> F,<span class="at">addNewLine =</span> F,</span>
+<span id="cb44-18"><a href="enrichment-anaysis.html#cb44-18" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb44-19"><a href="enrichment-anaysis.html#cb44-19" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb44-20"><a href="enrichment-anaysis.html#cb44-20" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/22.3.png" width="80%">
@@ -571,19 +569,19 @@ different colors to distinguish them:</p>
 <span id="cb45-10"><a href="enrichment-anaysis.html#cb45-10" tabindex="-1"></a><span class="co"># plot</span></span>
 <span id="cb45-11"><a href="enrichment-anaysis.html#cb45-11" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;gokeggcomb.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb45-12"><a href="enrichment-anaysis.html#cb45-12" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
-<span id="cb45-13"><a href="enrichment-anaysis.html#cb45-13" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb45-13"><a href="enrichment-anaysis.html#cb45-13" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb45-14"><a href="enrichment-anaysis.html#cb45-14" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb45-15"><a href="enrichment-anaysis.html#cb45-15" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb45-16"><a href="enrichment-anaysis.html#cb45-16" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb45-17"><a href="enrichment-anaysis.html#cb45-17" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb45-18"><a href="enrichment-anaysis.html#cb45-18" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> all,</span>
-<span id="cb45-19"><a href="enrichment-anaysis.html#cb45-19" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">c</span>(<span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb45-17"><a href="enrichment-anaysis.html#cb45-17" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb45-18"><a href="enrichment-anaysis.html#cb45-18" tabindex="-1"></a>           <span class="at">annoTermData =</span> all,</span>
+<span id="cb45-19"><a href="enrichment-anaysis.html#cb45-19" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">c</span>(<span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">2</span>),</span>
 <span id="cb45-20"><a href="enrichment-anaysis.html#cb45-20" tabindex="-1"></a>                      <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;circus&quot;</span>,<span class="at">n =</span> <span class="dv">6</span>),<span class="at">each =</span> <span class="dv">2</span>)),</span>
-<span id="cb45-21"><a href="enrichment-anaysis.html#cb45-21" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb45-22"><a href="enrichment-anaysis.html#cb45-22" tabindex="-1"></a>           <span class="at">word_wrap =</span> F,<span class="at">add_new_line =</span> F,</span>
-<span id="cb45-23"><a href="enrichment-anaysis.html#cb45-23" tabindex="-1"></a>           <span class="at">by.go =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
-<span id="cb45-24"><a href="enrichment-anaysis.html#cb45-24" tabindex="-1"></a>           <span class="at">add.bar =</span> T,</span>
-<span id="cb45-25"><a href="enrichment-anaysis.html#cb45-25" tabindex="-1"></a>           <span class="at">sample.group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
+<span id="cb45-21"><a href="enrichment-anaysis.html#cb45-21" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb45-22"><a href="enrichment-anaysis.html#cb45-22" tabindex="-1"></a>           <span class="at">wordWrap =</span> F,<span class="at">addNewLine =</span> F,</span>
+<span id="cb45-23"><a href="enrichment-anaysis.html#cb45-23" tabindex="-1"></a>           <span class="at">byGo =</span> <span class="st">&quot;anno_block&quot;</span>,</span>
+<span id="cb45-24"><a href="enrichment-anaysis.html#cb45-24" tabindex="-1"></a>           <span class="at">addBar =</span> T,</span>
+<span id="cb45-25"><a href="enrichment-anaysis.html#cb45-25" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb45-26"><a href="enrichment-anaysis.html#cb45-26" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/22.4.png" width="80%">
@@ -611,42 +609,42 @@ different colors to distinguish them:</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-enrichment_annotation.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-enrichment_annotation.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

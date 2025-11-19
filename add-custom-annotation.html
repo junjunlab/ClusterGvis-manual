@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Add custom annotation | ClusterGVis Reference Book</title>
   <meta name="description" content="This is a detailed documentation of ClusterGVis package." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Add custom annotation | ClusterGVis Reference Book" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2025-05-15" />
+<meta name="date" content="2025-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -243,12 +244,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Insert scatter plot:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="add-custom-annotation.html#cb84-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc_ggplot.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">16</span>,<span class="at">width =</span> <span class="dv">18</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb84-2"><a href="add-custom-annotation.html#cb84-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb84-3"><a href="add-custom-annotation.html#cb84-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb84-4"><a href="add-custom-annotation.html#cb84-4" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb84-3"><a href="add-custom-annotation.html#cb84-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb84-4"><a href="add-custom-annotation.html#cb84-4" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
 <span id="cb84-5"><a href="add-custom-annotation.html#cb84-5" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb84-6"><a href="add-custom-annotation.html#cb84-6" tabindex="-1"></a>           <span class="at">markGenes =</span> pbmc.markers<span class="sc">$</span>gene,</span>
-<span id="cb84-7"><a href="add-custom-annotation.html#cb84-7" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb84-8"><a href="add-custom-annotation.html#cb84-8" tabindex="-1"></a>           <span class="at">ggplot.panel.arg =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">24</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
+<span id="cb84-7"><a href="add-custom-annotation.html#cb84-7" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb84-8"><a href="add-custom-annotation.html#cb84-8" tabindex="-1"></a>           <span class="at">ggplotPanelArg =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">24</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
 <span id="cb84-9"><a href="add-custom-annotation.html#cb84-9" tabindex="-1"></a>           <span class="at">gglist =</span> gglist)</span>
 <span id="cb84-10"><a href="add-custom-annotation.html#cb84-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -281,12 +282,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-24"><a href="add-custom-annotation.html#cb85-24" tabindex="-1"></a><span class="co"># insert scatter plot</span></span>
 <span id="cb85-25"><a href="add-custom-annotation.html#cb85-25" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc_ggplot_scRNAtoolVis.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">16</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb85-26"><a href="add-custom-annotation.html#cb85-26" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb85-27"><a href="add-custom-annotation.html#cb85-27" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb85-28"><a href="add-custom-annotation.html#cb85-28" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb85-27"><a href="add-custom-annotation.html#cb85-27" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb85-28"><a href="add-custom-annotation.html#cb85-28" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
 <span id="cb85-29"><a href="add-custom-annotation.html#cb85-29" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
 <span id="cb85-30"><a href="add-custom-annotation.html#cb85-30" tabindex="-1"></a>           <span class="at">markGenes =</span> pbmc.markers<span class="sc">$</span>gene,</span>
-<span id="cb85-31"><a href="add-custom-annotation.html#cb85-31" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb85-32"><a href="add-custom-annotation.html#cb85-32" tabindex="-1"></a>           <span class="at">ggplot.panel.arg =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">13</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
+<span id="cb85-31"><a href="add-custom-annotation.html#cb85-31" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb85-32"><a href="add-custom-annotation.html#cb85-32" tabindex="-1"></a>           <span class="at">ggplotPanelArg =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">13</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
 <span id="cb85-33"><a href="add-custom-annotation.html#cb85-33" tabindex="-1"></a>           <span class="at">gglist =</span> gglist)</span>
 <span id="cb85-34"><a href="add-custom-annotation.html#cb85-34" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -299,57 +300,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-4"><a href="add-custom-annotation.html#cb86-4" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
 <span id="cb86-5"><a href="add-custom-annotation.html#cb86-5" tabindex="-1"></a>                        <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
 <span id="cb86-6"><a href="add-custom-annotation.html#cb86-6" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb86-7"><a href="add-custom-annotation.html#cb86-7" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb86-8"><a href="add-custom-annotation.html#cb86-8" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb86-9"><a href="add-custom-annotation.html#cb86-9" tabindex="-1"></a></span>
-<span id="cb86-10"><a href="add-custom-annotation.html#cb86-10" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb86-11"><a href="add-custom-annotation.html#cb86-11" tabindex="-1"></a><span class="fu">head</span>(enrich,<span class="dv">3</span>)</span>
-<span id="cb86-12"><a href="add-custom-annotation.html#cb86-12" tabindex="-1"></a><span class="co">#            group                                         Description       pvalue    ratio</span></span>
-<span id="cb86-13"><a href="add-custom-annotation.html#cb86-13" tabindex="-1"></a><span class="co"># GO:0002573    C1                   myeloid leukocyte differentiation 0.0003941646 66.66667</span></span>
-<span id="cb86-14"><a href="add-custom-annotation.html#cb86-14" tabindex="-1"></a><span class="co"># GO:0050870    C1            positive regulation of T cell activation 0.0005222343 66.66667</span></span>
-<span id="cb86-15"><a href="add-custom-annotation.html#cb86-15" tabindex="-1"></a><span class="co"># GO:1903039    C1 positive regulation of leukocyte cell-cell adhesion 0.0006265618 66.66667</span></span>
-<span id="cb86-16"><a href="add-custom-annotation.html#cb86-16" tabindex="-1"></a></span>
-<span id="cb86-17"><a href="add-custom-annotation.html#cb86-17" tabindex="-1"></a><span class="co"># barplot</span></span>
-<span id="cb86-18"><a href="add-custom-annotation.html#cb86-18" tabindex="-1"></a>palette <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Grays&quot;</span>,<span class="st">&quot;Light Grays&quot;</span>,<span class="st">&quot;Blues2&quot;</span>,<span class="st">&quot;Blues3&quot;</span>,<span class="st">&quot;Purples2&quot;</span>,<span class="st">&quot;Purples3&quot;</span>,<span class="st">&quot;Reds2&quot;</span>,<span class="st">&quot;Reds3&quot;</span>,<span class="st">&quot;Greens2&quot;</span>)</span>
-<span id="cb86-19"><a href="add-custom-annotation.html#cb86-19" tabindex="-1"></a></span>
-<span id="cb86-20"><a href="add-custom-annotation.html#cb86-20" tabindex="-1"></a><span class="co"># loop</span></span>
-<span id="cb86-21"><a href="add-custom-annotation.html#cb86-21" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">seq_along</span>(<span class="fu">unique</span>(enrich<span class="sc">$</span>group)), <span class="cf">function</span>(x){</span>
-<span id="cb86-22"><a href="add-custom-annotation.html#cb86-22" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> enrich <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(group <span class="sc">==</span> <span class="fu">unique</span>(enrich<span class="sc">$</span>group)[x]) <span class="sc">|&gt;</span></span>
-<span id="cb86-23"><a href="add-custom-annotation.html#cb86-23" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pvalue))</span>
-<span id="cb86-24"><a href="add-custom-annotation.html#cb86-24" tabindex="-1"></a>  </span>
-<span id="cb86-25"><a href="add-custom-annotation.html#cb86-25" tabindex="-1"></a>  tmp<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">factor</span>(tmp<span class="sc">$</span>Description,<span class="at">levels =</span> tmp<span class="sc">$</span>Description)</span>
-<span id="cb86-26"><a href="add-custom-annotation.html#cb86-26" tabindex="-1"></a>  </span>
-<span id="cb86-27"><a href="add-custom-annotation.html#cb86-27" tabindex="-1"></a>  <span class="co"># plot</span></span>
-<span id="cb86-28"><a href="add-custom-annotation.html#cb86-28" tabindex="-1"></a>  p <span class="ot">&lt;-</span></span>
-<span id="cb86-29"><a href="add-custom-annotation.html#cb86-29" tabindex="-1"></a>    <span class="fu">ggplot</span>(tmp) <span class="sc">+</span></span>
-<span id="cb86-30"><a href="add-custom-annotation.html#cb86-30" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue)),</span>
-<span id="cb86-31"><a href="add-custom-annotation.html#cb86-31" tabindex="-1"></a>             <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb86-32"><a href="add-custom-annotation.html#cb86-32" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> <span class="fu">as.numeric</span>(Description)),<span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb86-33"><a href="add-custom-annotation.html#cb86-33" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> Description),<span class="at">size =</span> <span class="dv">3</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span></span>
-<span id="cb86-34"><a href="add-custom-annotation.html#cb86-34" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb86-35"><a href="add-custom-annotation.html#cb86-35" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>,</span>
-<span id="cb86-36"><a href="add-custom-annotation.html#cb86-36" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="cf">function</span>(x) stringr<span class="sc">::</span><span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">40</span>)) <span class="sc">+</span></span>
-<span id="cb86-37"><a href="add-custom-annotation.html#cb86-37" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.,<span class="at">name =</span> <span class="st">&quot;log10(ratio)&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb86-38"><a href="add-custom-annotation.html#cb86-38" tabindex="-1"></a>    colorspace<span class="sc">::</span><span class="fu">scale_fill_binned_sequential</span>(<span class="at">palette =</span> palette[x]) <span class="sc">+</span></span>
-<span id="cb86-39"><a href="add-custom-annotation.html#cb86-39" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span>
-<span id="cb86-40"><a href="add-custom-annotation.html#cb86-40" tabindex="-1"></a>  </span>
-<span id="cb86-41"><a href="add-custom-annotation.html#cb86-41" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
-<span id="cb86-42"><a href="add-custom-annotation.html#cb86-42" tabindex="-1"></a>}) <span class="ot">-&gt;</span> gglist</span>
-<span id="cb86-43"><a href="add-custom-annotation.html#cb86-43" tabindex="-1"></a></span>
-<span id="cb86-44"><a href="add-custom-annotation.html#cb86-44" tabindex="-1"></a><span class="co"># assign names</span></span>
-<span id="cb86-45"><a href="add-custom-annotation.html#cb86-45" tabindex="-1"></a><span class="fu">names</span>(gglist) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;C&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb86-46"><a href="add-custom-annotation.html#cb86-46" tabindex="-1"></a></span>
-<span id="cb86-47"><a href="add-custom-annotation.html#cb86-47" tabindex="-1"></a><span class="co"># insert bar plot</span></span>
-<span id="cb86-48"><a href="add-custom-annotation.html#cb86-48" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc_ggplot_go.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">20</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb86-49"><a href="add-custom-annotation.html#cb86-49" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb86-50"><a href="add-custom-annotation.html#cb86-50" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb86-51"><a href="add-custom-annotation.html#cb86-51" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb86-52"><a href="add-custom-annotation.html#cb86-52" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb86-53"><a href="add-custom-annotation.html#cb86-53" tabindex="-1"></a>           <span class="at">markGenes =</span> pbmc.markers<span class="sc">$</span>gene,</span>
-<span id="cb86-54"><a href="add-custom-annotation.html#cb86-54" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb86-55"><a href="add-custom-annotation.html#cb86-55" tabindex="-1"></a>           <span class="at">ggplot.panel.arg =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="dv">16</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
-<span id="cb86-56"><a href="add-custom-annotation.html#cb86-56" tabindex="-1"></a>           <span class="at">gglist =</span> gglist)</span>
-<span id="cb86-57"><a href="add-custom-annotation.html#cb86-57" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<span id="cb86-7"><a href="add-custom-annotation.html#cb86-7" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb86-8"><a href="add-custom-annotation.html#cb86-8" tabindex="-1"></a></span>
+<span id="cb86-9"><a href="add-custom-annotation.html#cb86-9" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb86-10"><a href="add-custom-annotation.html#cb86-10" tabindex="-1"></a><span class="fu">head</span>(enrich,<span class="dv">3</span>)</span>
+<span id="cb86-11"><a href="add-custom-annotation.html#cb86-11" tabindex="-1"></a><span class="co">#            group                                         Description       pvalue    ratio</span></span>
+<span id="cb86-12"><a href="add-custom-annotation.html#cb86-12" tabindex="-1"></a><span class="co"># GO:0002573    C1                   myeloid leukocyte differentiation 0.0003941646 66.66667</span></span>
+<span id="cb86-13"><a href="add-custom-annotation.html#cb86-13" tabindex="-1"></a><span class="co"># GO:0050870    C1            positive regulation of T cell activation 0.0005222343 66.66667</span></span>
+<span id="cb86-14"><a href="add-custom-annotation.html#cb86-14" tabindex="-1"></a><span class="co"># GO:1903039    C1 positive regulation of leukocyte cell-cell adhesion 0.0006265618 66.66667</span></span>
+<span id="cb86-15"><a href="add-custom-annotation.html#cb86-15" tabindex="-1"></a></span>
+<span id="cb86-16"><a href="add-custom-annotation.html#cb86-16" tabindex="-1"></a><span class="co"># barplot</span></span>
+<span id="cb86-17"><a href="add-custom-annotation.html#cb86-17" tabindex="-1"></a>palette <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Grays&quot;</span>,<span class="st">&quot;Light Grays&quot;</span>,<span class="st">&quot;Blues2&quot;</span>,<span class="st">&quot;Blues3&quot;</span>,<span class="st">&quot;Purples2&quot;</span>,<span class="st">&quot;Purples3&quot;</span>,<span class="st">&quot;Reds2&quot;</span>,<span class="st">&quot;Reds3&quot;</span>,<span class="st">&quot;Greens2&quot;</span>)</span>
+<span id="cb86-18"><a href="add-custom-annotation.html#cb86-18" tabindex="-1"></a></span>
+<span id="cb86-19"><a href="add-custom-annotation.html#cb86-19" tabindex="-1"></a><span class="co"># loop</span></span>
+<span id="cb86-20"><a href="add-custom-annotation.html#cb86-20" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">seq_along</span>(<span class="fu">unique</span>(enrich<span class="sc">$</span>group)), <span class="cf">function</span>(x){</span>
+<span id="cb86-21"><a href="add-custom-annotation.html#cb86-21" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> enrich <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(group <span class="sc">==</span> <span class="fu">unique</span>(enrich<span class="sc">$</span>group)[x]) <span class="sc">|&gt;</span></span>
+<span id="cb86-22"><a href="add-custom-annotation.html#cb86-22" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pvalue))</span>
+<span id="cb86-23"><a href="add-custom-annotation.html#cb86-23" tabindex="-1"></a>  </span>
+<span id="cb86-24"><a href="add-custom-annotation.html#cb86-24" tabindex="-1"></a>  tmp<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">factor</span>(tmp<span class="sc">$</span>Description,<span class="at">levels =</span> tmp<span class="sc">$</span>Description)</span>
+<span id="cb86-25"><a href="add-custom-annotation.html#cb86-25" tabindex="-1"></a>  </span>
+<span id="cb86-26"><a href="add-custom-annotation.html#cb86-26" tabindex="-1"></a>  <span class="co"># plot</span></span>
+<span id="cb86-27"><a href="add-custom-annotation.html#cb86-27" tabindex="-1"></a>  p <span class="ot">&lt;-</span></span>
+<span id="cb86-28"><a href="add-custom-annotation.html#cb86-28" tabindex="-1"></a>    <span class="fu">ggplot</span>(tmp) <span class="sc">+</span></span>
+<span id="cb86-29"><a href="add-custom-annotation.html#cb86-29" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue)),</span>
+<span id="cb86-30"><a href="add-custom-annotation.html#cb86-30" tabindex="-1"></a>             <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb86-31"><a href="add-custom-annotation.html#cb86-31" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> <span class="fu">as.numeric</span>(Description)),<span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb86-32"><a href="add-custom-annotation.html#cb86-32" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> Description),<span class="at">size =</span> <span class="dv">3</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb86-33"><a href="add-custom-annotation.html#cb86-33" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb86-34"><a href="add-custom-annotation.html#cb86-34" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb86-35"><a href="add-custom-annotation.html#cb86-35" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="cf">function</span>(x) stringr<span class="sc">::</span><span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb86-36"><a href="add-custom-annotation.html#cb86-36" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.,<span class="at">name =</span> <span class="st">&quot;log10(ratio)&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb86-37"><a href="add-custom-annotation.html#cb86-37" tabindex="-1"></a>    colorspace<span class="sc">::</span><span class="fu">scale_fill_binned_sequential</span>(<span class="at">palette =</span> palette[x]) <span class="sc">+</span></span>
+<span id="cb86-38"><a href="add-custom-annotation.html#cb86-38" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb86-39"><a href="add-custom-annotation.html#cb86-39" tabindex="-1"></a>  </span>
+<span id="cb86-40"><a href="add-custom-annotation.html#cb86-40" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb86-41"><a href="add-custom-annotation.html#cb86-41" tabindex="-1"></a>}) <span class="ot">-&gt;</span> gglist</span>
+<span id="cb86-42"><a href="add-custom-annotation.html#cb86-42" tabindex="-1"></a></span>
+<span id="cb86-43"><a href="add-custom-annotation.html#cb86-43" tabindex="-1"></a><span class="co"># assign names</span></span>
+<span id="cb86-44"><a href="add-custom-annotation.html#cb86-44" tabindex="-1"></a><span class="fu">names</span>(gglist) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;C&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb86-45"><a href="add-custom-annotation.html#cb86-45" tabindex="-1"></a></span>
+<span id="cb86-46"><a href="add-custom-annotation.html#cb86-46" tabindex="-1"></a><span class="co"># insert bar plot</span></span>
+<span id="cb86-47"><a href="add-custom-annotation.html#cb86-47" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc_ggplot_go.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">20</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb86-48"><a href="add-custom-annotation.html#cb86-48" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb86-49"><a href="add-custom-annotation.html#cb86-49" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb86-50"><a href="add-custom-annotation.html#cb86-50" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb86-51"><a href="add-custom-annotation.html#cb86-51" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb86-52"><a href="add-custom-annotation.html#cb86-52" tabindex="-1"></a>           <span class="at">markGenes =</span> pbmc.markers<span class="sc">$</span>gene,</span>
+<span id="cb86-53"><a href="add-custom-annotation.html#cb86-53" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb86-54"><a href="add-custom-annotation.html#cb86-54" tabindex="-1"></a>           <span class="at">ggplot.panel.arg =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="dv">16</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
+<span id="cb86-55"><a href="add-custom-annotation.html#cb86-55" tabindex="-1"></a>           <span class="at">gglist =</span> gglist)</span>
+<span id="cb86-56"><a href="add-custom-annotation.html#cb86-56" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/49.png" width="80%">
 </p>
@@ -360,93 +360,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb87-4"><a href="add-custom-annotation.html#cb87-4" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
 <span id="cb87-5"><a href="add-custom-annotation.html#cb87-5" tabindex="-1"></a>                        <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
 <span id="cb87-6"><a href="add-custom-annotation.html#cb87-6" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb87-7"><a href="add-custom-annotation.html#cb87-7" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb87-8"><a href="add-custom-annotation.html#cb87-8" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb87-9"><a href="add-custom-annotation.html#cb87-9" tabindex="-1"></a></span>
-<span id="cb87-10"><a href="add-custom-annotation.html#cb87-10" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb87-11"><a href="add-custom-annotation.html#cb87-11" tabindex="-1"></a><span class="fu">head</span>(enrich,<span class="dv">3</span>)</span>
-<span id="cb87-12"><a href="add-custom-annotation.html#cb87-12" tabindex="-1"></a><span class="co">#            group                                         Description       pvalue    ratio</span></span>
-<span id="cb87-13"><a href="add-custom-annotation.html#cb87-13" tabindex="-1"></a><span class="co"># GO:0002573    C1                   myeloid leukocyte differentiation 0.0003941646 66.66667</span></span>
-<span id="cb87-14"><a href="add-custom-annotation.html#cb87-14" tabindex="-1"></a><span class="co"># GO:0050870    C1            positive regulation of T cell activation 0.0005222343 66.66667</span></span>
-<span id="cb87-15"><a href="add-custom-annotation.html#cb87-15" tabindex="-1"></a><span class="co"># GO:1903039    C1 positive regulation of leukocyte cell-cell adhesion 0.0006265618 66.66667</span></span>
-<span id="cb87-16"><a href="add-custom-annotation.html#cb87-16" tabindex="-1"></a></span>
-<span id="cb87-17"><a href="add-custom-annotation.html#cb87-17" tabindex="-1"></a>enrich.KEGG <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb87-18"><a href="add-custom-annotation.html#cb87-18" tabindex="-1"></a>                             <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
-<span id="cb87-19"><a href="add-custom-annotation.html#cb87-19" tabindex="-1"></a>                             <span class="at">type =</span> <span class="st">&quot;KEGG&quot;</span>,</span>
-<span id="cb87-20"><a href="add-custom-annotation.html#cb87-20" tabindex="-1"></a>                             <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
-<span id="cb87-21"><a href="add-custom-annotation.html#cb87-21" tabindex="-1"></a>                             <span class="at">pvalueCutoff =</span> <span class="fl">0.9</span>,</span>
-<span id="cb87-22"><a href="add-custom-annotation.html#cb87-22" tabindex="-1"></a>                             <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb87-23"><a href="add-custom-annotation.html#cb87-23" tabindex="-1"></a>                             <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb87-24"><a href="add-custom-annotation.html#cb87-24" tabindex="-1"></a></span>
-<span id="cb87-25"><a href="add-custom-annotation.html#cb87-25" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb87-26"><a href="add-custom-annotation.html#cb87-26" tabindex="-1"></a><span class="fu">head</span>(enrich.KEGG,<span class="dv">3</span>)</span>
-<span id="cb87-27"><a href="add-custom-annotation.html#cb87-27" tabindex="-1"></a><span class="co">#          group           Description     pvalue    ratio</span></span>
-<span id="cb87-28"><a href="add-custom-annotation.html#cb87-28" tabindex="-1"></a><span class="co"># hsa00640    C1 Propanoate metabolism 0.01115231 33.33333</span></span>
-<span id="cb87-29"><a href="add-custom-annotation.html#cb87-29" tabindex="-1"></a><span class="co"># hsa05216    C1        Thyroid cancer 0.01288734 33.33333</span></span>
-<span id="cb87-30"><a href="add-custom-annotation.html#cb87-30" tabindex="-1"></a><span class="co"># hsa00620    C1   Pyruvate metabolism 0.01635129 33.33333</span></span>
+<span id="cb87-7"><a href="add-custom-annotation.html#cb87-7" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb87-8"><a href="add-custom-annotation.html#cb87-8" tabindex="-1"></a></span>
+<span id="cb87-9"><a href="add-custom-annotation.html#cb87-9" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb87-10"><a href="add-custom-annotation.html#cb87-10" tabindex="-1"></a><span class="fu">head</span>(enrich,<span class="dv">3</span>)</span>
+<span id="cb87-11"><a href="add-custom-annotation.html#cb87-11" tabindex="-1"></a><span class="co">#            group                                         Description       pvalue    ratio</span></span>
+<span id="cb87-12"><a href="add-custom-annotation.html#cb87-12" tabindex="-1"></a><span class="co"># GO:0002573    C1                   myeloid leukocyte differentiation 0.0003941646 66.66667</span></span>
+<span id="cb87-13"><a href="add-custom-annotation.html#cb87-13" tabindex="-1"></a><span class="co"># GO:0050870    C1            positive regulation of T cell activation 0.0005222343 66.66667</span></span>
+<span id="cb87-14"><a href="add-custom-annotation.html#cb87-14" tabindex="-1"></a><span class="co"># GO:1903039    C1 positive regulation of leukocyte cell-cell adhesion 0.0006265618 66.66667</span></span>
+<span id="cb87-15"><a href="add-custom-annotation.html#cb87-15" tabindex="-1"></a></span>
+<span id="cb87-16"><a href="add-custom-annotation.html#cb87-16" tabindex="-1"></a>enrich.KEGG <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb87-17"><a href="add-custom-annotation.html#cb87-17" tabindex="-1"></a>                             <span class="at">OrgDb =</span> org.Hs.eg.db,</span>
+<span id="cb87-18"><a href="add-custom-annotation.html#cb87-18" tabindex="-1"></a>                             <span class="at">type =</span> <span class="st">&quot;KEGG&quot;</span>,</span>
+<span id="cb87-19"><a href="add-custom-annotation.html#cb87-19" tabindex="-1"></a>                             <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
+<span id="cb87-20"><a href="add-custom-annotation.html#cb87-20" tabindex="-1"></a>                             <span class="at">pvalueCutoff =</span> <span class="fl">0.9</span>,</span>
+<span id="cb87-21"><a href="add-custom-annotation.html#cb87-21" tabindex="-1"></a>                             <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb87-22"><a href="add-custom-annotation.html#cb87-22" tabindex="-1"></a></span>
+<span id="cb87-23"><a href="add-custom-annotation.html#cb87-23" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb87-24"><a href="add-custom-annotation.html#cb87-24" tabindex="-1"></a><span class="fu">head</span>(enrich.KEGG,<span class="dv">3</span>)</span>
+<span id="cb87-25"><a href="add-custom-annotation.html#cb87-25" tabindex="-1"></a><span class="co">#          group           Description     pvalue    ratio</span></span>
+<span id="cb87-26"><a href="add-custom-annotation.html#cb87-26" tabindex="-1"></a><span class="co"># hsa00640    C1 Propanoate metabolism 0.01115231 33.33333</span></span>
+<span id="cb87-27"><a href="add-custom-annotation.html#cb87-27" tabindex="-1"></a><span class="co"># hsa05216    C1        Thyroid cancer 0.01288734 33.33333</span></span>
+<span id="cb87-28"><a href="add-custom-annotation.html#cb87-28" tabindex="-1"></a><span class="co"># hsa00620    C1   Pyruvate metabolism 0.01635129 33.33333</span></span>
+<span id="cb87-29"><a href="add-custom-annotation.html#cb87-29" tabindex="-1"></a></span>
+<span id="cb87-30"><a href="add-custom-annotation.html#cb87-30" tabindex="-1"></a>palette <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Grays&quot;</span>,<span class="st">&quot;Light Grays&quot;</span>,<span class="st">&quot;Blues2&quot;</span>,<span class="st">&quot;Blues3&quot;</span>,<span class="st">&quot;Purples2&quot;</span>,<span class="st">&quot;Purples3&quot;</span>,<span class="st">&quot;Reds2&quot;</span>,<span class="st">&quot;Reds3&quot;</span>,<span class="st">&quot;Greens2&quot;</span>)</span>
 <span id="cb87-31"><a href="add-custom-annotation.html#cb87-31" tabindex="-1"></a></span>
-<span id="cb87-32"><a href="add-custom-annotation.html#cb87-32" tabindex="-1"></a>palette <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Grays&quot;</span>,<span class="st">&quot;Light Grays&quot;</span>,<span class="st">&quot;Blues2&quot;</span>,<span class="st">&quot;Blues3&quot;</span>,<span class="st">&quot;Purples2&quot;</span>,<span class="st">&quot;Purples3&quot;</span>,<span class="st">&quot;Reds2&quot;</span>,<span class="st">&quot;Reds3&quot;</span>,<span class="st">&quot;Greens2&quot;</span>)</span>
-<span id="cb87-33"><a href="add-custom-annotation.html#cb87-33" tabindex="-1"></a></span>
-<span id="cb87-34"><a href="add-custom-annotation.html#cb87-34" tabindex="-1"></a><span class="co"># loop</span></span>
-<span id="cb87-35"><a href="add-custom-annotation.html#cb87-35" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">seq_along</span>(<span class="fu">unique</span>(enrich<span class="sc">$</span>group)), <span class="cf">function</span>(x){</span>
-<span id="cb87-36"><a href="add-custom-annotation.html#cb87-36" tabindex="-1"></a>  <span class="co"># go plot</span></span>
-<span id="cb87-37"><a href="add-custom-annotation.html#cb87-37" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> enrich <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(group <span class="sc">==</span> <span class="fu">unique</span>(enrich<span class="sc">$</span>group)[x]) <span class="sc">|&gt;</span></span>
-<span id="cb87-38"><a href="add-custom-annotation.html#cb87-38" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pvalue))</span>
+<span id="cb87-32"><a href="add-custom-annotation.html#cb87-32" tabindex="-1"></a><span class="co"># loop</span></span>
+<span id="cb87-33"><a href="add-custom-annotation.html#cb87-33" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">seq_along</span>(<span class="fu">unique</span>(enrich<span class="sc">$</span>group)), <span class="cf">function</span>(x){</span>
+<span id="cb87-34"><a href="add-custom-annotation.html#cb87-34" tabindex="-1"></a>  <span class="co"># go plot</span></span>
+<span id="cb87-35"><a href="add-custom-annotation.html#cb87-35" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> enrich <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(group <span class="sc">==</span> <span class="fu">unique</span>(enrich<span class="sc">$</span>group)[x]) <span class="sc">|&gt;</span></span>
+<span id="cb87-36"><a href="add-custom-annotation.html#cb87-36" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pvalue))</span>
+<span id="cb87-37"><a href="add-custom-annotation.html#cb87-37" tabindex="-1"></a>  </span>
+<span id="cb87-38"><a href="add-custom-annotation.html#cb87-38" tabindex="-1"></a>  tmp<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">factor</span>(tmp<span class="sc">$</span>Description,<span class="at">levels =</span> tmp<span class="sc">$</span>Description)</span>
 <span id="cb87-39"><a href="add-custom-annotation.html#cb87-39" tabindex="-1"></a>  </span>
-<span id="cb87-40"><a href="add-custom-annotation.html#cb87-40" tabindex="-1"></a>  tmp<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">factor</span>(tmp<span class="sc">$</span>Description,<span class="at">levels =</span> tmp<span class="sc">$</span>Description)</span>
-<span id="cb87-41"><a href="add-custom-annotation.html#cb87-41" tabindex="-1"></a>  </span>
-<span id="cb87-42"><a href="add-custom-annotation.html#cb87-42" tabindex="-1"></a>  <span class="co"># plot</span></span>
-<span id="cb87-43"><a href="add-custom-annotation.html#cb87-43" tabindex="-1"></a>  p <span class="ot">&lt;-</span></span>
-<span id="cb87-44"><a href="add-custom-annotation.html#cb87-44" tabindex="-1"></a>    <span class="fu">ggplot</span>(tmp) <span class="sc">+</span></span>
-<span id="cb87-45"><a href="add-custom-annotation.html#cb87-45" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue)),</span>
-<span id="cb87-46"><a href="add-custom-annotation.html#cb87-46" tabindex="-1"></a>             <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb87-47"><a href="add-custom-annotation.html#cb87-47" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> <span class="fu">as.numeric</span>(Description)),<span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
-<span id="cb87-48"><a href="add-custom-annotation.html#cb87-48" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> Description),<span class="at">size =</span> <span class="dv">3</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span></span>
-<span id="cb87-49"><a href="add-custom-annotation.html#cb87-49" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb87-50"><a href="add-custom-annotation.html#cb87-50" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>,</span>
-<span id="cb87-51"><a href="add-custom-annotation.html#cb87-51" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="cf">function</span>(x) stringr<span class="sc">::</span><span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">40</span>)) <span class="sc">+</span></span>
-<span id="cb87-52"><a href="add-custom-annotation.html#cb87-52" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.,<span class="at">name =</span> <span class="st">&quot;log10(ratio)&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb87-53"><a href="add-custom-annotation.html#cb87-53" tabindex="-1"></a>    colorspace<span class="sc">::</span><span class="fu">scale_fill_binned_sequential</span>(<span class="at">palette =</span> palette[x]) <span class="sc">+</span></span>
-<span id="cb87-54"><a href="add-custom-annotation.html#cb87-54" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span>
-<span id="cb87-55"><a href="add-custom-annotation.html#cb87-55" tabindex="-1"></a>  </span>
-<span id="cb87-56"><a href="add-custom-annotation.html#cb87-56" tabindex="-1"></a>  <span class="co"># plot kegg</span></span>
-<span id="cb87-57"><a href="add-custom-annotation.html#cb87-57" tabindex="-1"></a>  tmp.kg <span class="ot">&lt;-</span> enrich.KEGG <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(group <span class="sc">==</span> <span class="fu">unique</span>(enrich.KEGG<span class="sc">$</span>group)[x]) <span class="sc">|&gt;</span></span>
-<span id="cb87-58"><a href="add-custom-annotation.html#cb87-58" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pvalue))</span>
+<span id="cb87-40"><a href="add-custom-annotation.html#cb87-40" tabindex="-1"></a>  <span class="co"># plot</span></span>
+<span id="cb87-41"><a href="add-custom-annotation.html#cb87-41" tabindex="-1"></a>  p <span class="ot">&lt;-</span></span>
+<span id="cb87-42"><a href="add-custom-annotation.html#cb87-42" tabindex="-1"></a>    <span class="fu">ggplot</span>(tmp) <span class="sc">+</span></span>
+<span id="cb87-43"><a href="add-custom-annotation.html#cb87-43" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">fill =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue)),</span>
+<span id="cb87-44"><a href="add-custom-annotation.html#cb87-44" tabindex="-1"></a>             <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb87-45"><a href="add-custom-annotation.html#cb87-45" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> <span class="fu">as.numeric</span>(Description)),<span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb87-46"><a href="add-custom-annotation.html#cb87-46" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(ratio),<span class="at">y =</span> Description),<span class="at">size =</span> <span class="dv">3</span>,<span class="at">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">+</span></span>
+<span id="cb87-47"><a href="add-custom-annotation.html#cb87-47" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb87-48"><a href="add-custom-annotation.html#cb87-48" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb87-49"><a href="add-custom-annotation.html#cb87-49" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="cf">function</span>(x) stringr<span class="sc">::</span><span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb87-50"><a href="add-custom-annotation.html#cb87-50" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.,<span class="at">name =</span> <span class="st">&quot;log10(ratio)&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb87-51"><a href="add-custom-annotation.html#cb87-51" tabindex="-1"></a>    colorspace<span class="sc">::</span><span class="fu">scale_fill_binned_sequential</span>(<span class="at">palette =</span> palette[x]) <span class="sc">+</span></span>
+<span id="cb87-52"><a href="add-custom-annotation.html#cb87-52" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb87-53"><a href="add-custom-annotation.html#cb87-53" tabindex="-1"></a>  </span>
+<span id="cb87-54"><a href="add-custom-annotation.html#cb87-54" tabindex="-1"></a>  <span class="co"># plot kegg</span></span>
+<span id="cb87-55"><a href="add-custom-annotation.html#cb87-55" tabindex="-1"></a>  tmp.kg <span class="ot">&lt;-</span> enrich.KEGG <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(group <span class="sc">==</span> <span class="fu">unique</span>(enrich.KEGG<span class="sc">$</span>group)[x]) <span class="sc">|&gt;</span></span>
+<span id="cb87-56"><a href="add-custom-annotation.html#cb87-56" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pvalue))</span>
+<span id="cb87-57"><a href="add-custom-annotation.html#cb87-57" tabindex="-1"></a>  </span>
+<span id="cb87-58"><a href="add-custom-annotation.html#cb87-58" tabindex="-1"></a>  tmp.kg<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">factor</span>(tmp.kg<span class="sc">$</span>Description,<span class="at">levels =</span> tmp.kg<span class="sc">$</span>Description)</span>
 <span id="cb87-59"><a href="add-custom-annotation.html#cb87-59" tabindex="-1"></a>  </span>
-<span id="cb87-60"><a href="add-custom-annotation.html#cb87-60" tabindex="-1"></a>  tmp.kg<span class="sc">$</span>Description <span class="ot">&lt;-</span> <span class="fu">factor</span>(tmp.kg<span class="sc">$</span>Description,<span class="at">levels =</span> tmp.kg<span class="sc">$</span>Description)</span>
-<span id="cb87-61"><a href="add-custom-annotation.html#cb87-61" tabindex="-1"></a>  </span>
-<span id="cb87-62"><a href="add-custom-annotation.html#cb87-62" tabindex="-1"></a>  <span class="co"># plot</span></span>
-<span id="cb87-63"><a href="add-custom-annotation.html#cb87-63" tabindex="-1"></a>  pk <span class="ot">&lt;-</span></span>
-<span id="cb87-64"><a href="add-custom-annotation.html#cb87-64" tabindex="-1"></a>    <span class="fu">ggplot</span>(tmp.kg) <span class="sc">+</span></span>
-<span id="cb87-65"><a href="add-custom-annotation.html#cb87-65" tabindex="-1"></a>    <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>,<span class="at">xend =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">yend =</span> Description),</span>
-<span id="cb87-66"><a href="add-custom-annotation.html#cb87-66" tabindex="-1"></a>                 <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>,<span class="at">linewidth =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb87-67"><a href="add-custom-annotation.html#cb87-67" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">color =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue)),<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb87-68"><a href="add-custom-annotation.html#cb87-68" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb87-69"><a href="add-custom-annotation.html#cb87-69" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>,</span>
-<span id="cb87-70"><a href="add-custom-annotation.html#cb87-70" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="cf">function</span>(x) stringr<span class="sc">::</span><span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">40</span>)) <span class="sc">+</span></span>
-<span id="cb87-71"><a href="add-custom-annotation.html#cb87-71" tabindex="-1"></a>    colorspace<span class="sc">::</span><span class="fu">scale_color_binned_sequential</span>(<span class="at">palette =</span> palette[x]) <span class="sc">+</span></span>
-<span id="cb87-72"><a href="add-custom-annotation.html#cb87-72" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;-log10(pvalue)&quot;</span>)</span>
-<span id="cb87-73"><a href="add-custom-annotation.html#cb87-73" tabindex="-1"></a>  </span>
-<span id="cb87-74"><a href="add-custom-annotation.html#cb87-74" tabindex="-1"></a>  <span class="co"># combine</span></span>
-<span id="cb87-75"><a href="add-custom-annotation.html#cb87-75" tabindex="-1"></a>  cb <span class="ot">&lt;-</span> cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(<span class="at">plotlist =</span> <span class="fu">list</span>(p,pk))</span>
-<span id="cb87-76"><a href="add-custom-annotation.html#cb87-76" tabindex="-1"></a>  </span>
-<span id="cb87-77"><a href="add-custom-annotation.html#cb87-77" tabindex="-1"></a>  <span class="fu">return</span>(cb)</span>
-<span id="cb87-78"><a href="add-custom-annotation.html#cb87-78" tabindex="-1"></a>}) <span class="ot">-&gt;</span> gglist</span>
-<span id="cb87-79"><a href="add-custom-annotation.html#cb87-79" tabindex="-1"></a></span>
-<span id="cb87-80"><a href="add-custom-annotation.html#cb87-80" tabindex="-1"></a><span class="co"># assign names</span></span>
-<span id="cb87-81"><a href="add-custom-annotation.html#cb87-81" tabindex="-1"></a><span class="fu">names</span>(gglist) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;C&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb87-82"><a href="add-custom-annotation.html#cb87-82" tabindex="-1"></a></span>
-<span id="cb87-83"><a href="add-custom-annotation.html#cb87-83" tabindex="-1"></a><span class="co"># insert bar plot</span></span>
-<span id="cb87-84"><a href="add-custom-annotation.html#cb87-84" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc_ggplot_gokegg.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">20</span>,<span class="at">width =</span> <span class="dv">22</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb87-85"><a href="add-custom-annotation.html#cb87-85" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
-<span id="cb87-86"><a href="add-custom-annotation.html#cb87-86" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb87-87"><a href="add-custom-annotation.html#cb87-87" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb87-88"><a href="add-custom-annotation.html#cb87-88" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb87-89"><a href="add-custom-annotation.html#cb87-89" tabindex="-1"></a>           <span class="at">markGenes =</span> pbmc.markers<span class="sc">$</span>gene,</span>
-<span id="cb87-90"><a href="add-custom-annotation.html#cb87-90" tabindex="-1"></a>           <span class="at">cluster.order =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
-<span id="cb87-91"><a href="add-custom-annotation.html#cb87-91" tabindex="-1"></a>           <span class="at">ggplot.panel.arg =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="dv">32</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
-<span id="cb87-92"><a href="add-custom-annotation.html#cb87-92" tabindex="-1"></a>           <span class="at">gglist =</span> gglist)</span>
-<span id="cb87-93"><a href="add-custom-annotation.html#cb87-93" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<span id="cb87-60"><a href="add-custom-annotation.html#cb87-60" tabindex="-1"></a>  <span class="co"># plot</span></span>
+<span id="cb87-61"><a href="add-custom-annotation.html#cb87-61" tabindex="-1"></a>  pk <span class="ot">&lt;-</span></span>
+<span id="cb87-62"><a href="add-custom-annotation.html#cb87-62" tabindex="-1"></a>    <span class="fu">ggplot</span>(tmp.kg) <span class="sc">+</span></span>
+<span id="cb87-63"><a href="add-custom-annotation.html#cb87-63" tabindex="-1"></a>    <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>,<span class="at">xend =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">yend =</span> Description),</span>
+<span id="cb87-64"><a href="add-custom-annotation.html#cb87-64" tabindex="-1"></a>                 <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>,<span class="at">linewidth =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb87-65"><a href="add-custom-annotation.html#cb87-65" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue),<span class="at">y =</span> Description,<span class="at">color =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue)),<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb87-66"><a href="add-custom-annotation.html#cb87-66" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb87-67"><a href="add-custom-annotation.html#cb87-67" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb87-68"><a href="add-custom-annotation.html#cb87-68" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="cf">function</span>(x) stringr<span class="sc">::</span><span class="fu">str_wrap</span>(x, <span class="at">width =</span> <span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb87-69"><a href="add-custom-annotation.html#cb87-69" tabindex="-1"></a>    colorspace<span class="sc">::</span><span class="fu">scale_color_binned_sequential</span>(<span class="at">palette =</span> palette[x]) <span class="sc">+</span></span>
+<span id="cb87-70"><a href="add-custom-annotation.html#cb87-70" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;-log10(pvalue)&quot;</span>)</span>
+<span id="cb87-71"><a href="add-custom-annotation.html#cb87-71" tabindex="-1"></a>  </span>
+<span id="cb87-72"><a href="add-custom-annotation.html#cb87-72" tabindex="-1"></a>  <span class="co"># combine</span></span>
+<span id="cb87-73"><a href="add-custom-annotation.html#cb87-73" tabindex="-1"></a>  cb <span class="ot">&lt;-</span> cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(<span class="at">plotlist =</span> <span class="fu">list</span>(p,pk))</span>
+<span id="cb87-74"><a href="add-custom-annotation.html#cb87-74" tabindex="-1"></a>  </span>
+<span id="cb87-75"><a href="add-custom-annotation.html#cb87-75" tabindex="-1"></a>  <span class="fu">return</span>(cb)</span>
+<span id="cb87-76"><a href="add-custom-annotation.html#cb87-76" tabindex="-1"></a>}) <span class="ot">-&gt;</span> gglist</span>
+<span id="cb87-77"><a href="add-custom-annotation.html#cb87-77" tabindex="-1"></a></span>
+<span id="cb87-78"><a href="add-custom-annotation.html#cb87-78" tabindex="-1"></a><span class="co"># assign names</span></span>
+<span id="cb87-79"><a href="add-custom-annotation.html#cb87-79" tabindex="-1"></a><span class="fu">names</span>(gglist) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;C&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb87-80"><a href="add-custom-annotation.html#cb87-80" tabindex="-1"></a></span>
+<span id="cb87-81"><a href="add-custom-annotation.html#cb87-81" tabindex="-1"></a><span class="co"># insert bar plot</span></span>
+<span id="cb87-82"><a href="add-custom-annotation.html#cb87-82" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;sc_ggplot_gokegg.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">20</span>,<span class="at">width =</span> <span class="dv">22</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb87-83"><a href="add-custom-annotation.html#cb87-83" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> st.data,</span>
+<span id="cb87-84"><a href="add-custom-annotation.html#cb87-84" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb87-85"><a href="add-custom-annotation.html#cb87-85" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb87-86"><a href="add-custom-annotation.html#cb87-86" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb87-87"><a href="add-custom-annotation.html#cb87-87" tabindex="-1"></a>           <span class="at">markGenes =</span> pbmc.markers<span class="sc">$</span>gene,</span>
+<span id="cb87-88"><a href="add-custom-annotation.html#cb87-88" tabindex="-1"></a>           <span class="at">clusterOrder =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb87-89"><a href="add-custom-annotation.html#cb87-89" tabindex="-1"></a>           <span class="at">ggplotPanelArg =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="fl">0.5</span>,<span class="dv">32</span>,<span class="st">&quot;grey90&quot;</span>,<span class="cn">NA</span>),</span>
+<span id="cb87-90"><a href="add-custom-annotation.html#cb87-90" tabindex="-1"></a>           <span class="at">gglist =</span> gglist)</span>
+<span id="cb87-91"><a href="add-custom-annotation.html#cb87-91" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/50.png" width="80%">
 </p>
@@ -472,42 +470,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-add_custom_annotation.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-add_custom_annotation.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

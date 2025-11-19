@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Parse preudotime data | ClusterGVis Reference Book</title>
   <meta name="description" content="This is a detailed documentation of ClusterGVis package." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Parse preudotime data | ClusterGVis Reference Book" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2025-05-15" />
+<meta name="date" content="2025-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -268,7 +269,7 @@ the trajectory data.</p>
 <span id="cb70-2"><a href="parse-preudotime-data.html#cb70-2" tabindex="-1"></a></span>
 <span id="cb70-3"><a href="parse-preudotime-data.html#cb70-3" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&quot;one-branch.pdf&quot;</span>,<span class="at">height =</span> <span class="dv">6</span>,<span class="at">width =</span> <span class="dv">7</span>)</span>
 <span id="cb70-4"><a href="parse-preudotime-data.html#cb70-4" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,</span>
-<span id="cb70-5"><a href="parse-preudotime-data.html#cb70-5" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb70-5"><a href="parse-preudotime-data.html#cb70-5" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb70-6"><a href="parse-preudotime-data.html#cb70-6" tabindex="-1"></a>           <span class="at">markGenes =</span> gene)</span>
 <span id="cb70-7"><a href="parse-preudotime-data.html#cb70-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -321,14 +322,14 @@ the trajectory data.</p>
 <span id="cb72-26"><a href="parse-preudotime-data.html#cb72-26" tabindex="-1"></a><span class="co"># $ geneType  : chr &quot;branched&quot;</span></span>
 <span id="cb72-27"><a href="parse-preudotime-data.html#cb72-27" tabindex="-1"></a><span class="co"># $ pseudotime: chr [1:200] &quot;Cell fate 1&quot; &quot;Cell fate 1&quot; &quot;Cell fate 1&quot; &quot;Cell fate 1&quot; ...</span></span></code></pre></div>
 <p>Heatmap:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="parse-preudotime-data.html#cb73-1" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,<span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="parse-preudotime-data.html#cb73-1" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,<span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>)</span></code></pre></div>
 <p align="center">
 <img src="local_images/39.png" width="80%">
 </p>
 <p>Line annotation:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="parse-preudotime-data.html#cb74-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&quot;two-branch.pdf&quot;</span>,<span class="at">height =</span> <span class="dv">6</span>,<span class="at">width =</span> <span class="dv">7</span>)</span>
 <span id="cb74-2"><a href="parse-preudotime-data.html#cb74-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,</span>
-<span id="cb74-3"><a href="parse-preudotime-data.html#cb74-3" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>)</span>
+<span id="cb74-3"><a href="parse-preudotime-data.html#cb74-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>)</span>
 <span id="cb74-4"><a href="parse-preudotime-data.html#cb74-4" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/40.png" width="80%">
@@ -376,7 +377,7 @@ the trajectory data.</p>
 <span id="cb76-25"><a href="parse-preudotime-data.html#cb76-25" tabindex="-1"></a><span class="co"># $ geneType  : chr &quot;branched&quot;</span></span>
 <span id="cb76-26"><a href="parse-preudotime-data.html#cb76-26" tabindex="-1"></a><span class="co"># $ pseudotime: Factor w/ 4 levels &quot;1&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span></span></code></pre></div>
 <p>Heatmap:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="parse-preudotime-data.html#cb77-1" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,<span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="parse-preudotime-data.html#cb77-1" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,<span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>)</span></code></pre></div>
 <p align="center">
 <img src="local_images/42.png" width="80%">
 </p>
@@ -384,8 +385,8 @@ the trajectory data.</p>
 <span id="cb78-2"><a href="parse-preudotime-data.html#cb78-2" tabindex="-1"></a></span>
 <span id="cb78-3"><a href="parse-preudotime-data.html#cb78-3" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&quot;multiple-branch.pdf&quot;</span>,<span class="at">height =</span> <span class="dv">6</span>,<span class="at">width =</span> <span class="dv">8</span>)</span>
 <span id="cb78-4"><a href="parse-preudotime-data.html#cb78-4" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,</span>
-<span id="cb78-5"><a href="parse-preudotime-data.html#cb78-5" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb78-6"><a href="parse-preudotime-data.html#cb78-6" tabindex="-1"></a>           <span class="at">ht.col.list =</span> <span class="fu">list</span>(<span class="at">col_range =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="at">length.out =</span> <span class="dv">100</span>),</span>
+<span id="cb78-5"><a href="parse-preudotime-data.html#cb78-5" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb78-6"><a href="parse-preudotime-data.html#cb78-6" tabindex="-1"></a>           <span class="at">htColList =</span> <span class="fu">list</span>(<span class="at">col_range =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="at">length.out =</span> <span class="dv">100</span>),</span>
 <span id="cb78-7"><a href="parse-preudotime-data.html#cb78-7" tabindex="-1"></a>                              <span class="at">col_color =</span> <span class="fu">colorRampPalette</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;PRGn&quot;</span>))(<span class="dv">100</span>)),</span>
 <span id="cb78-8"><a href="parse-preudotime-data.html#cb78-8" tabindex="-1"></a>           <span class="at">pseudotime_col =</span> ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">4</span>))</span>
 <span id="cb78-9"><a href="parse-preudotime-data.html#cb78-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
@@ -408,32 +409,31 @@ the trajectory data.</p>
 <span id="cb79-13"><a href="parse-preudotime-data.html#cb79-13" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
 <span id="cb79-14"><a href="parse-preudotime-data.html#cb79-14" tabindex="-1"></a>                        <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
 <span id="cb79-15"><a href="parse-preudotime-data.html#cb79-15" tabindex="-1"></a>                        <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
-<span id="cb79-16"><a href="parse-preudotime-data.html#cb79-16" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>,</span>
-<span id="cb79-17"><a href="parse-preudotime-data.html#cb79-17" tabindex="-1"></a>                        <span class="at">seed =</span> <span class="dv">5201314</span>)</span>
-<span id="cb79-18"><a href="parse-preudotime-data.html#cb79-18" tabindex="-1"></a></span>
-<span id="cb79-19"><a href="parse-preudotime-data.html#cb79-19" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb79-20"><a href="parse-preudotime-data.html#cb79-20" tabindex="-1"></a><span class="fu">head</span>(enrich[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])</span>
-<span id="cb79-21"><a href="parse-preudotime-data.html#cb79-21" tabindex="-1"></a></span>
-<span id="cb79-22"><a href="parse-preudotime-data.html#cb79-22" tabindex="-1"></a><span class="co">#            group                      Description      pvalue ratio</span></span>
-<span id="cb79-23"><a href="parse-preudotime-data.html#cb79-23" tabindex="-1"></a><span class="co"># GO:1904238    C1    pericyte cell differentiation 0.002325826    25</span></span>
-<span id="cb79-24"><a href="parse-preudotime-data.html#cb79-24" tabindex="-1"></a><span class="co"># GO:0034982    C1 mitochondrial protein processing 0.002748268    25</span></span>
-<span id="cb79-25"><a href="parse-preudotime-data.html#cb79-25" tabindex="-1"></a><span class="co"># GO:0072537    C1            fibroblast activation 0.002748268    25</span></span>
-<span id="cb79-26"><a href="parse-preudotime-data.html#cb79-26" tabindex="-1"></a></span>
-<span id="cb79-27"><a href="parse-preudotime-data.html#cb79-27" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">unique</span>(df<span class="sc">$</span>wide.res<span class="sc">$</span>gene),<span class="dv">25</span>,<span class="at">replace =</span> F)</span>
-<span id="cb79-28"><a href="parse-preudotime-data.html#cb79-28" tabindex="-1"></a></span>
-<span id="cb79-29"><a href="parse-preudotime-data.html#cb79-29" tabindex="-1"></a><span class="co"># PLOT</span></span>
-<span id="cb79-30"><a href="parse-preudotime-data.html#cb79-30" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;branch-enrich.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">9</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
-<span id="cb79-31"><a href="parse-preudotime-data.html#cb79-31" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,</span>
-<span id="cb79-32"><a href="parse-preudotime-data.html#cb79-32" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb79-33"><a href="parse-preudotime-data.html#cb79-33" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb79-34"><a href="parse-preudotime-data.html#cb79-34" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
-<span id="cb79-35"><a href="parse-preudotime-data.html#cb79-35" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
-<span id="cb79-36"><a href="parse-preudotime-data.html#cb79-36" tabindex="-1"></a>           <span class="at">markGenes.side =</span> <span class="st">&quot;left&quot;</span>,</span>
-<span id="cb79-37"><a href="parse-preudotime-data.html#cb79-37" tabindex="-1"></a>           <span class="at">annoTerm.data =</span> enrich,</span>
-<span id="cb79-38"><a href="parse-preudotime-data.html#cb79-38" tabindex="-1"></a>           <span class="at">go.col =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">4</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb79-39"><a href="parse-preudotime-data.html#cb79-39" tabindex="-1"></a>           <span class="at">add.bar =</span> T,</span>
-<span id="cb79-40"><a href="parse-preudotime-data.html#cb79-40" tabindex="-1"></a>           <span class="at">line.side =</span> <span class="st">&quot;left&quot;</span>)</span>
-<span id="cb79-41"><a href="parse-preudotime-data.html#cb79-41" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<span id="cb79-16"><a href="parse-preudotime-data.html#cb79-16" tabindex="-1"></a>                        <span class="at">topn =</span> <span class="dv">5</span>)</span>
+<span id="cb79-17"><a href="parse-preudotime-data.html#cb79-17" tabindex="-1"></a></span>
+<span id="cb79-18"><a href="parse-preudotime-data.html#cb79-18" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb79-19"><a href="parse-preudotime-data.html#cb79-19" tabindex="-1"></a><span class="fu">head</span>(enrich[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,])</span>
+<span id="cb79-20"><a href="parse-preudotime-data.html#cb79-20" tabindex="-1"></a></span>
+<span id="cb79-21"><a href="parse-preudotime-data.html#cb79-21" tabindex="-1"></a><span class="co">#            group                      Description      pvalue ratio</span></span>
+<span id="cb79-22"><a href="parse-preudotime-data.html#cb79-22" tabindex="-1"></a><span class="co"># GO:1904238    C1    pericyte cell differentiation 0.002325826    25</span></span>
+<span id="cb79-23"><a href="parse-preudotime-data.html#cb79-23" tabindex="-1"></a><span class="co"># GO:0034982    C1 mitochondrial protein processing 0.002748268    25</span></span>
+<span id="cb79-24"><a href="parse-preudotime-data.html#cb79-24" tabindex="-1"></a><span class="co"># GO:0072537    C1            fibroblast activation 0.002748268    25</span></span>
+<span id="cb79-25"><a href="parse-preudotime-data.html#cb79-25" tabindex="-1"></a></span>
+<span id="cb79-26"><a href="parse-preudotime-data.html#cb79-26" tabindex="-1"></a>markGenes <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">unique</span>(df<span class="sc">$</span>wide.res<span class="sc">$</span>gene),<span class="dv">25</span>,<span class="at">replace =</span> F)</span>
+<span id="cb79-27"><a href="parse-preudotime-data.html#cb79-27" tabindex="-1"></a></span>
+<span id="cb79-28"><a href="parse-preudotime-data.html#cb79-28" tabindex="-1"></a><span class="co"># PLOT</span></span>
+<span id="cb79-29"><a href="parse-preudotime-data.html#cb79-29" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;branch-enrich.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">9</span>,<span class="at">width =</span> <span class="dv">16</span>,<span class="at">onefile =</span> F)</span>
+<span id="cb79-30"><a href="parse-preudotime-data.html#cb79-30" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> df,</span>
+<span id="cb79-31"><a href="parse-preudotime-data.html#cb79-31" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb79-32"><a href="parse-preudotime-data.html#cb79-32" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
+<span id="cb79-33"><a href="parse-preudotime-data.html#cb79-33" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
+<span id="cb79-34"><a href="parse-preudotime-data.html#cb79-34" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
+<span id="cb79-35"><a href="parse-preudotime-data.html#cb79-35" tabindex="-1"></a>           <span class="at">markGenesSide =</span> <span class="st">&quot;left&quot;</span>,</span>
+<span id="cb79-36"><a href="parse-preudotime-data.html#cb79-36" tabindex="-1"></a>           <span class="at">annoTermData =</span> enrich,</span>
+<span id="cb79-37"><a href="parse-preudotime-data.html#cb79-37" tabindex="-1"></a>           <span class="at">goCol =</span> <span class="fu">rep</span>(jjAnno<span class="sc">::</span><span class="fu">useMyCol</span>(<span class="st">&quot;calm&quot;</span>,<span class="at">n =</span> <span class="dv">4</span>),<span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb79-38"><a href="parse-preudotime-data.html#cb79-38" tabindex="-1"></a>           <span class="at">addBar =</span> T,</span>
+<span id="cb79-39"><a href="parse-preudotime-data.html#cb79-39" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>)</span>
+<span id="cb79-40"><a href="parse-preudotime-data.html#cb79-40" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <img src="local_images/44.png" width="80%">
 </p>
@@ -474,28 +474,30 @@ the trajectory data.</p>
 <span id="cb80-29"><a href="parse-preudotime-data.html#cb80-29" tabindex="-1"></a>modulated_genes <span class="ot">&lt;-</span> <span class="fu">graph_test</span>(cds, <span class="at">neighbor_graph =</span> <span class="st">&quot;principal_graph&quot;</span>, <span class="at">cores =</span> <span class="dv">4</span>)</span>
 <span id="cb80-30"><a href="parse-preudotime-data.html#cb80-30" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">subset</span>(modulated_genes, q_value <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> morans_I <span class="sc">&gt;</span> <span class="fl">0.25</span>))</span></code></pre></div>
 <p>Extact expression matrix:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="parse-preudotime-data.html#cb81-1" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">pre_pseudotime_matrix</span>(<span class="at">cds_obj =</span> cds,</span>
-<span id="cb81-2"><a href="parse-preudotime-data.html#cb81-2" tabindex="-1"></a>                             <span class="at">gene_list =</span> genes)</span>
-<span id="cb81-3"><a href="parse-preudotime-data.html#cb81-3" tabindex="-1"></a></span>
-<span id="cb81-4"><a href="parse-preudotime-data.html#cb81-4" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb81-5"><a href="parse-preudotime-data.html#cb81-5" tabindex="-1"></a><span class="fu">head</span>(mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
-<span id="cb81-6"><a href="parse-preudotime-data.html#cb81-6" tabindex="-1"></a><span class="co">#                         1          2          3          4          5</span></span>
-<span id="cb81-7"><a href="parse-preudotime-data.html#cb81-7" tabindex="-1"></a><span class="co"># WBGene00013882 -0.7265393 -0.7263892 -0.7262392 -0.7260891 -0.7259390</span></span>
-<span id="cb81-8"><a href="parse-preudotime-data.html#cb81-8" tabindex="-1"></a><span class="co"># WBGene00002085  0.8059370  0.8076543  0.8093716  0.8110889  0.8128062</span></span>
-<span id="cb81-9"><a href="parse-preudotime-data.html#cb81-9" tabindex="-1"></a><span class="co"># WBGene00016114  2.8256183  2.8198074  2.8139964  2.8081855  2.8023746</span></span>
-<span id="cb81-10"><a href="parse-preudotime-data.html#cb81-10" tabindex="-1"></a><span class="co"># WBGene00012753  2.7917688  2.7861478  2.7805268  2.7749058  2.7692848</span></span>
-<span id="cb81-11"><a href="parse-preudotime-data.html#cb81-11" tabindex="-1"></a><span class="co"># WBGene00015354 -1.1233255 -1.1229564 -1.1225872 -1.1222180 -1.1218489</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="parse-preudotime-data.html#cb81-1" tabindex="-1"></a>pre_pseudotime_matrix <span class="ot">&lt;-</span> <span class="fu">getFromNamespace</span>(<span class="st">&quot;pre_pseudotime_matrix&quot;</span>,<span class="st">&quot;ClusterGVis&quot;</span>)</span>
+<span id="cb81-2"><a href="parse-preudotime-data.html#cb81-2" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="parse-preudotime-data.html#cb81-3" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">pre_pseudotime_matrix</span>(<span class="at">cds_obj =</span> cds,</span>
+<span id="cb81-4"><a href="parse-preudotime-data.html#cb81-4" tabindex="-1"></a>                             <span class="at">gene_list =</span> genes)</span>
+<span id="cb81-5"><a href="parse-preudotime-data.html#cb81-5" tabindex="-1"></a></span>
+<span id="cb81-6"><a href="parse-preudotime-data.html#cb81-6" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb81-7"><a href="parse-preudotime-data.html#cb81-7" tabindex="-1"></a><span class="fu">head</span>(mat[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb81-8"><a href="parse-preudotime-data.html#cb81-8" tabindex="-1"></a><span class="co">#                         1          2          3          4          5</span></span>
+<span id="cb81-9"><a href="parse-preudotime-data.html#cb81-9" tabindex="-1"></a><span class="co"># WBGene00013882 -0.7265393 -0.7263892 -0.7262392 -0.7260891 -0.7259390</span></span>
+<span id="cb81-10"><a href="parse-preudotime-data.html#cb81-10" tabindex="-1"></a><span class="co"># WBGene00002085  0.8059370  0.8076543  0.8093716  0.8110889  0.8128062</span></span>
+<span id="cb81-11"><a href="parse-preudotime-data.html#cb81-11" tabindex="-1"></a><span class="co"># WBGene00016114  2.8256183  2.8198074  2.8139964  2.8081855  2.8023746</span></span>
+<span id="cb81-12"><a href="parse-preudotime-data.html#cb81-12" tabindex="-1"></a><span class="co"># WBGene00012753  2.7917688  2.7861478  2.7805268  2.7749058  2.7692848</span></span>
+<span id="cb81-13"><a href="parse-preudotime-data.html#cb81-13" tabindex="-1"></a><span class="co"># WBGene00015354 -1.1233255 -1.1229564 -1.1225872 -1.1222180 -1.1218489</span></span></code></pre></div>
 <p>Run <strong>ClusterGvis</strong> workflow:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="parse-preudotime-data.html#cb82-1" tabindex="-1"></a><span class="co"># kmeans</span></span>
 <span id="cb82-2"><a href="parse-preudotime-data.html#cb82-2" tabindex="-1"></a>ck <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> mat,</span>
-<span id="cb82-3"><a href="parse-preudotime-data.html#cb82-3" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;kmeans&quot;</span>,</span>
-<span id="cb82-4"><a href="parse-preudotime-data.html#cb82-4" tabindex="-1"></a>                  <span class="at">cluster.num =</span> <span class="dv">5</span>)</span>
+<span id="cb82-3"><a href="parse-preudotime-data.html#cb82-3" tabindex="-1"></a>                  <span class="at">clusterMethod =</span> <span class="st">&quot;kmeans&quot;</span>,</span>
+<span id="cb82-4"><a href="parse-preudotime-data.html#cb82-4" tabindex="-1"></a>                  <span class="at">clusterNum =</span> <span class="dv">5</span>)</span>
 <span id="cb82-5"><a href="parse-preudotime-data.html#cb82-5" tabindex="-1"></a></span>
 <span id="cb82-6"><a href="parse-preudotime-data.html#cb82-6" tabindex="-1"></a><span class="co"># add line annotation</span></span>
 <span id="cb82-7"><a href="parse-preudotime-data.html#cb82-7" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;monocle3.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">8</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb82-8"><a href="parse-preudotime-data.html#cb82-8" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ck,</span>
-<span id="cb82-9"><a href="parse-preudotime-data.html#cb82-9" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb82-10"><a href="parse-preudotime-data.html#cb82-10" tabindex="-1"></a>           <span class="at">add.sampleanno =</span> F,</span>
+<span id="cb82-9"><a href="parse-preudotime-data.html#cb82-9" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb82-10"><a href="parse-preudotime-data.html#cb82-10" tabindex="-1"></a>           <span class="at">addSampleAnno =</span> F,</span>
 <span id="cb82-11"><a href="parse-preudotime-data.html#cb82-11" tabindex="-1"></a>           <span class="at">markGenes =</span> <span class="fu">sample</span>(<span class="fu">rownames</span>(mat),<span class="dv">30</span>,<span class="at">replace =</span> F))</span>
 <span id="cb82-12"><a href="parse-preudotime-data.html#cb82-12" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -524,42 +526,42 @@ the trajectory data.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-preudotime_parse.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-preudotime_parse.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

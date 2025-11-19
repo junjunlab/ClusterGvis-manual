@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Parse WGCNA output | ClusterGVis Reference Book</title>
   <meta name="description" content="This is a detailed documentation of ClusterGVis package." />
-  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Parse WGCNA output | ClusterGVis Reference Book" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Jun Zhang" />
 
 
-<meta name="date" content="2025-05-15" />
+<meta name="date" content="2025-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -288,7 +289,7 @@ biological significance for each cluster.</p>
 <span id="cb49-2"><a href="parse-wgcna-output.html#cb49-2" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="parse-wgcna-output.html#cb49-3" tabindex="-1"></a><span class="co"># get data</span></span>
 <span id="cb49-4"><a href="parse-wgcna-output.html#cb49-4" tabindex="-1"></a>cw <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> expt,</span>
-<span id="cb49-5"><a href="parse-wgcna-output.html#cb49-5" tabindex="-1"></a>                  <span class="at">cluster.method =</span> <span class="st">&quot;wgcna&quot;</span>,</span>
+<span id="cb49-5"><a href="parse-wgcna-output.html#cb49-5" tabindex="-1"></a>                  <span class="at">clusterMethod =</span> <span class="st">&quot;wgcna&quot;</span>,</span>
 <span id="cb49-6"><a href="parse-wgcna-output.html#cb49-6" tabindex="-1"></a>                  <span class="at">object =</span> net)</span>
 <span id="cb49-7"><a href="parse-wgcna-output.html#cb49-7" tabindex="-1"></a></span>
 <span id="cb49-8"><a href="parse-wgcna-output.html#cb49-8" tabindex="-1"></a><span class="fu">str</span>(cw)</span>
@@ -317,7 +318,7 @@ biological significance for each cluster.</p>
 <span id="cb50-3"><a href="parse-wgcna-output.html#cb50-3" tabindex="-1"></a></span>
 <span id="cb50-4"><a href="parse-wgcna-output.html#cb50-4" tabindex="-1"></a><span class="co"># plot</span></span>
 <span id="cb50-5"><a href="parse-wgcna-output.html#cb50-5" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cw,</span>
-<span id="cb50-6"><a href="parse-wgcna-output.html#cb50-6" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;line&quot;</span>,</span>
+<span id="cb50-6"><a href="parse-wgcna-output.html#cb50-6" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;line&quot;</span>,</span>
 <span id="cb50-7"><a href="parse-wgcna-output.html#cb50-7" tabindex="-1"></a>           <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p align="center">
 <img src="local_images/23.png" width="60%">
@@ -326,7 +327,7 @@ biological significance for each cluster.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="parse-wgcna-output.html#cb51-1" tabindex="-1"></a><span class="co"># heatmap</span></span>
 <span id="cb51-2"><a href="parse-wgcna-output.html#cb51-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;netht.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">6</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb51-3"><a href="parse-wgcna-output.html#cb51-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cw,</span>
-<span id="cb51-4"><a href="parse-wgcna-output.html#cb51-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
+<span id="cb51-4"><a href="parse-wgcna-output.html#cb51-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
 <span id="cb51-5"><a href="parse-wgcna-output.html#cb51-5" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes)</span>
 <span id="cb51-6"><a href="parse-wgcna-output.html#cb51-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -336,7 +337,7 @@ biological significance for each cluster.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="parse-wgcna-output.html#cb52-1" tabindex="-1"></a><span class="co"># heatmap + line</span></span>
 <span id="cb52-2"><a href="parse-wgcna-output.html#cb52-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;nethtl.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">8</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb52-3"><a href="parse-wgcna-output.html#cb52-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cw,</span>
-<span id="cb52-4"><a href="parse-wgcna-output.html#cb52-4" tabindex="-1"></a>           <span class="at">plot.type =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb52-4"><a href="parse-wgcna-output.html#cb52-4" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb52-5"><a href="parse-wgcna-output.html#cb52-5" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes)</span>
 <span id="cb52-6"><a href="parse-wgcna-output.html#cb52-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -364,42 +365,42 @@ biological significance for each cluster.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-WGCNA_parse.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-WGCNA_parse.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
