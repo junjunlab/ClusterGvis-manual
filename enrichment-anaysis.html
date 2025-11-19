@@ -203,13 +203,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="enrichment-anaysis" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Enrichment anaysis<a href="enrichment-anaysis.html#enrichment-anaysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>To explore important biological significance or related biological pathway for each cluster,
-you can supply your own enrichment results with data frame
-format(<strong>two columns: cluster number and term name</strong>) or use <strong>enrichCluster</strong> to do
-batch enrichment analysis for each cluster.</p>
+<p>To explore important biological significance or related biological
+pathway for each cluster, you can supply your own enrichment results
+with data frame format(<strong>two columns: cluster number and term name</strong>) or
+use <strong>enrichCluster</strong> to do batch enrichment analysis for each cluster.</p>
 <div id="enrichment-for-non-model-organisms" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Enrichment for non-model organisms<a href="enrichment-anaysis.html#enrichment-for-non-model-organisms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Adjust <strong>id.trans/toType/readable</strong> parameters if you have created your own <strong>orgdb</strong> object:</p>
+<p>Adjust <strong>id.trans/toType/readable</strong> parameters if you have created your
+own <strong>orgdb</strong> object:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="enrichment-anaysis.html#cb29-1" tabindex="-1"></a>enrich <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
 <span id="cb29-2"><a href="enrichment-anaysis.html#cb29-2" tabindex="-1"></a>                       <span class="at">OrgDb =</span> org.myorg.eg.db,</span>
 <span id="cb29-3"><a href="enrichment-anaysis.html#cb29-3" tabindex="-1"></a>                       <span class="at">type =</span> <span class="st">&quot;BP&quot;</span>,</span>
@@ -218,7 +219,8 @@ batch enrichment analysis for each cluster.</p>
 <span id="cb29-6"><a href="enrichment-anaysis.html#cb29-6" tabindex="-1"></a>                       <span class="at">readable =</span> F,</span>
 <span id="cb29-7"><a href="enrichment-anaysis.html#cb29-7" tabindex="-1"></a>                       <span class="at">pvalueCutoff =</span> <span class="fl">0.5</span>,</span>
 <span id="cb29-8"><a href="enrichment-anaysis.html#cb29-8" tabindex="-1"></a>                       <span class="at">topn =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p>You can set <strong>TERM2GENE</strong> and <strong>TERM2NAME</strong> if you have data frame with <strong>pathway-gene</strong> and <strong>pathway-pathwat name</strong> data:</p>
+<p>You can set <strong>TERM2GENE</strong> and <strong>TERM2NAME</strong> if you have data frame with
+<strong>pathway-gene</strong> and <strong>pathway-pathwat name</strong> data:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="enrichment-anaysis.html#cb30-1" tabindex="-1"></a>enrich <span class="ot">&lt;-</span> <span class="fu">enrichCluster</span>(<span class="at">object =</span> cm,</span>
 <span id="cb30-2"><a href="enrichment-anaysis.html#cb30-2" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;ownSet&quot;</span>,</span>
 <span id="cb30-3"><a href="enrichment-anaysis.html#cb30-3" tabindex="-1"></a>                        <span class="at">idTrans =</span> F,</span>
@@ -249,7 +251,7 @@ batch enrichment analysis for each cluster.</p>
 <span id="cb32-6"><a href="enrichment-anaysis.html#cb32-6" tabindex="-1"></a>           <span class="at">annoTermData =</span> termanno)</span>
 <span id="cb32-7"><a href="enrichment-anaysis.html#cb32-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/13.png" width="80%">
+<p><img src="local_images/13.png" width="80%"/></p>
 </p>
 <p>Put the line anntation to the left:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="enrichment-anaysis.html#cb33-1" tabindex="-1"></a><span class="co"># change the line annotation side</span></span>
@@ -261,7 +263,7 @@ batch enrichment analysis for each cluster.</p>
 <span id="cb33-7"><a href="enrichment-anaysis.html#cb33-7" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb33-8"><a href="enrichment-anaysis.html#cb33-8" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/14.png" width="80%">
+<p><img src="local_images/14.png" width="80%"/></p>
 </p>
 <p>Remove the dend tree:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="enrichment-anaysis.html#cb34-1" tabindex="-1"></a><span class="co"># remove tree</span></span>
@@ -274,11 +276,11 @@ batch enrichment analysis for each cluster.</p>
 <span id="cb34-8"><a href="enrichment-anaysis.html#cb34-8" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F)</span>
 <span id="cb34-9"><a href="enrichment-anaysis.html#cb34-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/15.png" width="80%">
+<p><img src="local_images/15.png" width="80%"/></p>
 </p>
 <hr />
-<p>You can supply enrichment data with pvalue column to show in plot, the pathway label size
-reflects the relative pvalue:</p>
+<p>You can supply enrichment data with pvalue column to show in plot, the
+pathway label size reflects the relative pvalue:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="enrichment-anaysis.html#cb35-1" tabindex="-1"></a><span class="co"># load GO term data</span></span>
 <span id="cb35-2"><a href="enrichment-anaysis.html#cb35-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;termanno2&quot;</span>)</span>
 <span id="cb35-3"><a href="enrichment-anaysis.html#cb35-3" tabindex="-1"></a></span>
@@ -303,13 +305,14 @@ reflects the relative pvalue:</p>
 <span id="cb35-22"><a href="enrichment-anaysis.html#cb35-22" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>)</span>
 <span id="cb35-23"><a href="enrichment-anaysis.html#cb35-23" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/16.png" width="80%">
+<p><img src="local_images/16.png" width="80%"/></p>
 </p>
 </div>
 <div id="batch-enrichment-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Batch enrichment analysis<a href="enrichment-anaysis.html#batch-enrichment-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>enrichCluster</strong> can do batch enrichment analysis for each cluster using <strong>clusterpfofiler</strong>
-package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>).</p>
+<p><strong>enrichCluster</strong> can do batch enrichment analysis for each cluster
+using <strong>clusterpfofiler</strong> package. It will extract top 5 pathway
+terms(<strong>ordered by pvalue</strong>).</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="enrichment-anaysis.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(org.Mm.eg.db)</span>
 <span id="cb36-2"><a href="enrichment-anaysis.html#cb36-2" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="enrichment-anaysis.html#cb36-3" tabindex="-1"></a><span class="co"># enrich for clusters</span></span>
@@ -341,7 +344,7 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb36-29"><a href="enrichment-anaysis.html#cb36-29" tabindex="-1"></a>           <span class="at">goSize =</span> <span class="st">&quot;pval&quot;</span>)</span>
 <span id="cb36-30"><a href="enrichment-anaysis.html#cb36-30" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/17.png" width="80%">
+<p><img src="local_images/17.png" width="80%"/></p>
 </p>
 </div>
 <div id="add-annotation-for-specific-groups" class="section level2 hasAnchor" number="3.4">
@@ -363,12 +366,13 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb37-14"><a href="enrichment-anaysis.html#cb37-14" tabindex="-1"></a>           <span class="at">subgroupAnno =</span> <span class="fu">c</span>(<span class="st">&quot;C4&quot;</span>,<span class="st">&quot;C6&quot;</span>,<span class="st">&quot;C8&quot;</span>))</span>
 <span id="cb37-15"><a href="enrichment-anaysis.html#cb37-15" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/18.png" width="80%">
+<p><img src="local_images/18.png" width="80%"/></p>
 </p>
 </div>
 <div id="add-barplot-for-enrichment-annotation" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Add barplot for enrichment annotation<a href="enrichment-anaysis.html#add-barplot-for-enrichment-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The barplot height will use the enrichment data frame last column to plot:</p>
+<p>The barplot height will use the enrichment data frame last column to
+plot:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="enrichment-anaysis.html#cb38-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;bar.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb38-2"><a href="enrichment-anaysis.html#cb38-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
 <span id="cb38-3"><a href="enrichment-anaysis.html#cb38-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
@@ -384,9 +388,10 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb38-13"><a href="enrichment-anaysis.html#cb38-13" tabindex="-1"></a>           <span class="at">addBar =</span> T)</span>
 <span id="cb38-14"><a href="enrichment-anaysis.html#cb38-14" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/19.png" width="80%">
+<p><img src="local_images/19.png" width="80%"/></p>
 </p>
-<p>Match the enrichment annotation right side and barplot annotation left side:</p>
+<p>Match the enrichment annotation right side and barplot annotation left
+side:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="enrichment-anaysis.html#cb39-1" tabindex="-1"></a><span class="co"># change side</span></span>
 <span id="cb39-2"><a href="enrichment-anaysis.html#cb39-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;barc.pdf&#39;</span>,<span class="at">height =</span> <span class="dv">10</span>,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">onefile =</span> F)</span>
 <span id="cb39-3"><a href="enrichment-anaysis.html#cb39-3" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> cm,</span>
@@ -404,7 +409,7 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb39-15"><a href="enrichment-anaysis.html#cb39-15" tabindex="-1"></a>           <span class="at">annoTermMside =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb39-16"><a href="enrichment-anaysis.html#cb39-16" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/20.png" width="80%">
+<p><img src="local_images/20.png" width="80%"/></p>
 </p>
 <p>Adjust cluster label position in barplot:</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="enrichment-anaysis.html#cb40-1" tabindex="-1"></a><span class="co"># change barplot cluster label position</span></span>
@@ -424,7 +429,7 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb40-15"><a href="enrichment-anaysis.html#cb40-15" tabindex="-1"></a>           <span class="at">textbarPos =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>))</span>
 <span id="cb40-16"><a href="enrichment-anaysis.html#cb40-16" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/21.png" width="80%">
+<p><img src="local_images/21.png" width="80%"/></p>
 </p>
 <p>Add annotation for specific cluster:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="enrichment-anaysis.html#cb41-1" tabindex="-1"></a><span class="co"># sub-clusters with barplot</span></span>
@@ -445,12 +450,13 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb41-16"><a href="enrichment-anaysis.html#cb41-16" tabindex="-1"></a>           <span class="at">subgroupAnno =</span> <span class="fu">c</span>(<span class="st">&quot;C4&quot;</span>,<span class="st">&quot;C6&quot;</span>,<span class="st">&quot;C8&quot;</span>))</span>
 <span id="cb41-17"><a href="enrichment-anaysis.html#cb41-17" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/22.png" width="80%">
+<p><img src="local_images/22.png" width="80%"/></p>
 </p>
 </div>
 <div id="add-kegg-annotation" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Add KEGG annotation<a href="enrichment-anaysis.html#add-kegg-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes you may want to perform both GO and KEGG enrichment results, here is an example:</p>
+<p>Sometimes you may want to perform both GO and KEGG enrichment results,
+here is an example:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="enrichment-anaysis.html#cb42-1" tabindex="-1"></a><span class="co"># using mfuzz for clustering</span></span>
 <span id="cb42-2"><a href="enrichment-anaysis.html#cb42-2" tabindex="-1"></a><span class="co"># mfuzz</span></span>
 <span id="cb42-3"><a href="enrichment-anaysis.html#cb42-3" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">clusterData</span>(<span class="at">obj =</span> exps,</span>
@@ -507,7 +513,7 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb42-54"><a href="enrichment-anaysis.html#cb42-54" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb42-55"><a href="enrichment-anaysis.html#cb42-55" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/22.1.png" width="80%">
+<p><img src="local_images/22.1.png" width="80%"/></p>
 </p>
 <p>Format the annotation panel:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="enrichment-anaysis.html#cb43-1" tabindex="-1"></a><span class="co"># change textbox style</span></span>
@@ -529,7 +535,7 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb43-17"><a href="enrichment-anaysis.html#cb43-17" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb43-18"><a href="enrichment-anaysis.html#cb43-18" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/22.2.png" width="80%">
+<p><img src="local_images/22.2.png" width="80%"/></p>
 </p>
 <p>Add both barplot for GO and KEGG:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="enrichment-anaysis.html#cb44-1" tabindex="-1"></a><span class="co"># change style</span></span>
@@ -553,10 +559,10 @@ package. It will extract top 5 pathway terms(<strong>ordered by pvalue</strong>)
 <span id="cb44-19"><a href="enrichment-anaysis.html#cb44-19" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb44-20"><a href="enrichment-anaysis.html#cb44-20" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/22.3.png" width="80%">
+<p><img src="local_images/22.3.png" width="80%"/></p>
 </p>
-<p>The another solution is to combine the GO and KEGG resluts and plot in a single panel with
-different colors to distinguish them:</p>
+<p>The another solution is to combine the GO and KEGG resluts and plot in a
+single panel with different colors to distinguish them:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="enrichment-anaysis.html#cb45-1" tabindex="-1"></a><span class="co"># combine go and kegg data</span></span>
 <span id="cb45-2"><a href="enrichment-anaysis.html#cb45-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb45-3"><a href="enrichment-anaysis.html#cb45-3" tabindex="-1"></a></span>
@@ -584,7 +590,7 @@ different colors to distinguish them:</p>
 <span id="cb45-25"><a href="enrichment-anaysis.html#cb45-25" tabindex="-1"></a>           <span class="at">sampleGroup =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;sample1&quot;</span>,<span class="st">&quot;sample2&quot;</span>,<span class="st">&quot;sample3&quot;</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb45-26"><a href="enrichment-anaysis.html#cb45-26" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
-<img src="local_images/22.4.png" width="80%">
+<p><img src="local_images/22.4.png" width="80%"/></p>
 </p>
 
 </div>

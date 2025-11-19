@@ -208,8 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="parse-single-cell-data.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(SeuratData)</span>
 <span id="cb53-2"><a href="parse-single-cell-data.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
 <span id="cb53-3"><a href="parse-single-cell-data.html#cb53-3" tabindex="-1"></a></span>
-<span id="cb53-4"><a href="parse-single-cell-data.html#cb53-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pbmc3k.final&quot;</span>)</span>
-<span id="cb53-5"><a href="parse-single-cell-data.html#cb53-5" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">UpdateSeuratObject</span>(<span class="at">object =</span> pbmc3k.final)</span>
+<span id="cb53-4"><a href="parse-single-cell-data.html#cb53-4" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pbmc_subset&quot;</span>)</span>
+<span id="cb53-5"><a href="parse-single-cell-data.html#cb53-5" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">UpdateSeuratObject</span>(<span class="at">object =</span> pbmc_subset)</span>
 <span id="cb53-6"><a href="parse-single-cell-data.html#cb53-6" tabindex="-1"></a></span>
 <span id="cb53-7"><a href="parse-single-cell-data.html#cb53-7" tabindex="-1"></a><span class="co"># find markers for every cluster compared to all remaining cells</span></span>
 <span id="cb53-8"><a href="parse-single-cell-data.html#cb53-8" tabindex="-1"></a><span class="co"># report only the positive ones</span></span>

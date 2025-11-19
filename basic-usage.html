@@ -436,7 +436,7 @@ cluster results. Here we make a heatmap plot:</p>
 <span id="cb16-20"><a href="basic-usage.html#cb16-20" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
 <span id="cb16-21"><a href="basic-usage.html#cb16-21" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb16-22"><a href="basic-usage.html#cb16-22" tabindex="-1"></a>           <span class="at">htColList =</span> <span class="fu">list</span>(<span class="at">col_range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>),<span class="at">col_color =</span> <span class="fu">c</span>(<span class="st">&quot;#A555EC&quot;</span>,<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#FF597B&quot;</span>)),</span>
-<span id="cb16-23"><a href="basic-usage.html#cb16-23" tabindex="-1"></a>           <span class="at">HeatmapAnnotation =</span> HeatmapAnnotation)</span>
+<span id="cb16-23"><a href="basic-usage.html#cb16-23" tabindex="-1"></a>           <span class="at">heatmapAnnotation =</span> HeatmapAnnotation)</span>
 <span id="cb16-24"><a href="basic-usage.html#cb16-24" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <p><img src="local_images/8.4.png" width="60%"/></p>
@@ -449,7 +449,7 @@ cluster results. Here we make a heatmap plot:</p>
 <span id="cb17-5"><a href="basic-usage.html#cb17-5" tabindex="-1"></a>           <span class="at">markGenes =</span> markGenes,</span>
 <span id="cb17-6"><a href="basic-usage.html#cb17-6" tabindex="-1"></a>           <span class="at">show_row_dend =</span> F,</span>
 <span id="cb17-7"><a href="basic-usage.html#cb17-7" tabindex="-1"></a>           <span class="at">htColList =</span> <span class="fu">list</span>(<span class="at">col_range =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>),<span class="at">col_color =</span> <span class="fu">c</span>(<span class="st">&quot;#A555EC&quot;</span>,<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#FF597B&quot;</span>)),</span>
-<span id="cb17-8"><a href="basic-usage.html#cb17-8" tabindex="-1"></a>           <span class="at">HeatmapAnnotation =</span> HeatmapAnnotation,</span>
+<span id="cb17-8"><a href="basic-usage.html#cb17-8" tabindex="-1"></a>           <span class="at">heatmapAnnotation =</span> HeatmapAnnotation,</span>
 <span id="cb17-9"><a href="basic-usage.html#cb17-9" tabindex="-1"></a>           <span class="at">columnSplit =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="at">each =</span> <span class="dv">2</span>))</span>
 <span id="cb17-10"><a href="basic-usage.html#cb17-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
@@ -501,11 +501,10 @@ vectors:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basic-usage.html#cb20-1" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ct,</span>
 <span id="cb20-2"><a href="basic-usage.html#cb20-2" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
 <span id="cb20-3"><a href="basic-usage.html#cb20-3" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb20-4"><a href="basic-usage.html#cb20-4" tabindex="-1"></a>           <span class="at">show_row_names =</span> T,</span>
-<span id="cb20-5"><a href="basic-usage.html#cb20-5" tabindex="-1"></a>           <span class="at">row_annotation_obj =</span> ComplexHeatmap<span class="sc">::</span><span class="fu">rowAnnotation</span>(<span class="at">anno =</span> l_ano,</span>
-<span id="cb20-6"><a href="basic-usage.html#cb20-6" tabindex="-1"></a>                                                              <span class="at">hh =</span> <span class="fu">anno_text</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]),</span>
-<span id="cb20-7"><a href="basic-usage.html#cb20-7" tabindex="-1"></a>                                                              <span class="at">nm =</span> <span class="fu">anno_barplot</span>(<span class="fu">runif</span>(<span class="dv">20</span>)))</span>
-<span id="cb20-8"><a href="basic-usage.html#cb20-8" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb20-4"><a href="basic-usage.html#cb20-4" tabindex="-1"></a>           <span class="at">rowAnnotationObj =</span> ComplexHeatmap<span class="sc">::</span><span class="fu">rowAnnotation</span>(<span class="at">anno =</span> l_ano,</span>
+<span id="cb20-5"><a href="basic-usage.html#cb20-5" tabindex="-1"></a>                                                              <span class="at">hh =</span> <span class="fu">anno_text</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]),</span>
+<span id="cb20-6"><a href="basic-usage.html#cb20-6" tabindex="-1"></a>                                                              <span class="at">nm =</span> <span class="fu">anno_barplot</span>(<span class="fu">runif</span>(<span class="dv">20</span>)))</span>
+<span id="cb20-7"><a href="basic-usage.html#cb20-7" tabindex="-1"></a>)</span></code></pre></div>
 <p align="center">
 <p><img src="local_images/ra2.webp" width="60%"/></p>
 </p>
@@ -521,8 +520,7 @@ vectors:</p>
 <span id="cb21-9"><a href="basic-usage.html#cb21-9" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ct,</span>
 <span id="cb21-10"><a href="basic-usage.html#cb21-10" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;heatmap&quot;</span>,</span>
 <span id="cb21-11"><a href="basic-usage.html#cb21-11" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb21-12"><a href="basic-usage.html#cb21-12" tabindex="-1"></a>           <span class="at">show_row_names =</span> T,</span>
-<span id="cb21-13"><a href="basic-usage.html#cb21-13" tabindex="-1"></a>           <span class="at">row_annotation_obj =</span> left_annotation)</span></code></pre></div>
+<span id="cb21-12"><a href="basic-usage.html#cb21-12" tabindex="-1"></a>           <span class="at">rowAnnotationObj =</span> left_annotation)</span></code></pre></div>
 <p align="center">
 <p><img src="local_images/ra3.webp" width="60%"/></p>
 </p>
@@ -531,7 +529,7 @@ vectors:</p>
 <span id="cb22-2"><a href="basic-usage.html#cb22-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ct,</span>
 <span id="cb22-3"><a href="basic-usage.html#cb22-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb22-4"><a href="basic-usage.html#cb22-4" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb22-5"><a href="basic-usage.html#cb22-5" tabindex="-1"></a>           <span class="at">row_annotation_obj =</span> left_annotation)</span>
+<span id="cb22-5"><a href="basic-usage.html#cb22-5" tabindex="-1"></a>           <span class="at">rowAnnotationObj =</span> left_annotation)</span>
 <span id="cb22-6"><a href="basic-usage.html#cb22-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
 <p><img src="local_images/ra4.webp" width="60%"/></p>
@@ -541,7 +539,7 @@ vectors:</p>
 <span id="cb23-2"><a href="basic-usage.html#cb23-2" tabindex="-1"></a><span class="fu">visCluster</span>(<span class="at">object =</span> ct,</span>
 <span id="cb23-3"><a href="basic-usage.html#cb23-3" tabindex="-1"></a>           <span class="at">plotType =</span> <span class="st">&quot;both&quot;</span>,</span>
 <span id="cb23-4"><a href="basic-usage.html#cb23-4" tabindex="-1"></a>           <span class="at">column_names_rot =</span> <span class="dv">45</span>,</span>
-<span id="cb23-5"><a href="basic-usage.html#cb23-5" tabindex="-1"></a>           <span class="at">row_annotation_obj =</span> row_annotation_obj,</span>
+<span id="cb23-5"><a href="basic-usage.html#cb23-5" tabindex="-1"></a>           <span class="at">rowAnnotationObj =</span> row_annotation_obj,</span>
 <span id="cb23-6"><a href="basic-usage.html#cb23-6" tabindex="-1"></a>           <span class="at">lineSide =</span> <span class="st">&quot;left&quot;</span>)</span>
 <span id="cb23-7"><a href="basic-usage.html#cb23-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p align="center">
